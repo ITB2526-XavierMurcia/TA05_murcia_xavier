@@ -210,6 +210,9 @@
             const phone = document.getElementById('phone').value.trim();
             const message = document.getElementById('message').value.trim();
 
+            // Limpiamos espacios del teléfono para validación precisa
+            const phoneClean = phone.replace(/\s/g, '');
+
             // Validación simple
             let isValid = true;
             let errorMessage = "";
@@ -224,10 +227,10 @@
                 isValid = false;
                 errorMessage = "Please enter a valid email.";
             }
-            // Comprobar teléfono (solo números y longitud mínima)
-            else if (phone.length < 6 || isNaN(phone.replace(/\s/g, ''))) {
+            // Comprobar teléfono (solo números y longitud limitada: 6-9 dígitos)
+            else if (phoneClean.length < 6 || phoneClean.length > 9 || isNaN(phoneClean)) {
                 isValid = false;
-                errorMessage = "Please enter a valid phone number.";
+                errorMessage = "Please enter a valid phone number (max 9 digits).";
             }
 
             // Mostrar resultado
