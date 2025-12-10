@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio de Proyectos</title>
+    <title>Project Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Clase personalizada para imitar el estilo de "boceto" de las líneas */
+        /* Custom class to mimic sketch style lines */
         .thick-line {
             height: 8px;
             background-color: #000;
@@ -19,28 +19,24 @@
             width: 100%;
         }
 
-        /* NUEVO FONDO: Patrón de puntos (Dot Matrix)
-           Esto reduce el brillo del blanco puro y le da un toque técnico/moderno.
-        */
+        /* TECH BACKGROUND: Dot Matrix Pattern */
         .bg-tech-pattern {
-            background-color: #f8fafc; /* Un tono slate muy suave (no blanco nuclear) */
-            /* Crea una rejilla de puntos sutiles */
+            background-color: #f8fafc; /* Very soft slate tone */
             background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
-            background-size: 24px 24px; /* Espaciado entre puntos */
+            background-size: 24px 24px; /* Spacing between dots */
         }
     </style>
 </head>
-<!-- Aplicamos la clase bg-tech-pattern en lugar de bg-gray-50 -->
 <body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800">
 
     <!-- HEADER / NAV -->
     <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50">
         <div class="max-w-5xl mx-auto">
             <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm">
-                <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
+                <div class="font-bold text-xl ml-2 tracking-tight">DEV PORTFOLIO</div>
                 <ul class="flex space-x-6 mr-2">
-                    <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Inicio</a></li>
-                    <li><a href="lista-proyectos.html" class="hover:text-blue-600 font-medium transition">Proyectos</a></li>
+                    <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
+                    <li><a href="lista-proyectos.html" class="hover:text-blue-600 font-medium transition">Projects</a></li>
                 </ul>
             </nav>
         </div>
@@ -48,40 +44,39 @@
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow max-w-5xl mx-auto w-full p-4 md:p-8 space-y-12">
+        
+        <!-- Section Title -->
+        <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">My Featured Projects</h1>
 
-        <!-- Título de la sección -->
-        <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">Mis Proyectos Destacados</h1>
-
-        <!-- PROYECTO 1 (Imagen Izquierda - Texto Derecha) -->
-        <!-- Sigue el esquema del bloque superior azul -->
+        <!-- PROJECT 1 (Image Left - Text Right) -->
         <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-
-                <!-- Imagen / Foto (Izquierda) -->
+                
+                <!-- Image / Photo (Left) -->
                 <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md">
-                    <img
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-                        alt="Dashboard de Análisis de Datos"
+                    <img 
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+                        alt="Data Analysis Dashboard" 
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     >
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300"></div>
                 </div>
 
-                <!-- Contenido Texto (Derecha) -->
+                <!-- Text Content (Right) -->
                 <div class="w-full md:w-1/2 flex flex-col justify-center">
-                    <h2 class="text-2xl font-bold mb-4 text-gray-900">Sistema de Gestión con IA</h2>
-
-                    <!-- Líneas decorativas del esquema -->
+                    <h2 class="text-2xl font-bold mb-4 text-gray-900">AI Management System</h2>
+                    
+                    <!-- Decorative schema lines -->
                     <div class="w-3/4 h-2 bg-black rounded-full mb-3 opacity-80"></div>
                     <div class="w-full h-2 bg-black rounded-full mb-3 opacity-80"></div>
                     <div class="w-5/6 h-2 bg-black rounded-full mb-6 opacity-80"></div>
 
                     <p class="text-gray-700 leading-relaxed text-lg">
-                        Este proyecto consiste en una aplicación web full-stack diseñada para optimizar flujos de trabajo mediante algoritmos de aprendizaje automático. Desarrollado con Python (Django) en el backend y React en el frontend, permite clasificar datos en tiempo real con una precisión del 95%.
+                        This project consists of a full-stack web application designed to optimize workflows using machine learning algorithms. Developed with Python (Django) on the backend and React on the frontend, it allows for real-time data classification with 95% accuracy.
                     </p>
                     <a href="proyecto1.html">
                         <button class="mt-6 self-start px-6 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-700 transition font-medium shadow-md hover:shadow-lg">
-                            Ver Detalles
+                            View Details
                         </button>
                     </a>
 
@@ -90,36 +85,35 @@
             </div>
         </article>
 
-        <!-- PROYECTO 2 (Texto Izquierda - Imagen Derecha) -->
-        <!-- Sigue el esquema del bloque inferior azul (orden inverso) -->
+        <!-- PROJECT 2 (Text Left - Image Right) -->
         <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-
-                <!-- Contenido Texto (Izquierda - Orden cambiado con flex-order en móvil, natural en desktop) -->
+                
+                <!-- Text Content (Left) -->
                 <div class="w-full md:w-1/2 flex flex-col justify-center order-2 md:order-1">
-                    <h2 class="text-2xl font-bold mb-4 text-gray-900">App Móvil de E-Commerce</h2>
-
-                    <!-- Líneas decorativas del esquema -->
+                    <h2 class="text-2xl font-bold mb-4 text-gray-900">E-Commerce Mobile App</h2>
+                    
+                    <!-- Decorative schema lines -->
                     <div class="w-full h-2 bg-black rounded-full mb-3 opacity-80"></div>
                     <div class="w-4/5 h-2 bg-black rounded-full mb-3 opacity-80"></div>
                     <div class="w-2/3 h-2 bg-black rounded-full mb-6 opacity-80"></div>
 
                     <p class="text-gray-700 leading-relaxed text-lg">
-                        Una solución móvil multiplataforma creada con Flutter y Firebase. Incluye autenticación biométrica, pasarela de pagos integrada y sincronización en la nube. El diseño se centró en la experiencia de usuario (UX), logrando reducir el tiempo de compra en un 40%.
+                        A cross-platform mobile solution built with Flutter and Firebase. It features biometric authentication, integrated payment gateway, and cloud synchronization. The design focused on user experience (UX), achieving a 40% reduction in purchase time.
                     </p>
                     <a href="proyecto2.html">
                         <button class="mt-6 self-start px-6 py-2 bg-gray-900 text-white rounded-full hover:bg-gray-700 transition font-medium shadow-md hover:shadow-lg">
-                            Ver Detalles
+                            View Details
                         </button>
                     </a>
 
                 </div>
 
-                <!-- Imagen / Foto (Derecha - Orden cambiado con flex-order en móvil) -->
+                <!-- Image / Photo (Right) -->
                 <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md order-1 md:order-2">
-                    <img
-                        src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
-                        alt="Interfaz Móvil App"
+                    <img 
+                        src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" 
+                        alt="Mobile App Interface" 
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     >
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300"></div>
@@ -133,7 +127,7 @@
     <!-- FOOTER -->
     <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm">
         <div class="max-w-5xl mx-auto px-4 text-center">
-            <p class="text-gray-600 font-medium">© 2025 Portfolio de Desarrollo. TA05 MDS.</p>
+            <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
     </footer>
 
