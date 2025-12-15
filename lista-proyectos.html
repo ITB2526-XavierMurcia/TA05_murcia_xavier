@@ -7,19 +7,18 @@
     <link rel="icon" href="icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> <!-- Fuente Retro para el juego -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
-        /* Background pattern consistent with other pages */
+        /* --- ESTILOS MODO CLARO (Default) --- */
         .bg-tech-pattern {
             background-color: #f8fafc;
             background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
             background-size: 24px 24px;
         }
-        
-        /* Styles for the schema lines */
         .thick-line {
             height: 8px;
             background-color: #000;
@@ -28,7 +27,6 @@
             width: 60%; 
             opacity: 0.9;
         }
-        
         .thin-line {
             height: 4px;
             background-color: #000;
@@ -37,19 +35,64 @@
             width: 100%;
             opacity: 0.8;
         }
+
+        /* --- ESTILOS MODO OSCURO --- */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        body.dark-mode .bg-tech-pattern {
+            background-color: #0f172a; /* Slate 900 */
+            background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
+        }
+        /* Inversión de componentes UI */
+        body.dark-mode header {
+            background-color: rgba(15, 23, 42, 0.9);
+            border-color: #334155;
+        }
+        body.dark-mode nav {
+            background-color: #1e293b;
+            border-color: #475569;
+            color: #f8fafc;
+        }
+        body.dark-mode .bg-blue-100 {
+            background-color: #1e293b; /* Slate 800 */
+            border-color: #475569;
+        }
+        body.dark-mode .thick-line, 
+        body.dark-mode .thin-line {
+            background-color: #94a3b8; /* Slate 400 (Líneas claras) */
+        }
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode a {
+            color: #f1f5f9;
+        }
+        body.dark-mode p {
+            color: #cbd5e1;
+        }
+        /* Ajuste específico para enlaces azules en modo oscuro */
+        body.dark-mode .text-blue-600 {
+            color: #60a5fa; /* Blue 400 */
+        }
+        body.dark-mode .hover\:text-blue-600:hover {
+            color: #93c5fd; /* Blue 300 */
+        }
     </style>
 </head>
 <body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800">
 
-    <!-- HEADER / NAV (Consistent) -->
-    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50">
+    <!-- HEADER / NAV -->
+    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-5xl mx-auto">
-            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm">
+            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
-                <ul class="flex space-x-6 mr-2">
+                <ul class="flex items-center space-x-6 mr-2">
                     <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
                     <li><a href="lista-proyectos.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Projects</a></li>
                     <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition">Contact</a></li>
+                    <!-- Botón Modo Oscuro -->
+                    <li>
+                        <button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -63,7 +106,7 @@
         <div class="flex flex-col lg:flex-row gap-8 items-start">
 
             <!-- MAIN PROJECT LIST (Left Column) -->
-            <div class="flex-grow w-full lg:w-3/4 bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl">
+            <div class="flex-grow w-full lg:w-3/4 bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl transition-colors duration-300">
                 
                 <ol class="space-y-12">
                     <!-- ITEM 1 -->
@@ -196,12 +239,14 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm">
+    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="theme.js"></script>
     <!-- GAME LOGIC -->
     <script>
         const canvas = document.getElementById('gameCanvas');
@@ -214,11 +259,10 @@
         let gameRunning = false;
         let score = 0;
         let animationId;
-        let particles = []; // Array for explosion particles
-        let tick = 0; // For animation timing
+        let particles = []; 
+        let tick = 0;
 
         // --- SPRITES (Pixel Art Matrices) ---
-        // 1 = Pixel color, 0 = Transparent
         const SHIP_SPRITE = [
             [0,0,0,1,0,0,0],
             [0,0,1,1,1,0,0],
@@ -250,11 +294,6 @@
             [0,1,0,0,0,0,0,0,0,1,0]
         ];
 
-        // Helper to draw sprites
-        // sprite: Matrix array
-        // x, y: Position
-        // color: Color string
-        // pixelSize: size of each "block"
         function drawSprite(sprite, x, y, color, pixelSize) {
             ctx.fillStyle = color;
             for (let row = 0; row < sprite.length; row++) {
@@ -266,29 +305,26 @@
             }
         }
 
-        // Player
         const player = {
-            x: canvas.width / 2 - 14, // Adjusted for sprite width
+            x: canvas.width / 2 - 14,
             y: canvas.height - 30,
-            width: 28,  // 7 cols * 4px
-            height: 24, // 6 rows * 4px
+            width: 28,  
+            height: 24, 
             color: '#00ff00',
             dx: 0,
             speed: 3,
             pixelSize: 4
         };
 
-        // Bullets
         let bullets = [];
         const bulletSpeed = 5;
 
-        // Aliens
         let aliens = [];
         const alienRows = 4;
-        const alienCols = 5; // Reduced cols slightly for fit
+        const alienCols = 5;
         const alienPixelSize = 2; 
-        const alienWidth = 11 * alienPixelSize; // 22px
-        const alienHeight = 8 * alienPixelSize; // 16px
+        const alienWidth = 11 * alienPixelSize;
+        const alienHeight = 8 * alienPixelSize;
         const alienPadding = 15;
         const alienOffsetTop = 30;
         const alienOffsetLeft = 25;
@@ -308,7 +344,6 @@
             }
         }
 
-        // EXPLOSIONS / PARTICLES SYSTEM
         function createExplosion(x, y, color) {
             for (let i = 0; i < 10; i++) {
                 particles.push({
@@ -331,7 +366,7 @@
                 p.life--;
                 
                 ctx.fillStyle = p.color;
-                ctx.globalAlpha = p.life / 30; // Fade out
+                ctx.globalAlpha = p.life / 30;
                 ctx.fillRect(p.x, p.y, p.size, p.size);
                 ctx.globalAlpha = 1.0;
 
@@ -342,7 +377,6 @@
             }
         }
 
-        // Controls
         document.addEventListener('keydown', keyDownHandler);
         document.addEventListener('keyup', keyUpHandler);
 
@@ -411,7 +445,6 @@
         }
 
         function drawAliens() {
-            // Animation toggle every 30 frames approx
             const useSprite2 = Math.floor(tick / 30) % 2 === 0;
             const currentSprite = useSprite2 ? ALIEN_SPRITE_2 : ALIEN_SPRITE_1;
 
@@ -427,7 +460,7 @@
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            tick++; // Increment tick for animation
+            tick++; 
 
             // Move Player
             player.x += player.dx;
@@ -471,13 +504,11 @@
                         score += 10;
                         scoreDisplay.textContent = score;
 
-                        // Create Explosion Effect!
                         createExplosion(a.x + alienWidth/2, a.y + alienHeight/2, '#ff00ff');
                     }
                 });
             });
 
-            // Update & Draw Particles
             updateParticles();
 
             // Game Over Check
@@ -502,7 +533,6 @@
             animationId = requestAnimationFrame(update);
         }
 
-        // Draw initial state background
         ctx.fillStyle = '#000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
