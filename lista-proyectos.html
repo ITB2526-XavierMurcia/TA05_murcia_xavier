@@ -214,16 +214,68 @@
         let gameRunning = false;
         let score = 0;
         let animationId;
+        let particles = []; // Array for explosion particles
+        let tick = 0; // For animation timing
+
+        // --- SPRITES (Pixel Art Matrices) ---
+        // 1 = Pixel color, 0 = Transparent
+        const SHIP_SPRITE = [
+            [0,0,0,1,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,1,1,1,1,1,0],
+            [1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1]
+        ];
+
+        const ALIEN_SPRITE_1 = [
+            [0,0,1,0,0,0,0,0,1,0,0],
+            [0,0,0,1,0,0,0,1,0,0,0],
+            [0,0,1,1,1,1,1,1,1,0,0],
+            [0,1,1,0,1,1,1,0,1,1,0],
+            [1,1,1,1,1,1,1,1,1,1,1],
+            [1,0,1,1,1,1,1,1,1,0,1],
+            [1,0,1,0,0,0,0,0,1,0,1],
+            [0,0,0,1,1,0,1,1,0,0,0]
+        ];
+
+        const ALIEN_SPRITE_2 = [
+            [0,0,1,0,0,0,0,0,1,0,0],
+            [1,0,0,1,0,0,0,1,0,0,1],
+            [1,0,1,1,1,1,1,1,1,0,1],
+            [1,1,1,0,1,1,1,0,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1,1],
+            [0,1,1,1,1,1,1,1,1,1,0],
+            [0,0,1,0,0,0,0,0,1,0,0],
+            [0,1,0,0,0,0,0,0,0,1,0]
+        ];
+
+        // Helper to draw sprites
+        // sprite: Matrix array
+        // x, y: Position
+        // color: Color string
+        // pixelSize: size of each "block"
+        function drawSprite(sprite, x, y, color, pixelSize) {
+            ctx.fillStyle = color;
+            for (let row = 0; row < sprite.length; row++) {
+                for (let col = 0; col < sprite[row].length; col++) {
+                    if (sprite[row][col] === 1) {
+                        ctx.fillRect(x + col * pixelSize, y + row * pixelSize, pixelSize, pixelSize);
+                    }
+                }
+            }
+        }
 
         // Player
         const player = {
-            x: canvas.width / 2 - 10,
+            x: canvas.width / 2 - 14, // Adjusted for sprite width
             y: canvas.height - 30,
-            width: 20,
-            height: 10,
+            width: 28,  // 7 cols * 4px
+            height: 24, // 6 rows * 4px
             color: '#00ff00',
             dx: 0,
-            speed: 3
+            speed: 3,
+            pixelSize: 4
         };
 
         // Bullets
@@ -233,12 +285,13 @@
         // Aliens
         let aliens = [];
         const alienRows = 4;
-        const alienCols = 6;
-        const alienWidth = 20;
-        const alienHeight = 15;
-        const alienPadding = 10;
+        const alienCols = 5; // Reduced cols slightly for fit
+        const alienPixelSize = 2; 
+        const alienWidth = 11 * alienPixelSize; // 22px
+        const alienHeight = 8 * alienPixelSize; // 16px
+        const alienPadding = 15;
         const alienOffsetTop = 30;
-        const alienOffsetLeft = 20;
+        const alienOffsetLeft = 25;
         let alienDx = 0.5;
         let alienDy = 10;
 
@@ -255,6 +308,40 @@
             }
         }
 
+        // EXPLOSIONS / PARTICLES SYSTEM
+        function createExplosion(x, y, color) {
+            for (let i = 0; i < 10; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 4,
+                    vy: (Math.random() - 0.5) * 4,
+                    life: 20 + Math.random() * 10,
+                    color: color,
+                    size: Math.random() * 3 + 1
+                });
+            }
+        }
+
+        function updateParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life--;
+                
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.life / 30; // Fade out
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+                ctx.globalAlpha = 1.0;
+
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
         // Controls
         document.addEventListener('keydown', keyDownHandler);
         document.addEventListener('keyup', keyUpHandler);
@@ -265,7 +352,7 @@
             } else if(e.key === 'Left' || e.key === 'ArrowLeft') {
                 player.dx = -player.speed;
             } else if(e.key === ' ' || e.code === 'Space') {
-                e.preventDefault(); // Prevent scrolling
+                e.preventDefault(); 
                 if(!gameRunning && startScreen.style.display !== 'none') {
                     startGame();
                 } else if(gameRunning) {
@@ -281,7 +368,6 @@
         }
 
         function shoot() {
-            // Limit bullets
             if(bullets.length < 3) {
                 bullets.push({
                     x: player.x + player.width / 2 - 2,
@@ -300,7 +386,8 @@
             gameOverScreen.style.display = 'none';
             initAliens();
             bullets = [];
-            alienDx = 0.5; // Reset speed
+            particles = [];
+            alienDx = 0.5; 
             update();
         }
 
@@ -313,10 +400,7 @@
         }
 
         function drawPlayer() {
-            ctx.fillStyle = player.color;
-            // Simple ship shape
-            ctx.fillRect(player.x, player.y, player.width, player.height);
-            ctx.fillRect(player.x + 8, player.y - 5, 4, 5);
+            drawSprite(SHIP_SPRITE, player.x, player.y, player.color, player.pixelSize);
         }
 
         function drawBullets() {
@@ -327,16 +411,13 @@
         }
 
         function drawAliens() {
-            ctx.fillStyle = '#ff00ff';
+            // Animation toggle every 30 frames approx
+            const useSprite2 = Math.floor(tick / 30) % 2 === 0;
+            const currentSprite = useSprite2 ? ALIEN_SPRITE_2 : ALIEN_SPRITE_1;
+
             aliens.forEach(a => {
                 if(a.alive) {
-                    // Simple invader shape logic
-                    ctx.fillRect(a.x, a.y, alienWidth, alienHeight);
-                    // Eyes
-                    ctx.fillStyle = 'black';
-                    ctx.fillRect(a.x + 5, a.y + 4, 2, 2);
-                    ctx.fillRect(a.x + 13, a.y + 4, 2, 2);
-                    ctx.fillStyle = '#ff00ff'; // Reset color
+                    drawSprite(currentSprite, a.x, a.y, '#ff00ff', alienPixelSize);
                 }
             });
         }
@@ -345,6 +426,8 @@
             if(!gameRunning) return;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            tick++; // Increment tick for animation
 
             // Move Player
             player.x += player.dx;
@@ -371,7 +454,6 @@
             if(edgeTouched) {
                 alienDx = -alienDx;
                 aliens.forEach(a => a.y += alienDy);
-                // Speed up slightly
                 if(alienDx > 0) alienDx += 0.1; else alienDx -= 0.1;
             }
 
@@ -379,24 +461,30 @@
             bullets.forEach((b, bIndex) => {
                 aliens.forEach((a, aIndex) => {
                     if(a.alive && 
-                       b.x > a.x && b.x < a.x + alienWidth &&
-                       b.y > a.y && b.y < a.y + alienHeight) {
+                       b.x < a.x + alienWidth &&
+                       b.x + b.width > a.x &&
+                       b.y < a.y + alienHeight &&
+                       b.y + b.height > a.y) {
+                        
                         a.alive = false;
                         bullets.splice(bIndex, 1);
                         score += 10;
                         scoreDisplay.textContent = score;
+
+                        // Create Explosion Effect!
+                        createExplosion(a.x + alienWidth/2, a.y + alienHeight/2, '#ff00ff');
                     }
                 });
             });
 
+            // Update & Draw Particles
+            updateParticles();
+
             // Game Over Check
-            // 1. Aliens touch bottom
-            // 2. All aliens dead (Win condition, basically)
             let activeAliens = aliens.filter(a => a.alive).length;
             if(activeAliens === 0) {
-                // Next level simulation (just respawn)
                 initAliens();
-                alienDx = (alienDx > 0 ? 0.5 : -0.5) * 1.5; // Faster start
+                alienDx = (alienDx > 0 ? 0.5 : -0.5) * 1.5; 
             }
 
             aliens.forEach(a => {
