@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Portfolio Xavier</title>
+    <link rel="icon" href="icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="icon.png" />
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
+        /* --- ESTILOS MODO CLARO (Default) --- */
         .bg-tech-pattern {
             background-color: #f8fafc;
             background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
             background-size: 24px 24px;
         }
-        /* Estilo para los inputs que imita el "boceto" */
         .sketch-input {
             border: 2px solid #1f2937; /* Gray-800 */
             border-radius: 0.5rem;
@@ -28,7 +29,7 @@
         }
         .sketch-input:focus {
             outline: none;
-            box-shadow: 6px 6px 0px rgba(59, 130, 246, 0.5); /* Blue shadow on focus */
+            box-shadow: 6px 6px 0px rgba(59, 130, 246, 0.5); 
             border-color: #2563eb;
         }
         .thick-line {
@@ -38,6 +39,60 @@
             margin-bottom: 8px;
             width: 100%;
             opacity: 0.9;
+        }
+
+        /* --- ESTILOS MODO OSCURO --- */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        body.dark-mode .bg-tech-pattern {
+            background-color: #0f172a; 
+            background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
+        }
+        body.dark-mode header {
+            background-color: rgba(15, 23, 42, 0.9);
+            border-color: #334155;
+        }
+        body.dark-mode nav {
+            background-color: #1e293b;
+            border-color: #475569;
+            color: #f8fafc;
+        }
+        body.dark-mode .bg-blue-100 {
+            background-color: #1e293b; 
+            border-color: #475569;
+        }
+        body.dark-mode .bg-white\/50 {
+            background-color: rgba(30, 41, 59, 0.5); /* Slate 800 half opacity */
+            border-color: #475569;
+        }
+        body.dark-mode .thick-line {
+            background-color: #94a3b8;
+        }
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode a {
+            color: #f1f5f9;
+        }
+        body.dark-mode p, body.dark-mode label {
+            color: #cbd5e1;
+        }
+        /* Inputs Dark Mode */
+        body.dark-mode .sketch-input {
+            background-color: #0f172a;
+            border-color: #475569;
+            color: white;
+            box-shadow: 4px 4px 0px rgba(255,255,255,0.1);
+        }
+        body.dark-mode .sketch-input:focus {
+            border-color: #60a5fa;
+            box-shadow: 6px 6px 0px rgba(96, 165, 250, 0.5);
+        }
+        /* Enlaces */
+        body.dark-mode .text-blue-600 {
+            color: #60a5fa; 
+        }
+        body.dark-mode .hover\:text-blue-600:hover {
+            color: #93c5fd; 
         }
         
         /* Animación para el Toast */
@@ -54,14 +109,18 @@
 <body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800 relative overflow-x-hidden">
 
     <!-- HEADER / NAV -->
-    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50">
+    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-5xl mx-auto">
-            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm">
+            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
-                <ul class="flex space-x-6 mr-2">
+                <ul class="flex items-center space-x-6 mr-2">
                     <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
                     <li><a href="lista-proyectos.html" class="hover:text-blue-600 font-medium transition">Projects</a></li>
-                    <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition text-blue-600">Contact</a></li>
+                    <li><a href="contacto.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Contact</a></li>
+                    <!-- Botón Modo Oscuro -->
+                    <li>
+                        <button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -82,7 +141,7 @@
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">Get in Touch</h1>
 
         <!-- CONTACT CARD -->
-        <div class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl">
+        <div class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl transition-colors duration-300">
             
             <div class="flex flex-col md:flex-row gap-12">
                 
@@ -99,18 +158,18 @@
                     
                     <div class="space-y-2 text-sm font-medium text-gray-600">
                         <div class="flex items-center gap-2">
-                            <span class="bg-white p-2 rounded-full border border-gray-800">📧</span>
+                            <span class="bg-white p-2 rounded-full border border-gray-800 transition-colors duration-300 dark:bg-slate-800 dark:border-slate-600">📧</span>
                             <span>xavier.murcia.7e9@itb.cat</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <span class="bg-white p-2 rounded-full border border-gray-800">📍</span>
+                            <span class="bg-white p-2 rounded-full border border-gray-800 transition-colors duration-300 dark:bg-slate-800 dark:border-slate-600">📍</span>
                             <span>Barcelona, Spain</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Right Column: Form -->
-                <div class="w-full md:w-2/3 bg-white/50 p-6 rounded-2xl border-2 border-blue-200">
+                <div class="w-full md:w-2/3 bg-white/50 p-6 rounded-2xl border-2 border-blue-200 transition-colors duration-300">
                     <form id="contactForm" class="space-y-4" novalidate>
                         
                         <!-- Name Field -->
@@ -194,11 +253,14 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm">
+    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
     </footer>
+
+    <!-- Script Modo Oscuro -->
+    <script src="theme.js"></script>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
