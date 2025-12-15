@@ -10,8 +10,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
-        /* Custom class to mimic sketch style lines */
+        /* --- ESTILOS MODO CLARO (Default) --- */
         .thick-line {
             height: 8px;
             background-color: #000;
@@ -19,12 +20,54 @@
             margin-bottom: 8px;
             width: 100%;
         }
-
-        /* TECH BACKGROUND: Dot Matrix Pattern */
         .bg-tech-pattern {
-            background-color: #f8fafc; /* Very soft slate tone */
+            background-color: #f8fafc;
             background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
-            background-size: 24px 24px; /* Spacing between dots */
+            background-size: 24px 24px;
+        }
+
+        /* --- ESTILOS MODO OSCURO --- */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        body.dark-mode .bg-tech-pattern {
+            background-color: #0f172a; /* Slate 900 */
+            background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
+        }
+        body.dark-mode header {
+            background-color: rgba(15, 23, 42, 0.9);
+            border-color: #334155;
+        }
+        body.dark-mode nav {
+            background-color: #1e293b;
+            border-color: #475569;
+            color: #f8fafc;
+        }
+        body.dark-mode .bg-blue-100 {
+            background-color: #1e293b; /* Slate 800 */
+            border-color: #475569;
+        }
+        body.dark-mode .bg-white {
+            background-color: #1e293b;
+            border-color: #475569;
+        }
+        body.dark-mode .thick-line, 
+        body.dark-mode .schema-bar {
+            background-color: #94a3b8;
+        }
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode a {
+            color: #f1f5f9;
+        }
+        body.dark-mode p {
+            color: #cbd5e1;
+        }
+        /* Ajuste enlaces */
+        body.dark-mode .text-blue-600 {
+            color: #60a5fa; 
+        }
+        body.dark-mode .hover\:text-blue-600:hover {
+            color: #93c5fd; 
         }
 
         /* =========================================
@@ -308,15 +351,19 @@
 <body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800">
 
     <!-- HEADER / NAV -->
-    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50">
+    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-5xl mx-auto">
-            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm">
+            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
-                <ul class="flex space-x-6 mr-2">
+                <ul class="flex items-center space-x-6 mr-2">
                     <!-- Highlighted Home link -->
                     <li><a href="index.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Home</a></li>
                     <li><a href="lista-proyectos.html" class="hover:text-blue-600 font-medium transition">Projects</a></li>
                     <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition">Contact</a></li>
+                    <!-- Botón Modo Oscuro -->
+                    <li>
+                        <button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -329,11 +376,11 @@
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">My Featured Projects</h1>
 
         <!-- PROJECT 1 (Image Left - Text Right) -->
-        <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300 transition-colors duration-300">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                 
                 <!-- Image / Photo (Left) -->
-                <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md">
+                <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md transition-colors duration-300">
                     <img 
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
                         alt="Data Analysis Dashboard" 
@@ -347,9 +394,9 @@
                     <h2 class="text-2xl font-bold mb-4 text-gray-900">AI Management System</h2>
                     
                     <!-- Decorative schema lines -->
-                    <div class="w-3/4 h-2 bg-black rounded-full mb-3 opacity-80"></div>
-                    <div class="w-full h-2 bg-black rounded-full mb-3 opacity-80"></div>
-                    <div class="w-5/6 h-2 bg-black rounded-full mb-6 opacity-80"></div>
+                    <div class="w-3/4 h-2 bg-black rounded-full mb-3 opacity-80 thick-line"></div>
+                    <div class="w-full h-2 bg-black rounded-full mb-3 opacity-80 thick-line"></div>
+                    <div class="w-5/6 h-2 bg-black rounded-full mb-6 opacity-80 thick-line"></div>
 
                     <p class="text-gray-700 leading-relaxed text-lg">
                         This project consists of a full-stack web application designed to optimize workflows using machine learning algorithms. Developed with Python (Django) on the backend and React on the frontend, it allows for real-time data classification with 95% accuracy.
@@ -366,7 +413,7 @@
         </article>
 
         <!-- PROJECT 2 (Text Left - Image Right) -->
-        <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300 transition-colors duration-300">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                 
                 <!-- Text Content (Left) -->
@@ -374,9 +421,9 @@
                     <h2 class="text-2xl font-bold mb-4 text-gray-900">E-Commerce Mobile App</h2>
                     
                     <!-- Decorative schema lines -->
-                    <div class="w-full h-2 bg-black rounded-full mb-3 opacity-80"></div>
-                    <div class="w-4/5 h-2 bg-black rounded-full mb-3 opacity-80"></div>
-                    <div class="w-2/3 h-2 bg-black rounded-full mb-6 opacity-80"></div>
+                    <div class="w-full h-2 bg-black rounded-full mb-3 opacity-80 thick-line"></div>
+                    <div class="w-4/5 h-2 bg-black rounded-full mb-3 opacity-80 thick-line"></div>
+                    <div class="w-2/3 h-2 bg-black rounded-full mb-6 opacity-80 thick-line"></div>
 
                     <p class="text-gray-700 leading-relaxed text-lg">
                         A cross-platform mobile solution built with Flutter and Firebase. It features biometric authentication, integrated payment gateway, and cloud synchronization. The design focused on user experience (UX), achieving a 40% reduction in purchase time.
@@ -390,7 +437,7 @@
                 </div>
 
                 <!-- Image / Photo (Right) -->
-                <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md order-1 md:order-2">
+                <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md order-1 md:order-2 transition-colors duration-300">
                     <img 
                         src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" 
                         alt="Mobile App Interface" 
@@ -415,11 +462,14 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm">
+    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
     </footer>
+
+    <!-- Script Modo Oscuro -->
+    <script src="theme.js"></script>
 
 </body>
 </html>
