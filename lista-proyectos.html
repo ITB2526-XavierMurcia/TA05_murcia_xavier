@@ -7,6 +7,7 @@
     <link rel="icon" href="icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> <!-- Fuente Retro para el juego -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -24,7 +25,7 @@
             background-color: #000;
             border-radius: 4px;
             margin-bottom: 12px;
-            width: 60%; /* Consistent with schema drawing */
+            width: 60%; 
             opacity: 0.9;
         }
         
@@ -47,7 +48,6 @@
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
                 <ul class="flex space-x-6 mr-2">
                     <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
-                    <!-- Highlighted Projects link -->
                     <li><a href="lista-proyectos.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Projects</a></li>
                     <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition">Contact</a></li>
                 </ul>
@@ -56,125 +56,141 @@
     </header>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-grow max-w-5xl mx-auto w-full p-4 md:p-8">
+    <main class="flex-grow max-w-7xl mx-auto w-full p-4 md:p-8">
         
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">Complete Project List</h1>
 
-        <!-- BIG BLUE CONTAINER (Matches the outer box in the schema) -->
-        <div class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl">
-            
-            <!-- ORDERED LIST (<ol>) -->
-            <ol class="space-y-12">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+
+            <!-- MAIN PROJECT LIST (Left Column) -->
+            <div class="flex-grow w-full lg:w-3/4 bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl">
                 
-                <!-- ITEM 1: AI System (Links to Project 1) -->
-                <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                    <!-- Text Content (Left) -->
-                    <div class="flex-grow w-full md:w-2/3">
-                        <div class="flex items-baseline gap-2 mb-2">
-                            <span class="text-blue-600 font-bold text-lg">01.</span>
-                            <a href="proyecto1.html" class="text-2xl font-bold text-gray-900 hover:text-blue-700 hover:underline">AI Management System</a>
+                <ol class="space-y-12">
+                    <!-- ITEM 1 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full md:w-2/3">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-blue-600 font-bold text-lg">01.</span>
+                                <a href="proyecto1.html" class="text-2xl font-bold text-gray-900 hover:text-blue-700 hover:underline">AI Management System</a>
+                            </div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                A full-stack web application designed to optimize workflows using machine learning algorithms. Developed with Python (Django) and React, achieving 95% accuracy in real-time data classification.
+                            </p>
+                            <div class="thin-line"></div>
+                            <div class="thin-line w-11/12"></div>
                         </div>
-                        
-                        <!-- Thick Line -->
-                        <div class="thick-line"></div>
+                        <a href="proyecto1.html" class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 1">
+                        </a>
+                    </li>
 
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            A full-stack web application designed to optimize workflows using machine learning algorithms. Developed with Python (Django) and React, achieving 95% accuracy in real-time data classification.
-                        </p>
-
-                        <!-- Two Thin Lines (Decorative as per schema) -->
-                        <div class="thin-line"></div>
-                        <div class="thin-line w-11/12"></div>
-                    </div>
-
-                    <!-- Image Box (Right - Square) -->
-                    <a href="proyecto1.html" class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 1">
-                    </a>
-                </li>
-
-                <!-- ITEM 2: Mobile App (Links to Project 2) -->
-                <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                    <div class="flex-grow w-full md:w-2/3">
-                        <div class="flex items-baseline gap-2 mb-2">
-                            <span class="text-blue-600 font-bold text-lg">02.</span>
-                            <a href="proyecto2.html" class="text-2xl font-bold text-gray-900 hover:text-blue-700 hover:underline">E-Commerce Mobile App</a>
+                    <!-- ITEM 2 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full md:w-2/3">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-blue-600 font-bold text-lg">02.</span>
+                                <a href="proyecto2.html" class="text-2xl font-bold text-gray-900 hover:text-blue-700 hover:underline">E-Commerce Mobile App</a>
+                            </div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                Cross-platform solution with Flutter & Firebase. Features biometric login, Stripe payments, and cloud sync. Focused on UX research, reducing checkout time by 40%.
+                            </p>
+                            <div class="thin-line"></div>
+                            <div class="thin-line w-11/12"></div>
                         </div>
-                        
-                        <div class="thick-line"></div>
+                        <a href="proyecto2.html" class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 2">
+                        </a>
+                    </li>
 
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            Cross-platform solution with Flutter & Firebase. Features biometric login, Stripe payments, and cloud sync. Focused on UX research, reducing checkout time by 40%.
-                        </p>
-
-                        <div class="thin-line"></div>
-                        <div class="thin-line w-11/12"></div>
-                    </div>
-
-                    <a href="proyecto2.html" class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 2">
-                    </a>
-                </li>
-
-                <!-- ITEM 3: Cloud Infrastructure (New Example) -->
-                <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                    <div class="flex-grow w-full md:w-2/3">
-                        <div class="flex items-baseline gap-2 mb-2">
-                            <span class="text-blue-600 font-bold text-lg">03.</span>
-                            <h3 class="text-2xl font-bold text-gray-900">Cloud DevOps Pipeline</h3>
+                    <!-- ITEM 3 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full md:w-2/3">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-blue-600 font-bold text-lg">03.</span>
+                                <h3 class="text-2xl font-bold text-gray-900">Cloud DevOps Pipeline</h3>
+                            </div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                Automated CI/CD infrastructure using Docker, Kubernetes, and AWS. Implemented auto-scaling policies that reduced server costs by 30% while maintaining 99.99% uptime for high-traffic microservices.
+                            </p>
+                            <div class="thin-line"></div>
+                            <div class="thin-line w-11/12"></div>
                         </div>
-                        
-                        <div class="thick-line"></div>
-
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            Automated CI/CD infrastructure using Docker, Kubernetes, and AWS. Implemented auto-scaling policies that reduced server costs by 30% while maintaining 99.99% uptime for high-traffic microservices.
-                        </p>
-
-                        <div class="thin-line"></div>
-                        <div class="thin-line w-11/12"></div>
-                    </div>
-
-                    <div class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
-                        <!-- Changed image URL and added onerror fallback -->
-                        <img 
-                            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" 
-                            onerror="this.src='https://placehold.co/600x600?text=DevOps+Image'"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                            alt="Project 3"
-                        >
-                    </div>
-                </li>
-
-                <!-- ITEM 4: IoT Dashboard (New Example) -->
-                <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
-                    <div class="flex-grow w-full md:w-2/3">
-                        <div class="flex items-baseline gap-2 mb-2">
-                            <span class="text-blue-600 font-bold text-lg">04.</span>
-                            <h3 class="text-2xl font-bold text-gray-900">IoT Home Automation</h3>
+                        <div class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=DevOps+Image'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 3">
                         </div>
-                        
-                        <div class="thick-line"></div>
+                    </li>
 
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            Smart home control panel built with Vue.js and Node.js (MQTT). Allows users to monitor energy consumption, control lights, and manage security cameras from a centralized, responsive dashboard.
-                        </p>
+                    <!-- ITEM 4 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
+                        <div class="flex-grow w-full md:w-2/3">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-blue-600 font-bold text-lg">04.</span>
+                                <h3 class="text-2xl font-bold text-gray-900">IoT Home Automation</h3>
+                            </div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                Smart home control panel built with Vue.js and Node.js (MQTT). Allows users to monitor energy consumption, control lights, and manage security cameras from a centralized, responsive dashboard.
+                            </p>
+                            <div class="thin-line"></div>
+                            <div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=IoT+Image'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 4">
+                        </div>
+                    </li>
+                </ol>
+            </div>
 
-                        <div class="thin-line"></div>
-                        <div class="thin-line w-11/12"></div>
+            <!-- ASIDE: RETRO GAME (Right Column) -->
+            <aside class="w-full lg:w-1/4 sticky top-24 bg-gray-900 text-white p-4 rounded-xl shadow-2xl border-4 border-gray-700 self-start hidden lg:block">
+                <div class="flex justify-between items-center mb-2 border-b border-gray-700 pb-2">
+                    <h3 class="font-mono text-green-400 font-bold text-sm tracking-wider">05. JAVA SPACE INVADERS</h3>
+                    <div class="flex gap-1">
+                        <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                        <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                    </div>
+                </div>
+                
+                <!-- Game Container -->
+                <div class="relative bg-black border-2 border-green-500/50 shadow-[0_0_10px_rgba(34,197,94,0.2)]">
+                    <canvas id="gameCanvas" width="240" height="320" class="block mx-auto"></canvas>
+                    
+                    <!-- Start Overlay -->
+                    <div id="startScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-10">
+                        <p class="font-['VT323'] text-2xl text-green-400 animate-pulse">PRESS SPACE</p>
+                        <p class="font-['VT323'] text-sm text-gray-400 mt-2">TO START</p>
                     </div>
 
-                    <div class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
-                        <!-- Added onerror fallback here too just in case -->
-                        <img 
-                            src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=600&q=80" 
-                            onerror="this.src='https://placehold.co/600x600?text=IoT+Image'"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                            alt="Project 4"
-                        >
+                    <!-- Game Over Overlay -->
+                    <div id="gameOverScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-10 hidden">
+                        <p class="font-['VT323'] text-3xl text-red-500 mb-2">GAME OVER</p>
+                        <p class="font-['VT323'] text-lg text-white">SCORE: <span id="finalScore">0</span></p>
+                        <p class="font-['VT323'] text-sm text-green-400 mt-4 cursor-pointer hover:underline" onclick="resetGame()">[ RESTART ]</p>
                     </div>
-                </li>
+                </div>
 
-            </ol>
+                <div class="mt-3 text-center">
+                    <p class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Controls</p>
+                    <div class="flex justify-center gap-2 mt-1 text-xs font-mono text-gray-300">
+                        <span class="border border-gray-600 px-1 rounded">←</span>
+                        <span class="border border-gray-600 px-1 rounded">→</span>
+                        <span class="text-[10px] self-center">MOVE</span>
+                        <span class="border border-gray-600 px-3 rounded">SPACE</span>
+                        <span class="text-[10px] self-center">SHOOT</span>
+                    </div>
+                </div>
+                
+                <!-- Score Display -->
+                <div class="mt-4 border-t border-gray-700 pt-2 flex justify-between font-['VT323'] text-xl">
+                    <span class="text-green-400">SCORE:</span>
+                    <span id="scoreDisplay" class="text-white">0</span>
+                </div>
+            </aside>
+
         </div>
 
     </main>
@@ -186,5 +202,222 @@
         </div>
     </footer>
 
+    <!-- GAME LOGIC -->
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const startScreen = document.getElementById('startScreen');
+        const gameOverScreen = document.getElementById('gameOverScreen');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const finalScoreDisplay = document.getElementById('finalScore');
+
+        let gameRunning = false;
+        let score = 0;
+        let animationId;
+
+        // Player
+        const player = {
+            x: canvas.width / 2 - 10,
+            y: canvas.height - 30,
+            width: 20,
+            height: 10,
+            color: '#00ff00',
+            dx: 0,
+            speed: 3
+        };
+
+        // Bullets
+        let bullets = [];
+        const bulletSpeed = 5;
+
+        // Aliens
+        let aliens = [];
+        const alienRows = 4;
+        const alienCols = 6;
+        const alienWidth = 20;
+        const alienHeight = 15;
+        const alienPadding = 10;
+        const alienOffsetTop = 30;
+        const alienOffsetLeft = 20;
+        let alienDx = 0.5;
+        let alienDy = 10;
+
+        function initAliens() {
+            aliens = [];
+            for(let c=0; c<alienCols; c++) {
+                for(let r=0; r<alienRows; r++) {
+                    aliens.push({
+                        x: (c * (alienWidth + alienPadding)) + alienOffsetLeft,
+                        y: (r * (alienHeight + alienPadding)) + alienOffsetTop,
+                        alive: true
+                    });
+                }
+            }
+        }
+
+        // Controls
+        document.addEventListener('keydown', keyDownHandler);
+        document.addEventListener('keyup', keyUpHandler);
+
+        function keyDownHandler(e) {
+            if(e.key === 'Right' || e.key === 'ArrowRight') {
+                player.dx = player.speed;
+            } else if(e.key === 'Left' || e.key === 'ArrowLeft') {
+                player.dx = -player.speed;
+            } else if(e.key === ' ' || e.code === 'Space') {
+                e.preventDefault(); // Prevent scrolling
+                if(!gameRunning && startScreen.style.display !== 'none') {
+                    startGame();
+                } else if(gameRunning) {
+                    shoot();
+                }
+            }
+        }
+
+        function keyUpHandler(e) {
+            if(e.key === 'Right' || e.key === 'ArrowRight' || e.key === 'Left' || e.key === 'ArrowLeft') {
+                player.dx = 0;
+            }
+        }
+
+        function shoot() {
+            // Limit bullets
+            if(bullets.length < 3) {
+                bullets.push({
+                    x: player.x + player.width / 2 - 2,
+                    y: player.y,
+                    width: 4,
+                    height: 10
+                });
+            }
+        }
+
+        function startGame() {
+            gameRunning = true;
+            score = 0;
+            scoreDisplay.textContent = score;
+            startScreen.style.display = 'none';
+            gameOverScreen.style.display = 'none';
+            initAliens();
+            bullets = [];
+            alienDx = 0.5; // Reset speed
+            update();
+        }
+
+        function resetGame() {
+            gameRunning = false;
+            cancelAnimationFrame(animationId);
+            startScreen.style.display = 'flex';
+            gameOverScreen.style.display = 'none';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            // Simple ship shape
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            ctx.fillRect(player.x + 8, player.y - 5, 4, 5);
+        }
+
+        function drawBullets() {
+            ctx.fillStyle = '#ffff00';
+            bullets.forEach(b => {
+                ctx.fillRect(b.x, b.y, b.width, b.height);
+            });
+        }
+
+        function drawAliens() {
+            ctx.fillStyle = '#ff00ff';
+            aliens.forEach(a => {
+                if(a.alive) {
+                    // Simple invader shape logic
+                    ctx.fillRect(a.x, a.y, alienWidth, alienHeight);
+                    // Eyes
+                    ctx.fillStyle = 'black';
+                    ctx.fillRect(a.x + 5, a.y + 4, 2, 2);
+                    ctx.fillRect(a.x + 13, a.y + 4, 2, 2);
+                    ctx.fillStyle = '#ff00ff'; // Reset color
+                }
+            });
+        }
+
+        function update() {
+            if(!gameRunning) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Move Player
+            player.x += player.dx;
+            if(player.x < 0) player.x = 0;
+            if(player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+
+            // Move Bullets
+            bullets.forEach((b, index) => {
+                b.y -= bulletSpeed;
+                if(b.y < 0) bullets.splice(index, 1);
+            });
+
+            // Move Aliens
+            let edgeTouched = false;
+            aliens.forEach(a => {
+                if(a.alive) {
+                    a.x += alienDx;
+                    if(a.x + alienWidth > canvas.width || a.x < 0) {
+                        edgeTouched = true;
+                    }
+                }
+            });
+
+            if(edgeTouched) {
+                alienDx = -alienDx;
+                aliens.forEach(a => a.y += alienDy);
+                // Speed up slightly
+                if(alienDx > 0) alienDx += 0.1; else alienDx -= 0.1;
+            }
+
+            // Collision Detection
+            bullets.forEach((b, bIndex) => {
+                aliens.forEach((a, aIndex) => {
+                    if(a.alive && 
+                       b.x > a.x && b.x < a.x + alienWidth &&
+                       b.y > a.y && b.y < a.y + alienHeight) {
+                        a.alive = false;
+                        bullets.splice(bIndex, 1);
+                        score += 10;
+                        scoreDisplay.textContent = score;
+                    }
+                });
+            });
+
+            // Game Over Check
+            // 1. Aliens touch bottom
+            // 2. All aliens dead (Win condition, basically)
+            let activeAliens = aliens.filter(a => a.alive).length;
+            if(activeAliens === 0) {
+                // Next level simulation (just respawn)
+                initAliens();
+                alienDx = (alienDx > 0 ? 0.5 : -0.5) * 1.5; // Faster start
+            }
+
+            aliens.forEach(a => {
+                if(a.alive && a.y + alienHeight > player.y) {
+                    gameRunning = false;
+                    finalScoreDisplay.textContent = score;
+                    gameOverScreen.style.display = 'flex';
+                }
+            });
+
+            drawPlayer();
+            drawBullets();
+            drawAliens();
+
+            animationId = requestAnimationFrame(update);
+        }
+
+        // Draw initial state background
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    </script>
 </body>
 </html>
