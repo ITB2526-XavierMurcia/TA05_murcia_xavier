@@ -1,93 +1,111 @@
-🚀 Portfolio de Desarrollo Web - Documentación del Proyecto
+<h1>🚀 Portfolio de Desarrollo Web - Xavier</h1>
 
-1. ✨ Descripción General
+<p>¡Bienvenido a mi portfolio interactivo! 🎨 Este proyecto es un escaparate profesional de desarrollo web con un diseño <strong>moderno, neobrutalista y estilo "sketch"</strong>. Prioriza la claridad visual, una experiencia de usuario (UX) fluida y detalles técnicos avanzados.</p>
 
-¡Bienvenido a mi portfolio interactivo! 🎨 Este proyecto es un escaparate de desarrollo de software con un diseño moderno, neobrutalista y estilo "sketch". Priorizamos la claridad visual y una experiencia de usuario (UX) fluida y divertida. ¡Todo adaptable y responsivo! 📱💻
+<hr>
 
-2. 🛠️ Tecnologías Utilizadas
+<h2>🛠️ Tecnologías Utilizadas</h2>
 
-🦴 HTML5: La base sólida y semántica de todo.
+<ul>
+<li><strong>🦴 HTML5:</strong> Estructura semántica.</li>
+<li><strong>🎨 CSS3 & Tailwind CSS:</strong> Estilado utility-first + <strong>CSS Houdini API</strong> para efectos avanzados.</li>
+<li><strong>⚡ JavaScript (ES6+):</strong> Lógica del cliente, videojuegos y gestión de estado.</li>
+</ul>
 
-🎨 CSS3 & Tailwind CSS: Estilado rápido y potente, con magia extra de Houdini API para efectos visuales avanzados.
+<hr>
 
-⚡ JavaScript (ES6+): El motor que impulsa la interactividad, el modo oscuro y los minijuegos.
+<h2>📂 Estructura del Proyecto</h2>
 
-3. 📂 Estructura del Sitio
+<table border="1">
+<thead>
+<tr>
+<th>Archivo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index.html</code></td>
+<td>🏠 <strong>Inicio:</strong> Portada con proyectos destacados y acceso rápido.</td>
+</tr>
+<tr>
+<td><code>lista-proyectos.html</code></td>
+<td>📋 <strong>Catálogo:</strong> Lista de 25 proyectos y un <strong>juego oculto</strong>.</td>
+</tr>
+<tr>
+<td><code>proyecto1.html</code></td>
+<td>🤖 <strong>Detalle:</strong> Caso de estudio "Sistema de Gestión IA".</td>
+</tr>
+<tr>
+<td><code>proyecto2.html</code></td>
+<td>🛒 <strong>Detalle:</strong> Caso de estudio "App E-Commerce".</td>
+</tr>
+<tr>
+<td><code>contacto.html</code></td>
+<td>✉️ <strong>Contacto:</strong> Formulario con validación y notificaciones.</td>
+</tr>
+<tr>
+<td><code>styles.css</code></td>
+<td>💅 <strong>Estilos:</strong> Hoja de estilos global unificada.</td>
+</tr>
+<tr>
+<td><code>theme.js</code></td>
+<td>🌗 <strong>Lógica:</strong> Motor del modo oscuro.</td>
+</tr>
+<tr>
+<td><code>icon.png</code></td>
+<td>🖼️ <strong>Favicon:</strong> Icono de pestaña.</td>
+</tr>
+</tbody>
+</table>
 
-Archivo
+<hr>
 
-Descripción
+<h2>🌟 Funcionalidades Clave</h2>
 
-index.html
+<h3>1. 🎨 Diseño UI/UX "Sketch"</h3>
+<ul>
+<li><strong>Estética Técnica:</strong> Uso de bordes negros gruesos, sombras sólidas y líneas de separación que simulan planos técnicos.</li>
+<li><strong>Botones Houdini:</strong> Implementación de <code>@property</code> en CSS para crear bordes con degradados cónicos animados.</li>
+</ul>
 
-🏠 Página Principal: Presentación y acceso rápido.
+<h3>2. 🌗 Sistema de Modo Oscuro Avanzado (<code>theme.js</code>)</h3>
+<ul>
+<li><strong>Persistencia:</strong> Guarda la preferencia del usuario en <code>localStorage</code>.</li>
+<li><strong>Anti-Flash:</strong> Incluye un script de bloqueo en el <code>&lt;head&gt;</code> que aplica los estilos oscuros antes del renderizado, evitando el parpadeo blanco al navegar.</li>
+<li><strong>Adaptabilidad:</strong> Invierte colores de fondo, textos y patrones (puntos) automáticamente.</li>
+</ul>
 
-lista-proyectos.html
+<h3>3. 👾 Minijuego "Space Invaders"</h3>
+<p>Ubicado en el panel lateral de la lista de proyectos:</p>
+<ul>
+<li><strong>Canvas API:</strong> Renderizado gráfico en tiempo real con JavaScript puro.</li>
+<li><strong>Pixel Art:</strong> Sprites diseñados mediante matrices binarias.</li>
+<li><strong>Físicas:</strong> Sistema de partículas para explosiones y detección de colisiones.</li>
+</ul>
 
-📋 Catálogo: Lista de 25 proyectos + Juego oculto.
+<h3>4. ✅ Formularios Interactivos</h3>
+<ul>
+<li><strong>Validación en Tiempo Real:</strong> Comprobación de email y teléfono antes del envío.</li>
+<li><strong>Toasts:</strong> Sistema de notificaciones flotantes animadas (éxito/error) sin usar <code>alert()</code>.</li>
+</ul>
 
-proyecto1.html
+<hr>
 
-🤖 Detalle: Proyecto de Sistema IA.
+<h2>▶️ Cómo Ejecutarlo</h2>
 
-proyecto2.html
+<ol>
+<li>Descarga o clona este repositorio.</li>
+<li>Asegúrate de que todos los archivos estén en la misma carpeta raíz.</li>
+<li>Abre el archivo <code>index.html</code> en cualquier navegador moderno (Chrome, Firefox, Edge, Safari).</li>
+<li>¡Listo! No requiere instalación de dependencias ni servidor backend.</li>
+</ol>
 
-🛒 Detalle: Proyecto de App E-Commerce.
+<p>
+<strong>👨‍💻 Desarrollado por:</strong> Xavier
 
-contacto.html
 
-✉️ Contacto: Formulario con validación.
 
-styles.css
 
-💅 Estilos: Hoja de estilos global unificada.
-
-theme.js
-
-🌗 Lógica: Control del modo oscuro.
-
-4. 🌟 Funcionalidades Clave & JavaScript
-
-A. 🎨 Diseño y Estética (UI/UX)
-
-✏️ Estilo "Sketch": Bordes negros gruesos y sombras sólidas que imitan un plano técnico.
-
-🔘 Botones Avanzados: Uso de CSS Houdini (@property) para bordes cónicos animados.
-
-B. ⚡ Las 3 Funciones JavaScript Principales
-
-Hemos implementado tres módulos lógicos distintos:
-
-1. 🌗 Sistema de Modo Oscuro (theme.js)
-
-Lógica: Detecta la preferencia y alterna la clase dark-mode en el <html>.
-
-Persistencia: Usa localStorage para recordar tu elección.
-
-Anti-Flash: Script de bloqueo en el <head> para evitar parpadeos blancos al cargar.
-
-2. 👾 Minijuego "Space Invaders" (Canvas API)
-
-Motor: Bucle de juego optimizado con requestAnimationFrame.
-
-Gráficos: Renderizado en tiempo real sobre <canvas> usando matrices de píxeles (0/1).
-
-Físicas: Detección de colisiones, partículas y puntuación.
-
-3. ✅ Validación de Formularios y Toasts
-
-Validación: Comprobación en tiempo real de email y teléfono antes del envío.
-
-UI Dinámica: Sistema de notificaciones flotantes (Toasts) animadas.
-
-6. ▶️ Cómo Ejecutarlo
-
-Asegúrate de que todos los archivos estén en la misma carpeta 📂.
-
-Abre index.html en tu navegador favorito (Chrome, Firefox, Edge...) 🌐.
-
-¡Y listo! No necesitas instalar nada ni servidores. ¡Funciona al instante! ✨
-
-👨‍💻 Desarrollado por: Xavier
-
-📅 Fecha: 12-2025
+<strong>📅 Fecha:</strong> Diciembre 2025
+</p>
