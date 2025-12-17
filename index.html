@@ -32,7 +32,7 @@
             color: #e2e8f0;
         }
         body.dark-mode .bg-tech-pattern {
-            background-color: #0f172a; /* Slate 900 */
+            background-color: #0f172a; 
             background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
         }
         body.dark-mode header {
@@ -45,7 +45,7 @@
             color: #f8fafc;
         }
         body.dark-mode .bg-blue-100 {
-            background-color: #1e293b; /* Slate 800 */
+            background-color: #1e293b; 
             border-color: #475569;
         }
         body.dark-mode .bg-white {
@@ -62,6 +62,15 @@
         body.dark-mode p {
             color: #cbd5e1;
         }
+        /* --- FIX FOOTER MODO OSCURO --- */
+        body.dark-mode footer {
+            background-color: rgba(30, 41, 59, 0.95); /* Slate 800 opaco */
+            border-top-color: #475569;
+        }
+        body.dark-mode footer p {
+            color: #94a3b8 !important; /* Forzar color claro */
+        }
+
         /* Ajuste enlaces */
         body.dark-mode .text-blue-600 {
             color: #60a5fa; 
@@ -71,30 +80,18 @@
         }
 
         /* =========================================
-           NUEVO BOTÓN AVANZADO (CSS Houdini)
+           BOTÓN AVANZADO (CSS Houdini)
            ========================================= */
         
-        /* Defs */
-        @property --angle-1 {
-          syntax: "<angle>";
-          inherits: false;
-          initial-value: -75deg;
-        }
-
-        @property --angle-2 {
-          syntax: "<angle>";
-          inherits: false;
-          initial-value: -45deg;
-        }
+        @property --angle-1 { syntax: "<angle>"; inherits: false; initial-value: -75deg; }
+        @property --angle-2 { syntax: "<angle>"; inherits: false; initial-value: -45deg; }
 
         :root {
-          /* Ajustado el tamaño global para este contexto */
           --btn-global-size: 1.2rem; 
           --anim--hover-time: 400ms;
           --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Button Wrap Container */
         .button-wrap {
           position: relative;
           z-index: 2;
@@ -102,11 +99,10 @@
           background: transparent;
           pointer-events: none;
           transition: all var(--anim--hover-time) var(--anim--hover-ease);
-          font-size: var(--btn-global-size); /* Aplica el tamaño aquí */
-          display: inline-block; /* Para que no ocupe todo el ancho */
+          font-size: var(--btn-global-size);
+          display: inline-block;
         }
 
-        /* Button Shadow Container */
         .button-shadow {
           --shadow-cuttoff-fix: 2em;
           position: absolute;
@@ -115,14 +111,10 @@
           top: calc(0% - var(--shadow-cuttoff-fix) / 2);
           left: calc(0% - var(--shadow-cuttoff-fix) / 2);
           filter: blur(clamp(2px, 0.125em, 12px));
-          -webkit-filter: blur(clamp(2px, 0.125em, 12px));
-          -moz-filter: blur(clamp(2px, 0.125em, 12px));
-          -ms-filter: blur(clamp(2px, 0.125em, 12px));
           overflow: visible;
           pointer-events: none;
         }
 
-        /* Shadow */
         .button-shadow::after {
           content: "";
           position: absolute;
@@ -139,15 +131,11 @@
           mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           mask-composite: exclude;
           transition: all var(--anim--hover-time) var(--anim--hover-ease);
-          overflow: visible;
           opacity: 1;
         }
 
-        /* ========== BUTTON BASE STYLES ========== */
-
-        /* Usamos .complex-btn en lugar de 'button' genérico */
+        /* --- BOTÓN BASE --- */
         .complex-btn {
-          /* Basic Styling */
           --border-width: clamp(1px, 0.0625em, 4px);
           all: unset;
           cursor: pointer;
@@ -155,196 +143,63 @@
           -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
           pointer-events: auto;
           z-index: 3;
-          background: linear-gradient(
-            -75deg,
-            rgba(255, 255, 255, 0.05),
-            rgba(255, 255, 255, 0.2),
-            rgba(255, 255, 255, 0.05)
-          );
+          background: linear-gradient(-75deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
           border-radius: 999vw;
-          box-shadow: inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
-            inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
-            0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
-            0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2),
-            0 0 0 0 rgba(255, 255, 255, 1);
+          box-shadow: inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05), inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5), 0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2), 0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2), 0 0 0 0 rgba(255, 255, 255, 1);
           backdrop-filter: blur(clamp(1px, 0.125em, 4px));
-          -webkit-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
-          -moz-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
-          -ms-backdrop-filter: blur(clamp(1px, 0.125em, 4px));
           transition: all var(--anim--hover-time) var(--anim--hover-ease);
-          display: inline-block; /* Asegura que se comporte como bloque en línea */
+          display: inline-block;
         }
 
-        .complex-btn:hover {
-          transform: scale(0.975);
-          backdrop-filter: blur(0.01em);
-          -webkit-backdrop-filter: blur(0.01em);
-          -moz-backdrop-filter: blur(0.01em);
-          -ms-backdrop-filter: blur(0.01em);
-          box-shadow: inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
-            inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
-            0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
-            0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5),
-            0 0 0 0 rgba(255, 255, 255, 1);
+        /* --- FIX BOTÓN MODO OSCURO --- */
+        body.dark-mode .complex-btn span {
+            color: #ffffff; /* Texto Blanco */
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
-
-        /* Button Text */
-        .complex-btn span {
-          position: relative;
-          display: block;
-          user-select: none;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          font-family: "Inter", sans-serif;
-          letter-spacing: -0.05em;
-          font-weight: 800; /* Un poco más grueso para que destaque */
-          font-size: 1em;
-          color: rgba(50, 50, 50, 1);
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          text-shadow: 0em 0.25em 0.05em rgba(0, 0, 0, 0.1);
-          transition: all var(--anim--hover-time) var(--anim--hover-ease);
-          padding-inline: 1.5em;
-          padding-block: 0.875em;
-        }
-
-        .complex-btn:hover span {
-          text-shadow: 0.025em 0.025em 0.025em rgba(0, 0, 0, 0.12);
-        }
-
-        /* Text Effect */
-        .complex-btn span::after {
-          content: "";
-          display: block;
-          position: absolute;
-          z-index: 1;
-          width: calc(100% - var(--border-width));
-          height: calc(100% - var(--border-width));
-          top: calc(0% + var(--border-width) / 2);
-          left: calc(0% + var(--border-width) / 2);
-          box-sizing: border-box;
-          border-radius: 999vw;
-          overflow: clip;
-          background: linear-gradient(
-            var(--angle-2),
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.5) 40% 50%,
-            rgba(255, 255, 255, 0) 55%
-          );
-          z-index: 3;
-          mix-blend-mode: screen;
-          pointer-events: none;
-          background-size: 200% 200%;
-          background-position: 0% 50%;
-          background-repeat: no-repeat;
-          transition: background-position calc(var(--anim--hover-time) * 1.25)
-              var(--anim--hover-ease),
-            --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
-        }
-
-        .complex-btn:hover span::after {
-          background-position: 25% 50%;
-        }
-
-        .complex-btn:active span::after {
-          background-position: 50% 15%;
-          --angle-2: -15deg;
-        }
-
-        /* Outline */
-        .complex-btn::after {
-          content: "";
-          position: absolute;
-          z-index: 1;
-          inset: 0;
-          border-radius: 999vw;
-          width: calc(100% + var(--border-width));
-          height: calc(100% + var(--border-width));
-          top: calc(0% - var(--border-width) / 2);
-          left: calc(0% - var(--border-width) / 2);
-          padding: var(--border-width);
-          box-sizing: border-box;
-          background: conic-gradient(
+        body.dark-mode .complex-btn::after {
+            /* Borde más brillante en modo oscuro */
+            background: conic-gradient(
               from var(--angle-1) at 50% 50%,
-              rgba(0, 0, 0, 0.5),
-              rgba(0, 0, 0, 0) 5% 40%,
-              rgba(0, 0, 0, 0.5) 50%,
-              rgba(0, 0, 0, 0) 60% 95%,
-              rgba(0, 0, 0, 0.5)
-            ),
-            linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
-          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-          mask-composite: exclude;
-          transition: all var(--anim--hover-time) var(--anim--hover-ease),
-            --angle-1 500ms ease;
-          box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255, 255, 255, 0.5);
+              rgba(255, 255, 255, 0.5),
+              rgba(255, 255, 255, 0) 5% 40%,
+              rgba(255, 255, 255, 0.5) 50%,
+              rgba(255, 255, 255, 0) 60% 95%,
+              rgba(255, 255, 255, 0.5)
+            );
+        }
+        body.dark-mode .button-shadow::after {
+             background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
         }
 
-        .complex-btn:hover::after {
-          --angle-1: -125deg;
+        .complex-btn:hover { transform: scale(0.975); }
+        .complex-btn span {
+          position: relative; display: block; user-select: none; font-family: "Inter", sans-serif; letter-spacing: -0.05em; font-weight: 800; font-size: 1em;
+          color: rgba(50, 50, 50, 1); /* Color por defecto (claro) */
+          text-shadow: 0em 0.25em 0.05em rgba(0, 0, 0, 0.1);
+          transition: all var(--anim--hover-time) var(--anim--hover-ease); padding-inline: 1.5em; padding-block: 0.875em;
         }
-
-        .complex-btn:active::after {
-          --angle-1: -75deg;
+        .complex-btn span::after {
+          content: ""; display: block; position: absolute; z-index: 1; width: calc(100% - var(--border-width)); height: calc(100% - var(--border-width)); top: calc(0% + var(--border-width) / 2); left: calc(0% + var(--border-width) / 2);
+          box-sizing: border-box; border-radius: 999vw; overflow: clip;
+          background: linear-gradient(var(--angle-2), rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 40% 50%, rgba(255, 255, 255, 0) 55%);
+          z-index: 3; mix-blend-mode: screen; pointer-events: none; background-size: 200% 200%; background-position: 0% 50%; background-repeat: no-repeat;
+          transition: background-position calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease), --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
         }
-
-        /* Shadow Hover Logic */
-        .button-wrap:has(.complex-btn:hover) .button-shadow {
-          filter: blur(clamp(2px, 0.0625em, 6px));
-          -webkit-filter: blur(clamp(2px, 0.0625em, 6px));
-          -moz-filter: blur(clamp(2px, 0.0625em, 6px));
-          -ms-filter: blur(clamp(2px, 0.0625em, 6px));
-          transition: filter var(--anim--hover-time) var(--anim--hover-ease);
+        .complex-btn:hover span::after { background-position: 25% 50%; }
+        .complex-btn:active span::after { background-position: 50% 15%; --angle-2: -15deg; }
+        .complex-btn::after {
+          content: ""; position: absolute; z-index: 1; inset: 0; border-radius: 999vw; width: calc(100% + var(--border-width)); height: calc(100% + var(--border-width)); top: calc(0% - var(--border-width) / 2); left: calc(0% - var(--border-width) / 2); padding: var(--border-width); box-sizing: border-box;
+          background: conic-gradient(from var(--angle-1) at 50% 50%, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5% 40%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 60% 95%, rgba(0, 0, 0, 0.5)), linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; transition: all var(--anim--hover-time) var(--anim--hover-ease), --angle-1 500ms ease; box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255, 255, 255, 0.5);
         }
-
-        .button-wrap:has(.complex-btn:hover) .button-shadow::after {
-          top: calc(var(--shadow-cuttoff-fix) - 0.875em);
-          opacity: 1;
-        }
-
-        /* Rotation */
-        .button-wrap:has(.complex-btn:active) {
-          transform: rotate3d(1, 0, 0, 25deg);
-        }
-
-        .button-wrap:has(.complex-btn:active) .complex-btn {
-          box-shadow: inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
-            inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
-            0 0.125em 0.125em -0.125em rgba(0, 0, 0, 0.2),
-            0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2),
-            0 0.225em 0.05em 0 rgba(0, 0, 0, 0.05),
-            0 0.25em 0 0 rgba(255, 255, 255, 0.75),
-            inset 0 0.25em 0.05em 0 rgba(0, 0, 0, 0.15);
-        }
-
-        .button-wrap:has(.complex-btn:active) .button-shadow {
-          filter: blur(clamp(2px, 0.125em, 12px));
-          -webkit-filter: blur(clamp(2px, 0.125em, 12px));
-          -moz-filter: blur(clamp(2px, 0.125em, 12px));
-          -ms-filter: blur(clamp(2px, 0.125em, 12px));
-        }
-
-        .button-wrap:has(.complex-btn:active) .button-shadow::after {
-          top: calc(var(--shadow-cuttoff-fix) - 0.5em);
-          opacity: 0.75;
-        }
-
-        .button-wrap:has(.complex-btn:active) span {
-          text-shadow: 0.025em 0.25em 0.05em rgba(0, 0, 0, 0.12);
-        }
-
-        /* Touch Devices adjustment */
+        .complex-btn:hover::after { --angle-1: -125deg; }
+        .complex-btn:active::after { --angle-1: -75deg; }
+        .button-wrap:has(.complex-btn:hover) .button-shadow { filter: blur(clamp(2px, 0.0625em, 6px)); }
+        .button-wrap:has(.complex-btn:hover) .button-shadow::after { top: calc(var(--shadow-cuttoff-fix) - 0.875em); opacity: 1; }
+        .button-wrap:has(.complex-btn:active) { transform: rotate3d(1, 0, 0, 25deg); }
         @media (hover: none) and (pointer: coarse) {
-          .complex-btn span::after,
-          .complex-btn:active span::after {
-            --angle-2: -45deg;
-          }
-          .complex-btn::after,
-          .complex-btn:hover::after,
-          .complex-btn:active::after {
-            --angle-1: -75deg;
-          }
+          .complex-btn span::after, .complex-btn:active span::after { --angle-2: -45deg; }
+          .complex-btn::after, .complex-btn:hover::after, .complex-btn:active::after { --angle-1: -75deg; }
         }
     </style>
 </head>
@@ -356,11 +211,9 @@
             <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
                 <ul class="flex items-center space-x-6 mr-2">
-                    <!-- Highlighted Home link -->
                     <li><a href="index.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Home</a></li>
                     <li><a href="lista-proyectos.html" class="hover:text-blue-600 font-medium transition">Projects</a></li>
                     <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition">Contact</a></li>
-                    <!-- Botón Modo Oscuro -->
                     <li>
                         <button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button>
                     </li>
@@ -375,29 +228,18 @@
         <!-- Section Title -->
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">My Featured Projects</h1>
 
-        <!-- PROJECT 1 (Image Left - Text Right) -->
+        <!-- PROJECT 1 -->
         <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300 transition-colors duration-300">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                
-                <!-- Image / Photo (Left) -->
                 <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md transition-colors duration-300">
-                    <img 
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
-                        alt="Data Analysis Dashboard" 
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    >
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Data Analysis Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300"></div>
                 </div>
-
-                <!-- Text Content (Right) -->
                 <div class="w-full md:w-1/2 flex flex-col justify-center">
                     <h2 class="text-2xl font-bold mb-4 text-gray-900">AI Management System</h2>
-                    
-                    <!-- Decorative schema lines -->
                     <div class="w-3/4 h-2 bg-black rounded-full mb-3 opacity-80 thick-line"></div>
                     <div class="w-full h-2 bg-black rounded-full mb-3 opacity-80 thick-line"></div>
                     <div class="w-5/6 h-2 bg-black rounded-full mb-6 opacity-80 thick-line"></div>
-
                     <p class="text-gray-700 leading-relaxed text-lg">
                         This project consists of a full-stack web application designed to optimize workflows using machine learning algorithms. Developed with Python (Django) on the backend and React on the frontend, it allows for real-time data classification with 95% accuracy.
                     </p>
@@ -406,25 +248,18 @@
                             View Details
                         </button>
                     </a>
-
                 </div>
-
             </div>
         </article>
 
-        <!-- PROJECT 2 (Text Left - Image Right) -->
+        <!-- PROJECT 2 -->
         <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300 transition-colors duration-300">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                
-                <!-- Text Content (Left) -->
                 <div class="w-full md:w-1/2 flex flex-col justify-center order-2 md:order-1">
                     <h2 class="text-2xl font-bold mb-4 text-gray-900">E-Commerce Mobile App</h2>
-                    
-                    <!-- Decorative schema lines -->
                     <div class="w-full h-2 bg-black rounded-full mb-3 opacity-80 thick-line"></div>
                     <div class="w-4/5 h-2 bg-black rounded-full mb-3 opacity-80 thick-line"></div>
                     <div class="w-2/3 h-2 bg-black rounded-full mb-6 opacity-80 thick-line"></div>
-
                     <p class="text-gray-700 leading-relaxed text-lg">
                         A cross-platform mobile solution built with Flutter and Firebase. It features biometric authentication, integrated payment gateway, and cloud synchronization. The design focused on user experience (UX), achieving a 40% reduction in purchase time.
                     </p>
@@ -433,19 +268,11 @@
                             View Details
                         </button>
                     </a>
-
                 </div>
-
-                <!-- Image / Photo (Right) -->
                 <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md order-1 md:order-2 transition-colors duration-300">
-                    <img 
-                        src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" 
-                        alt="Mobile App Interface" 
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    >
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" alt="Mobile App Interface" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300"></div>
                 </div>
-
             </div>
         </article>
 
@@ -468,8 +295,6 @@
         </div>
     </footer>
 
-    <!-- Script Modo Oscuro -->
     <script src="theme.js"></script>
-
 </body>
 </html>
