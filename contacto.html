@@ -10,6 +10,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            /* Transición movida a body.loaded */
+        }
+        body.loaded {
             transition: background-color 0.3s, color 0.3s;
         }
         /* --- ESTILOS MODO CLARO --- */
@@ -106,13 +109,33 @@
         .toast-hidden { transform: translateX(120%); opacity: 0; }
         .toast-visible { transform: translateX(0); opacity: 1; }
     </style>
+    <!-- SCRIPT ANTI-FLASH -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+                const style = document.createElement('style');
+                style.innerHTML = 'body { background-color: #0f172a !important; color: #e2e8f0 !important; }';
+                document.head.appendChild(style);
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.body.classList.add('dark-mode');
+                    document.body.classList.add('loaded');
+                });
+            } else {
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.body.classList.add('loaded');
+                });
+            }
+        })();
+    </script>
 </head>
 <body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800 relative overflow-x-hidden">
 
     <!-- HEADER / NAV -->
-    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50 transition-colors duration-300">
+    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50">
         <div class="max-w-5xl mx-auto">
-            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
+            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm">
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
                 <ul class="flex items-center space-x-6 mr-2">
                     <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
@@ -141,7 +164,7 @@
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">Get in Touch</h1>
 
         <!-- CONTACT CARD -->
-        <div class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl transition-colors duration-300">
+        <div class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl">
             
             <div class="flex flex-col md:flex-row gap-12">
                 
@@ -168,90 +191,149 @@
                 </div>
 
                 <!-- Right Column: Form -->
-                <div class="w-full md:w-2/3 bg-white/50 p-6 rounded-2xl border-2 border-blue-200 transition-colors duration-300">
+                <div class="w-full md:w-2/3 bg-white/50 p-6 rounded-2xl border-2 border-blue-200">
                     <form id="contactForm" class="space-y-4" novalidate>
-                        <!-- (Formulario igual que antes...) -->
+                        
+                        <!-- Name Field -->
                         <div>
                             <label class="block text-sm font-bold mb-1 text-gray-700">Name</label>
                             <input type="text" id="name" class="sketch-input" placeholder="Your Name">
                         </div>
+
+                        <!-- Email Field -->
                         <div>
                             <label class="block text-sm font-bold mb-1 text-gray-700">Email</label>
                             <input type="email" id="email" class="sketch-input" placeholder="hello@example.com">
                         </div>
+
+                        <!-- Phone Field (New) -->
                         <div>
                             <label class="block text-sm font-bold mb-1 text-gray-700">Phone</label>
                             <div class="flex gap-2">
+                                <!-- Prefix Dropdown (Expanded width to w-40 and added extensive list) -->
                                 <select id="prefix" class="sketch-input w-40 bg-white cursor-pointer text-sm">
                                     <option value="+1">🇺🇸 +1</option>
                                     <option value="+34" selected>🇪🇸 +34</option>
-                                    <!-- (Resto de opciones...) -->
+                                    <option value="+44">🇬🇧 +44</option>
+                                    <option value="+33">🇫🇷 +33</option>
+                                    <option value="+49">🇩🇪 +49</option>
                                 </select>
+                                <!-- Phone Number Input -->
                                 <input type="tel" id="phone" class="sketch-input flex-1" placeholder="612 345 678">
                             </div>
                         </div>
+
+                        <!-- Message Field -->
                         <div>
                             <label class="block text-sm font-bold mb-1 text-gray-700">Message</label>
                             <textarea id="message" rows="4" class="sketch-input" placeholder="Tell me about your project..."></textarea>
                         </div>
+
                         <button type="submit" class="mt-4 w-full bg-gray-900 text-white font-bold py-3 px-6 rounded-xl hover:bg-gray-700 transition shadow-lg transform active:scale-95">
                             Send Message
                         </button>
+
                     </form>
                 </div>
+
             </div>
+
         </div>
+
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm transition-colors duration-300">
+    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
     </footer>
 
+    <!-- Script Modo Oscuro -->
     <script src="theme.js"></script>
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // (Mismo script de validación de formulario...)
         document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
+            event.preventDefault(); // Evita el envío estándar
+
+            // Elementos del formulario
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const message = document.getElementById('message').value.trim();
+
+            // Limpiamos espacios del teléfono para validación precisa
             const phoneClean = phone.replace(/\s/g, '');
+
+            // Validación simple
             let isValid = true;
             let errorMessage = "";
 
-            if (!name || !email || !phone || !message) { isValid = false; errorMessage = "Please fill in all fields."; } 
-            else if (!email.includes('@') || !email.includes('.')) { isValid = false; errorMessage = "Please enter a valid email."; }
-            else if (phoneClean.length < 6 || phoneClean.length > 9 || isNaN(phoneClean)) { isValid = false; errorMessage = "Please enter a valid phone number (max 9 digits)."; }
+            // Comprobar campos vacíos
+            if (!name || !email || !phone || !message) {
+                isValid = false;
+                errorMessage = "Please fill in all fields.";
+            } 
+            // Comprobar formato email básico
+            else if (!email.includes('@') || !email.includes('.')) {
+                isValid = false;
+                errorMessage = "Please enter a valid email.";
+            }
+            // Comprobar teléfono (solo números y longitud limitada: 6-9 dígitos)
+            else if (phoneClean.length < 6 || phoneClean.length > 9 || isNaN(phoneClean)) {
+                isValid = false;
+                errorMessage = "Please enter a valid phone number (max 9 digits).";
+            }
 
-            if (!isValid) { showToast(errorMessage, 'error'); } 
-            else { showToast("Message sent successfully! Redirecting...", 'success'); setTimeout(() => { window.location.href = 'index.html'; }, 2000); }
+            // Mostrar resultado
+            if (!isValid) {
+                showToast(errorMessage, 'error');
+            } else {
+                showToast("Message sent successfully! Redirecting...", 'success');
+                
+                // Redirigir al index después de 2 segundos
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }
         });
 
+        // Función para mostrar el Toast animado
         function showToast(message, type) {
             const toast = document.getElementById('toast');
             const toastTitle = document.getElementById('toast-title');
             const toastMessage = document.getElementById('toast-message');
             const toastIcon = document.getElementById('toast-icon');
 
+            // Configurar contenido según tipo
             if (type === 'error') {
                 toast.className = "fixed top-24 right-4 md:right-8 z-50 flex items-center gap-3 px-6 py-4 rounded-xl shadow-2xl transition-all duration-500 ease-out border-2 border-red-800 bg-red-100 text-red-900 toast-visible max-w-sm";
-                toastTitle.textContent = "Error"; toastIcon.textContent = "❌";
+                toastTitle.textContent = "Error";
+                toastIcon.textContent = "❌";
             } else {
                 toast.className = "fixed top-24 right-4 md:right-8 z-50 flex items-center gap-3 px-6 py-4 rounded-xl shadow-2xl transition-all duration-500 ease-out border-2 border-green-800 bg-green-100 text-green-900 toast-visible max-w-sm";
-                toastTitle.textContent = "Success"; toastIcon.textContent = "✅";
+                toastTitle.textContent = "Success";
+                toastIcon.textContent = "✅";
             }
+
             toastMessage.textContent = message;
-            if (type === 'error') { setTimeout(() => { hideToast(); }, 4000); }
+
+            // Ocultar automáticamente después de 4 segundos si es error
+            if (type === 'error') {
+                setTimeout(() => {
+                    hideToast();
+                }, 4000);
+            }
         }
 
         function hideToast() {
             const toast = document.getElementById('toast');
-            toast.classList.remove('toast-visible'); toast.classList.add('toast-hidden');
+            // Mantenemos las clases base pero cambiamos a toast-hidden
+            toast.classList.remove('toast-visible');
+            toast.classList.add('toast-hidden');
         }
     </script>
+
 </body>
 </html>
