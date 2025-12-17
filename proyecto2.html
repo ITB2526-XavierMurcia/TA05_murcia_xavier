@@ -8,14 +8,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- SCRIPT ANTI-FLASH CORREGIDO -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-mode');
+                
+                // Creamos estilo temporal para evitar flash
                 const style = document.createElement('style');
+                style.id = 'anti-flash-style';
                 style.innerHTML = 'body { background-color: #0f172a !important; color: #e2e8f0 !important; }';
                 document.head.appendChild(style);
+                
+                // IMPORTANTE: Lo borramos al terminar de cargar
+                document.addEventListener('DOMContentLoaded', () => {
+                    const styleNode = document.getElementById('anti-flash-style');
+                    if (styleNode) styleNode.remove();
+                });
             }
         })();
     </script>
