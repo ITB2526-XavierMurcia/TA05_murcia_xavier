@@ -8,89 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            /* Transición movida a body.loaded */
-        }
-        body.loaded {
-            transition: background-color 0.3s, color 0.3s;
-        }
-        /* --- ESTILOS MODO CLARO --- */
-        .bg-tech-pattern {
-            background-color: #f8fafc;
-            background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
-            background-size: 24px 24px;
-        }
-        .thick-line {
-            height: 8px;
-            background-color: #000;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            width: 60%; 
-            opacity: 0.9;
-        }
-        .thin-line {
-            height: 4px;
-            background-color: #000;
-            border-radius: 2px;
-            margin-bottom: 6px;
-            width: 100%;
-            opacity: 0.8;
-        }
-
-        /* --- ESTILOS MODO OSCURO --- */
-        body.dark-mode {
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
-        body.dark-mode .bg-tech-pattern {
-            background-color: #0f172a; 
-            background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
-        }
-        body.dark-mode header {
-            background-color: rgba(15, 23, 42, 0.9);
-            border-color: #334155;
-        }
-        body.dark-mode nav {
-            background-color: #1e293b;
-            border-color: #475569;
-            color: #f8fafc;
-        }
-        body.dark-mode .bg-blue-100 {
-            background-color: #1e293b; 
-            border-color: #475569;
-        }
-        body.dark-mode .bg-white {
-            background-color: #1e293b;
-            border-color: #475569;
-        }
-        body.dark-mode .thick-line, 
-        body.dark-mode .thin-line {
-            background-color: #94a3b8;
-        }
-        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode a {
-            color: #f1f5f9;
-        }
-        body.dark-mode p {
-            color: #cbd5e1;
-        }
-        body.dark-mode .text-blue-600 {
-            color: #60a5fa; 
-        }
-        body.dark-mode .hover\:text-blue-600:hover {
-            color: #93c5fd; 
-        }
-
-        /* --- FIX FOOTER MODO OSCURO --- */
-        body.dark-mode footer {
-            background-color: rgba(30, 41, 59, 0.95);
-            border-top-color: #475569;
-        }
-        body.dark-mode footer p {
-            color: #94a3b8 !important;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
     <!-- SCRIPT ANTI-FLASH -->
     <script>
         (function() {
@@ -115,9 +33,9 @@
 <body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800">
 
     <!-- HEADER / NAV -->
-    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50">
+    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-5xl mx-auto">
-            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm">
+            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
                 <ul class="flex items-center space-x-6 mr-2">
                     <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
@@ -133,12 +51,16 @@
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow max-w-7xl mx-auto w-full p-4 md:p-8">
-        <!-- ... resto del contenido igual ... -->
+        
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">Complete Project List</h1>
+
         <div class="flex flex-col lg:flex-row gap-8 items-start">
-            <div class="flex-grow w-full lg:w-3/4 bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl">
+
+            <!-- MAIN PROJECT LIST (Left Column) -->
+            <div class="flex-grow w-full lg:w-3/4 bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl transition-colors duration-300">
+                
                 <ol class="space-y-12">
-                    <!-- ITEMS DE LISTA (mismo contenido) -->
+                    <!-- ITEMS DE LISTA -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                         <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2">
@@ -156,6 +78,7 @@
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 1">
                         </a>
                     </li>
+
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                         <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2">
@@ -173,6 +96,7 @@
                             <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 2">
                         </a>
                     </li>
+
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                          <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2">
@@ -190,6 +114,7 @@
                             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=DevOps+Image'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 3">
                         </div>
                     </li>
+
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
                         <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2">
@@ -209,6 +134,7 @@
                     </li>
                 </ol>
             </div>
+
             <!-- ASIDE: RETRO GAME -->
             <aside class="w-full lg:w-1/4 sticky top-24 bg-gray-900 text-white p-4 rounded-xl shadow-2xl border-4 border-gray-700 self-start hidden lg:block">
                  <div class="flex justify-between items-center mb-2 border-b border-gray-700 pb-2">
@@ -221,16 +147,19 @@
                 </div>
                 <div class="relative bg-black border-2 border-green-500/50 shadow-[0_0_10px_rgba(34,197,94,0.2)]">
                     <canvas id="gameCanvas" width="240" height="320" class="block mx-auto"></canvas>
+                    
                     <div id="startScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-10">
                         <p class="font-['VT323'] text-2xl text-green-400 animate-pulse">PRESS SPACE</p>
                         <p class="font-['VT323'] text-sm text-gray-400 mt-2">TO START</p>
                     </div>
+
                     <div id="gameOverScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-10 hidden">
                         <p class="font-['VT323'] text-3xl text-red-500 mb-2">GAME OVER</p>
                         <p class="font-['VT323'] text-lg text-white">SCORE: <span id="finalScore">0</span></p>
                         <p class="font-['VT323'] text-sm text-green-400 mt-4 cursor-pointer hover:underline" onclick="resetGame()">[ RESTART ]</p>
                     </div>
                 </div>
+
                 <div class="mt-3 text-center">
                     <p class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Controls</p>
                     <div class="flex justify-center gap-2 mt-1 text-xs font-mono text-gray-300">
@@ -241,16 +170,19 @@
                         <span class="text-[10px] self-center">SHOOT</span>
                     </div>
                 </div>
+                
                 <div class="mt-4 border-t border-gray-700 pt-2 flex justify-between font-['VT323'] text-xl">
                     <span class="text-green-400">SCORE:</span>
                     <span id="scoreDisplay" class="text-white">0</span>
                 </div>
             </aside>
+
         </div>
+
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm">
+    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
@@ -258,7 +190,7 @@
 
     <!-- Scripts -->
     <script src="theme.js"></script>
-    <!-- GAME LOGIC (Se mantiene igual que la versión anterior) -->
+    <!-- GAME LOGIC -->
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
