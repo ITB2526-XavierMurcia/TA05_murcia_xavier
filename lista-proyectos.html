@@ -9,17 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- SCRIPT ANTI-FLASH -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-mode');
+                const style = document.createElement('style');
+                style.innerHTML = 'body { background-color: #0f172a !important; color: #e2e8f0 !important; }';
+                document.head.appendChild(style);
             }
         })();
     </script>
 </head>
 <body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800">
 
+    <!-- HEADER / NAV -->
     <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-5xl mx-auto">
             <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
@@ -28,114 +33,661 @@
                     <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
                     <li><a href="lista-proyectos.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Projects</a></li>
                     <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition">Contact</a></li>
-                    <li><button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button></li>
+                    <li>
+                        <button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- MAIN CONTENT -->
     <main class="flex-grow max-w-7xl mx-auto w-full p-4 md:p-8">
+        
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">Complete Project List</h1>
+
         <div class="flex flex-col lg:flex-row gap-8 items-start">
+
+            <!-- MAIN PROJECT LIST (Left Column) -->
             <div class="flex-grow w-full lg:w-3/4 bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl transition-colors duration-300">
+                
                 <ol class="space-y-12">
-                    <!-- ITEMS -->
+                    <!-- 01 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full md:w-2/3">
+                        <div class="flex-grow w-full flex-1">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">01.</span><a href="proyecto1.html" class="text-2xl font-bold text-gray-900 hover:text-blue-700 hover:underline">AI Management System</a></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">A full-stack web application designed to optimize workflows using machine learning algorithms. Developed with Python (Django) and React, achieving 95% accuracy in real-time data classification.</p>
                             <div class="thin-line"></div><div class="thin-line w-11/12"></div>
                         </div>
-                        <a href="proyecto1.html" class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
+                        <!-- IMAGEN REDUCIDA: md:w-48 (antes md:w-1/3) -->
+                        <a href="proyecto1.html" class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 1">
                         </a>
                     </li>
+
+                    <!-- 02 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full md:w-2/3">
+                        <div class="flex-grow w-full flex-1">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">02.</span><a href="proyecto2.html" class="text-2xl font-bold text-gray-900 hover:text-blue-700 hover:underline">E-Commerce Mobile App</a></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Cross-platform solution with Flutter & Firebase. Features biometric login, Stripe payments, and cloud sync. Focused on UX research, reducing checkout time by 40%.</p>
                             <div class="thin-line"></div><div class="thin-line w-11/12"></div>
                         </div>
-                        <a href="proyecto2.html" class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
+                        <a href="proyecto2.html" class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
                             <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 2">
                         </a>
                     </li>
+
+                    <!-- 03 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full md:w-2/3">
+                        <div class="flex-grow w-full flex-1">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">03.</span><h3 class="text-2xl font-bold text-gray-900">Cloud DevOps Pipeline</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Automated CI/CD infrastructure using Docker, Kubernetes, and AWS. Implemented auto-scaling policies that reduced server costs by 30% while maintaining 99.99% uptime for high-traffic microservices.</p>
                             <div class="thin-line"></div><div class="thin-line w-11/12"></div>
                         </div>
-                        <div class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=DevOps+Image'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 3"></div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=DevOps+Image'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 3"></div>
                     </li>
-                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
-                        <div class="flex-grow w-full md:w-2/3">
+
+                    <!-- 04 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">04.</span><h3 class="text-2xl font-bold text-gray-900">IoT Home Automation</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Smart home control panel built with Vue.js and Node.js (MQTT). Allows users to monitor energy consumption, control lights, and manage security cameras from a centralized, responsive dashboard.</p>
                             <div class="thin-line"></div><div class="thin-line w-11/12"></div>
                         </div>
-                        <div class="w-full md:w-1/3 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=IoT+Image'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 4"></div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=IoT+Image'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 4"></div>
                     </li>
+
+                    <!-- 05 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">05.</span><h3 class="text-2xl font-bold text-gray-900">Blockchain Voting System</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Secure, decentralized voting platform using Ethereum smart contracts to ensure transparency and immutability in local elections.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Blockchain'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 5"></div>
+                    </li>
+
+                    <!-- 06 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">06.</span><h3 class="text-2xl font-bold text-gray-900">AR Interior Design App</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Mobile application using ARKit to visualize furniture in real-time within user environments, increasing conversion rates for furniture retailers.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1633511090164-b43840ea1607?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=AR+App'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 6"></div>
+                    </li>
+
+                    <!-- 07 (FIXED IMAGE) -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">07.</span><h3 class="text-2xl font-bold text-gray-900">Cyber Security Audit Tool</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Python-based automated vulnerability scanner for web applications, generating detailed reports on SQL injection and XSS risks.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=CyberSecurity'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 7"></div>
+                    </li>
+
+                    <!-- 08 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">08.</span><h3 class="text-2xl font-bold text-gray-900">Fintech Dashboard</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">High-performance financial data visualization tool built with D3.js and React, processing millions of transaction records in milliseconds.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Fintech'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 8"></div>
+                    </li>
+
+                    <!-- 09 (FIXED IMAGE) -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">09.</span><h3 class="text-2xl font-bold text-gray-900">Health & Fitness Tracker</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Wearable integration app that aggregates health data (heart rate, steps, sleep) into actionable insights using HealthKit and Google Fit APIs.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Health+Tracker'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 9"></div>
+                    </li>
+
+                    <!-- 10 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">10.</span><h3 class="text-2xl font-bold text-gray-900">Social Media Analytics</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">SaaS platform analyzing sentiment on Twitter and Reddit using Natural Language Processing (NLP) to track brand reputation.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Analytics'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 10"></div>
+                    </li>
+
+                    <!-- 11 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">11.</span><h3 class="text-2xl font-bold text-gray-900">E-Learning Platform</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Full-featured LMS with video streaming, quizzes, and progress tracking, built on MERN stack for scalable education delivery.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=E-Learning'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 11"></div>
+                    </li>
+
+                    <!-- 12 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">12.</span><h3 class="text-2xl font-bold text-gray-900">Smart Agriculture</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">IoT solution using LoRaWAN sensors to monitor soil moisture and automate irrigation, increasing crop yield by 15%.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Agriculture'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 12"></div>
+                    </li>
+
+                    <!-- 13 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">13.</span><h3 class="text-2xl font-bold text-gray-900">Real-time Chat App</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Scalable messaging app using WebSockets and Redis, supporting group chats, file sharing, and end-to-end encryption.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Chat+App'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 13"></div>
+                    </li>
+
+                    <!-- 14 (FIXED IMAGE) -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">14.</span><h3 class="text-2xl font-bold text-gray-900">Autonomous Drone</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Computer vision project using OpenCV and Raspberry Pi to enable obstacle avoidance and pathfinding for quadcopters.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Drone'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 14"></div>
+                    </li>
+
+                    <!-- 15 (FIXED IMAGE) -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">15.</span><h3 class="text-2xl font-bold text-gray-900">VR Museum Tour</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Immersive virtual reality experience built with Unity 3D, allowing users to explore historical artifacts in a photorealistic environment.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1626379953822-baec19c3accd?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=VR+Tour'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 15"></div>
+                    </li>
+
+                    <!-- 16 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">16.</span><h3 class="text-2xl font-bold text-gray-900">Supply Chain Tracker</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Blockchain-based logistics platform ensuring provenance tracking for luxury goods from manufacturer to consumer.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Logistics'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 16"></div>
+                    </li>
+
+                    <!-- 17 (FIXED IMAGE) -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">17.</span><h3 class="text-2xl font-bold text-gray-900">Automated Trading Bot</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Algorithmic trading bot connected to Binance API, utilizing moving average crossover strategies to execute profitable trades automatically.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Trading+Bot'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 17"></div>
+                    </li>
+
+                    <!-- 18 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">18.</span><h3 class="text-2xl font-bold text-gray-900">Voice Assistant</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Custom skill development for Alexa and Google Home to control smart office devices and query internal databases via voice.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Voice+AI'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 18"></div>
+                    </li>
+
+                    <!-- 19 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">19.</span><h3 class="text-2xl font-bold text-gray-900">Resume Builder SaaS</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Web application with drag-and-drop interface allowing users to create ATS-friendly resumes, exporting to PDF and JSON.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Resume+Builder'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 19"></div>
+                    </li>
+
+                    <!-- 20 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">20.</span><h3 class="text-2xl font-bold text-gray-900">Travel Itinerary AI</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">AI-powered travel assistant that generates personalized trip schedules based on user interests, budget, and weather forecasts.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Travel+App'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 20"></div>
+                    </li>
+
+                    <!-- 21 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">21.</span><h3 class="text-2xl font-bold text-gray-900">Weather Prediction</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Machine learning model using historical climate data to predict local weather patterns with 85% accuracy over 7-day windows.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Weather+AI'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 21"></div>
+                    </li>
+
+                    <!-- 22 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">22.</span><h3 class="text-2xl font-bold text-gray-900">Code Snippet Repo</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Developer tool for storing, tagging, and sharing code snippets, featuring syntax highlighting and GitHub Gist integration.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Code+Repo'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 22"></div>
+                    </li>
+
+                    <!-- 23 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">23.</span><h3 class="text-2xl font-bold text-gray-900">Task Management</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Trello-style project management tool with real-time collaboration features, built with Vue.js and Firebase.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Kanban'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 23"></div>
+                    </li>
+
+                    <!-- 24 -->
+                    <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
+                        <div class="flex-grow w-full flex-1">
+                            <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">24.</span><h3 class="text-2xl font-bold text-gray-900">Music Streaming</h3></div>
+                            <div class="thick-line"></div>
+                            <p class="text-gray-700 leading-relaxed mb-4">Responsive web audio player with playlist management, seeking, and volume control, mocking Spotify's core functionality.</p>
+                            <div class="thin-line"></div><div class="thin-line w-11/12"></div>
+                        </div>
+                        <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Music+App'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 24"></div>
+                    </li>
+
                 </ol>
             </div>
 
-            <!-- ASIDE: RETRO GAME -->
+            <!-- ASIDE: RETRO GAME (Right Column) -->
             <aside class="w-full lg:w-1/4 sticky top-24 bg-gray-900 text-white p-4 rounded-xl shadow-2xl border-4 border-gray-700 self-start hidden lg:block">
-                 <div class="flex justify-between items-center mb-2 border-b border-gray-700 pb-2">
-                    <h3 class="font-mono text-green-400 font-bold text-sm tracking-wider">05. JAVA SPACE INVADERS</h3>
-                    <div class="flex gap-1"><div class="w-2 h-2 rounded-full bg-red-500"></div><div class="w-2 h-2 rounded-full bg-yellow-500"></div><div class="w-2 h-2 rounded-full bg-green-500"></div></div>
+                <div class="flex justify-between items-center mb-2 border-b border-gray-700 pb-2">
+                    <h3 class="font-mono text-green-400 font-bold text-sm tracking-wider">25. JAVA SPACE INVADERS</h3>
+                    <div class="flex gap-1">
+                        <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                        <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                    </div>
                 </div>
+                
+                <!-- Game Container -->
                 <div class="relative bg-black border-2 border-green-500/50 shadow-[0_0_10px_rgba(34,197,94,0.2)]">
                     <canvas id="gameCanvas" width="240" height="320" class="block mx-auto"></canvas>
-                    <div id="startScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-10"><p class="font-['VT323'] text-2xl text-green-400 animate-pulse">PRESS SPACE</p><p class="font-['VT323'] text-sm text-gray-400 mt-2">TO START</p></div>
-                    <div id="gameOverScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-10 hidden"><p class="font-['VT323'] text-3xl text-red-500 mb-2">GAME OVER</p><p class="font-['VT323'] text-lg text-white">SCORE: <span id="finalScore">0</span></p><p class="font-['VT323'] text-sm text-green-400 mt-4 cursor-pointer hover:underline" onclick="resetGame()">[ RESTART ]</p></div>
+                    
+                    <!-- Start Overlay -->
+                    <div id="startScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-10">
+                        <p class="font-['VT323'] text-2xl text-green-400 animate-pulse">PRESS SPACE</p>
+                        <p class="font-['VT323'] text-sm text-gray-400 mt-2">TO START</p>
+                    </div>
+
+                    <!-- Game Over Overlay -->
+                    <div id="gameOverScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-10 hidden">
+                        <p class="font-['VT323'] text-3xl text-red-500 mb-2">GAME OVER</p>
+                        <p class="font-['VT323'] text-lg text-white">SCORE: <span id="finalScore">0</span></p>
+                        <p class="font-['VT323'] text-sm text-green-400 mt-4 cursor-pointer hover:underline" onclick="resetGame()">[ RESTART ]</p>
+                    </div>
                 </div>
+
                 <div class="mt-3 text-center">
                     <p class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Controls</p>
-                    <div class="flex justify-center gap-2 mt-1 text-xs font-mono text-gray-300"><span class="border border-gray-600 px-1 rounded">←</span><span class="border border-gray-600 px-1 rounded">→</span><span class="text-[10px] self-center">MOVE</span><span class="border border-gray-600 px-3 rounded">SPACE</span><span class="text-[10px] self-center">SHOOT</span></div>
+                    <div class="flex justify-center gap-2 mt-1 text-xs font-mono text-gray-300">
+                        <span class="border border-gray-600 px-1 rounded">←</span>
+                        <span class="border border-gray-600 px-1 rounded">→</span>
+                        <span class="text-[10px] self-center">MOVE</span>
+                        <span class="border border-gray-600 px-3 rounded">SPACE</span>
+                        <span class="text-[10px] self-center">SHOOT</span>
+                    </div>
                 </div>
-                <div class="mt-4 border-t border-gray-700 pt-2 flex justify-between font-['VT323'] text-xl"><span class="text-green-400">SCORE:</span><span id="scoreDisplay" class="text-white">0</span></div>
+                
+                <!-- Score Display -->
+                <div class="mt-4 border-t border-gray-700 pt-2 flex justify-between font-['VT323'] text-xl">
+                    <span class="text-green-400">SCORE:</span>
+                    <span id="scoreDisplay" class="text-white">0</span>
+                </div>
             </aside>
+
         </div>
+
     </main>
 
+    <!-- FOOTER -->
     <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="theme.js"></script>
+    <!-- GAME LOGIC -->
     <script>
-        const canvas = document.getElementById('gameCanvas'); const ctx = canvas.getContext('2d');
-        const startScreen = document.getElementById('startScreen'); const gameOverScreen = document.getElementById('gameOverScreen');
-        const scoreDisplay = document.getElementById('scoreDisplay'); const finalScoreDisplay = document.getElementById('finalScore');
-        let gameRunning = false; let score = 0; let animationId; let particles = []; let tick = 0;
-        const SHIP_SPRITE = [[0,0,0,1,0,0,0],[0,0,1,1,1,0,0],[0,1,1,1,1,1,0],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1]];
-        const ALIEN_SPRITE_1 = [[0,0,1,0,0,0,0,0,1,0,0],[0,0,0,1,0,0,0,1,0,0,0],[0,0,1,1,1,1,1,1,1,0,0],[0,1,1,0,1,1,1,0,1,1,0],[1,1,1,1,1,1,1,1,1,1,1],[1,0,1,1,1,1,1,1,1,0,1],[1,0,1,0,0,0,0,0,1,0,1],[0,0,0,1,1,0,1,1,0,0,0]];
-        const ALIEN_SPRITE_2 = [[0,0,1,0,0,0,0,0,1,0,0],[1,0,0,1,0,0,0,1,0,0,1],[1,0,1,1,1,1,1,1,1,0,1],[1,1,1,0,1,1,1,0,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1,1,1,0],[0,0,1,0,0,0,0,0,1,0,0],[0,1,0,0,0,0,0,0,0,1,0]];
-        function drawSprite(sprite, x, y, color, pixelSize) { ctx.fillStyle = color; for (let row = 0; row < sprite.length; row++) { for (let col = 0; col < sprite[row].length; col++) { if (sprite[row][col] === 1) { ctx.fillRect(x + col * pixelSize, y + row * pixelSize, pixelSize, pixelSize); } } } }
-        const player = { x: canvas.width / 2 - 14, y: canvas.height - 30, width: 28, height: 24, color: '#00ff00', dx: 0, speed: 3, pixelSize: 4 };
-        let bullets = []; const bulletSpeed = 5;
-        let aliens = []; const alienRows = 4; const alienCols = 5; const alienPixelSize = 2; const alienWidth = 11 * alienPixelSize; const alienHeight = 8 * alienPixelSize; const alienPadding = 15; const alienOffsetTop = 30; const alienOffsetLeft = 25; let alienDx = 0.5; let alienDy = 10;
-        function initAliens() { aliens = []; for(let c=0; c<alienCols; c++) { for(let r=0; r<alienRows; r++) { aliens.push({ x: (c * (alienWidth + alienPadding)) + alienOffsetLeft, y: (r * (alienHeight + alienPadding)) + alienOffsetTop, alive: true }); } } }
-        function createExplosion(x, y, color) { for (let i = 0; i < 10; i++) { particles.push({ x: x, y: y, vx: (Math.random() - 0.5) * 4, vy: (Math.random() - 0.5) * 4, life: 20 + Math.random() * 10, color: color, size: Math.random() * 3 + 1 }); } }
-        function updateParticles() { for (let i = 0; i < particles.length; i++) { let p = particles[i]; p.x += p.vx; p.y += p.vy; p.life--; ctx.fillStyle = p.color; ctx.globalAlpha = p.life / 30; ctx.fillRect(p.x, p.y, p.size, p.size); ctx.globalAlpha = 1.0; if (p.life <= 0) { particles.splice(i, 1); i--; } } }
-        document.addEventListener('keydown', keyDownHandler); document.addEventListener('keyup', keyUpHandler);
-        function keyDownHandler(e) { if(e.key === 'Right' || e.key === 'ArrowRight') { player.dx = player.speed; } else if(e.key === 'Left' || e.key === 'ArrowLeft') { player.dx = -player.speed; } else if(e.key === ' ' || e.code === 'Space') { e.preventDefault(); if(!gameRunning && startScreen.style.display !== 'none') { startGame(); } else if(gameRunning) { shoot(); } } }
-        function keyUpHandler(e) { if(e.key === 'Right' || e.key === 'ArrowRight' || e.key === 'Left' || e.key === 'ArrowLeft') { player.dx = 0; } }
-        function shoot() { if(bullets.length < 3) { bullets.push({ x: player.x + player.width / 2 - 2, y: player.y, width: 4, height: 10 }); } }
-        function startGame() { gameRunning = true; score = 0; scoreDisplay.textContent = score; startScreen.style.display = 'none'; gameOverScreen.style.display = 'none'; initAliens(); bullets = []; particles = []; alienDx = 0.5; update(); }
-        function resetGame() { gameRunning = false; cancelAnimationFrame(animationId); startScreen.style.display = 'flex'; gameOverScreen.style.display = 'none'; ctx.clearRect(0, 0, canvas.width, canvas.height); }
-        function drawPlayer() { drawSprite(SHIP_SPRITE, player.x, player.y, player.color, player.pixelSize); }
-        function drawBullets() { ctx.fillStyle = '#ffff00'; bullets.forEach(b => { ctx.fillRect(b.x, b.y, b.width, b.height); }); }
-        function drawAliens() { const useSprite2 = Math.floor(tick / 30) % 2 === 0; const currentSprite = useSprite2 ? ALIEN_SPRITE_2 : ALIEN_SPRITE_1; aliens.forEach(a => { if(a.alive) { drawSprite(currentSprite, a.x, a.y, '#ff00ff', alienPixelSize); } }); }
-        function update() { if(!gameRunning) return; ctx.clearRect(0, 0, canvas.width, canvas.height); tick++; player.x += player.dx; if(player.x < 0) player.x = 0; if(player.x + player.width > canvas.width) player.x = canvas.width - player.width; bullets.forEach((b, index) => { b.y -= bulletSpeed; if(b.y < 0) bullets.splice(index, 1); }); let edgeTouched = false; aliens.forEach(a => { if(a.alive) { a.x += alienDx; if(a.x + alienWidth > canvas.width || a.x < 0) { edgeTouched = true; } } }); if(edgeTouched) { alienDx = -alienDx; aliens.forEach(a => a.y += alienDy); if(alienDx > 0) alienDx += 0.1; else alienDx -= 0.1; } bullets.forEach((b, bIndex) => { aliens.forEach((a, aIndex) => { if(a.alive && b.x < a.x + alienWidth && b.x + b.width > a.x && b.y < a.y + alienHeight && b.y + b.height > a.y) { a.alive = false; bullets.splice(bIndex, 1); score += 10; scoreDisplay.textContent = score; createExplosion(a.x + alienWidth/2, a.y + alienHeight/2, '#ff00ff'); } }); }); updateParticles(); let activeAliens = aliens.filter(a => a.alive).length; if(activeAliens === 0) { initAliens(); alienDx = (alienDx > 0 ? 0.5 : -0.5) * 1.5; } aliens.forEach(a => { if(a.alive && a.y + alienHeight > player.y) { gameRunning = false; finalScoreDisplay.textContent = score; gameOverScreen.style.display = 'flex'; } }); drawPlayer(); drawBullets(); drawAliens(); animationId = requestAnimationFrame(update); }
-        ctx.fillStyle = '#000'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const startScreen = document.getElementById('startScreen');
+        const gameOverScreen = document.getElementById('gameOverScreen');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const finalScoreDisplay = document.getElementById('finalScore');
+
+        let gameRunning = false;
+        let score = 0;
+        let animationId;
+        let particles = []; // Array for explosion particles
+        let tick = 0; // For animation timing
+
+        // --- SPRITES (Pixel Art Matrices) ---
+        // 1 = Pixel color, 0 = Transparent
+        const SHIP_SPRITE = [
+            [0,0,0,1,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,1,1,1,1,1,0],
+            [1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1]
+        ];
+
+        const ALIEN_SPRITE_1 = [
+            [0,0,1,0,0,0,0,0,1,0,0],
+            [0,0,0,1,0,0,0,1,0,0,0],
+            [0,0,1,1,1,1,1,1,1,0,0],
+            [0,1,1,0,1,1,1,0,1,1,0],
+            [1,1,1,1,1,1,1,1,1,1,1],
+            [1,0,1,1,1,1,1,1,1,0,1],
+            [1,0,1,0,0,0,0,0,1,0,1],
+            [0,0,0,1,1,0,1,1,0,0,0]
+        ];
+
+        const ALIEN_SPRITE_2 = [
+            [0,0,1,0,0,0,0,0,1,0,0],
+            [1,0,0,1,0,0,0,1,0,0,1],
+            [1,0,1,1,1,1,1,1,1,0,1],
+            [1,1,1,0,1,1,1,0,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1,1],
+            [0,1,1,1,1,1,1,1,1,1,0],
+            [0,0,1,0,0,0,0,0,1,0,0],
+            [0,1,0,0,0,0,0,0,0,1,0]
+        ];
+
+        // Helper to draw sprites
+        // sprite: Matrix array
+        // x, y: Position
+        // color: Color string
+        // pixelSize: size of each "block"
+        function drawSprite(sprite, x, y, color, pixelSize) {
+            ctx.fillStyle = color;
+            for (let row = 0; row < sprite.length; row++) {
+                for (let col = 0; col < sprite[row].length; col++) {
+                    if (sprite[row][col] === 1) {
+                        ctx.fillRect(x + col * pixelSize, y + row * pixelSize, pixelSize, pixelSize);
+                    }
+                }
+            }
+        }
+
+        // Player
+        const player = {
+            x: canvas.width / 2 - 14, // Adjusted for sprite width
+            y: canvas.height - 30,
+            width: 28,  // 7 cols * 4px
+            height: 24, // 6 rows * 4px
+            color: '#00ff00',
+            dx: 0,
+            speed: 3,
+            pixelSize: 4
+        };
+
+        // Bullets
+        let bullets = [];
+        const bulletSpeed = 5;
+
+        // Aliens
+        let aliens = [];
+        const alienRows = 4;
+        const alienCols = 5; // Reduced cols slightly for fit
+        const alienPixelSize = 2; 
+        const alienWidth = 11 * alienPixelSize; // 22px
+        const alienHeight = 8 * alienPixelSize; // 16px
+        const alienPadding = 15;
+        const alienOffsetTop = 30;
+        const alienOffsetLeft = 25;
+        let alienDx = 0.5;
+        let alienDy = 10;
+
+        function initAliens() {
+            aliens = [];
+            for(let c=0; c<alienCols; c++) {
+                for(let r=0; r<alienRows; r++) {
+                    aliens.push({
+                        x: (c * (alienWidth + alienPadding)) + alienOffsetLeft,
+                        y: (r * (alienHeight + alienPadding)) + alienOffsetTop,
+                        alive: true
+                    });
+                }
+            }
+        }
+
+        // EXPLOSIONS / PARTICLES SYSTEM
+        function createExplosion(x, y, color) {
+            for (let i = 0; i < 10; i++) {
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: (Math.random() - 0.5) * 4,
+                    vy: (Math.random() - 0.5) * 4,
+                    life: 20 + Math.random() * 10,
+                    color: color,
+                    size: Math.random() * 3 + 1
+                });
+            }
+        }
+
+        function updateParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.life--;
+                
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.life / 30; // Fade out
+                ctx.fillRect(p.x, p.y, p.size, p.size);
+                ctx.globalAlpha = 1.0;
+
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        // Controls
+        document.addEventListener('keydown', keyDownHandler);
+        document.addEventListener('keyup', keyUpHandler);
+
+        function keyDownHandler(e) {
+            if(e.key === 'Right' || e.key === 'ArrowRight') {
+                player.dx = player.speed;
+            } else if(e.key === 'Left' || e.key === 'ArrowLeft') {
+                player.dx = -player.speed;
+            } else if(e.key === ' ' || e.code === 'Space') {
+                e.preventDefault(); 
+                if(!gameRunning && startScreen.style.display !== 'none') {
+                    startGame();
+                } else if(gameRunning) {
+                    shoot();
+                }
+            }
+        }
+
+        function keyUpHandler(e) {
+            if(e.key === 'Right' || e.key === 'ArrowRight' || e.key === 'Left' || e.key === 'ArrowLeft') {
+                player.dx = 0;
+            }
+        }
+
+        function shoot() {
+            if(bullets.length < 3) {
+                bullets.push({
+                    x: player.x + player.width / 2 - 2,
+                    y: player.y,
+                    width: 4,
+                    height: 10
+                });
+            }
+        }
+
+        function startGame() {
+            gameRunning = true;
+            score = 0;
+            scoreDisplay.textContent = score;
+            startScreen.style.display = 'none';
+            gameOverScreen.style.display = 'none';
+            initAliens();
+            bullets = [];
+            particles = [];
+            alienDx = 0.5; 
+            update();
+        }
+
+        function resetGame() {
+            gameRunning = false;
+            cancelAnimationFrame(animationId);
+            startScreen.style.display = 'flex';
+            gameOverScreen.style.display = 'none';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function drawPlayer() {
+            drawSprite(SHIP_SPRITE, player.x, player.y, player.color, player.pixelSize);
+        }
+
+        function drawBullets() {
+            ctx.fillStyle = '#ffff00';
+            bullets.forEach(b => {
+                ctx.fillRect(b.x, b.y, b.width, b.height);
+            });
+        }
+
+        function drawAliens() {
+            // Animation toggle every 30 frames approx
+            const useSprite2 = Math.floor(tick / 30) % 2 === 0;
+            const currentSprite = useSprite2 ? ALIEN_SPRITE_2 : ALIEN_SPRITE_1;
+
+            aliens.forEach(a => {
+                if(a.alive) {
+                    drawSprite(currentSprite, a.x, a.y, '#ff00ff', alienPixelSize);
+                }
+            });
+        }
+
+        function update() {
+            if(!gameRunning) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            tick++; // Increment tick for animation
+
+            // Move Player
+            player.x += player.dx;
+            if(player.x < 0) player.x = 0;
+            if(player.x + player.width > canvas.width) player.x = canvas.width - player.width;
+
+            // Move Bullets
+            bullets.forEach((b, index) => {
+                b.y -= bulletSpeed;
+                if(b.y < 0) bullets.splice(index, 1);
+            });
+
+            // Move Aliens
+            let edgeTouched = false;
+            aliens.forEach(a => {
+                if(a.alive) {
+                    a.x += alienDx;
+                    if(a.x + alienWidth > canvas.width || a.x < 0) {
+                        edgeTouched = true;
+                    }
+                }
+            });
+
+            if(edgeTouched) {
+                alienDx = -alienDx;
+                aliens.forEach(a => a.y += alienDy);
+                if(alienDx > 0) alienDx += 0.1; else alienDx -= 0.1;
+            }
+
+            // Collision Detection
+            bullets.forEach((b, bIndex) => {
+                aliens.forEach((a, aIndex) => {
+                    if(a.alive && 
+                       b.x < a.x + alienWidth &&
+                       b.x + b.width > a.x &&
+                       b.y < a.y + alienHeight &&
+                       b.y + b.height > a.y) {
+                        
+                        a.alive = false;
+                        bullets.splice(bIndex, 1);
+                        score += 10;
+                        scoreDisplay.textContent = score;
+
+                        // Create Explosion Effect!
+                        createExplosion(a.x + alienWidth/2, a.y + alienHeight/2, '#ff00ff');
+                    }
+                });
+            });
+
+            // Update & Draw Particles
+            updateParticles();
+
+            // Game Over Check
+            let activeAliens = aliens.filter(a => a.alive).length;
+            if(activeAliens === 0) {
+                initAliens();
+                alienDx = (alienDx > 0 ? 0.5 : -0.5) * 1.5; 
+            }
+
+            aliens.forEach(a => {
+                if(a.alive && a.y + alienHeight > player.y) {
+                    gameRunning = false;
+                    finalScoreDisplay.textContent = score;
+                    gameOverScreen.style.display = 'flex';
+                }
+            });
+
+            drawPlayer();
+            drawBullets();
+            drawAliens();
+
+            animationId = requestAnimationFrame(update);
+        }
+
+        // Draw initial state background
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     </script>
 </body>
 </html>
