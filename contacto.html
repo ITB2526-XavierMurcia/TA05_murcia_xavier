@@ -7,108 +7,7 @@
     <link rel="icon" href="icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            /* Transición movida a body.loaded */
-        }
-        body.loaded {
-            transition: background-color 0.3s, color 0.3s;
-        }
-        /* --- ESTILOS MODO CLARO --- */
-        .bg-tech-pattern {
-            background-color: #f8fafc;
-            background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
-            background-size: 24px 24px;
-        }
-        .sketch-input {
-            border: 2px solid #1f2937; /* Gray-800 */
-            border-radius: 0.5rem;
-            padding: 0.75rem;
-            width: 100%;
-            background-color: white;
-            transition: all 0.3s;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-        }
-        .sketch-input:focus {
-            outline: none;
-            box-shadow: 6px 6px 0px rgba(59, 130, 246, 0.5); 
-            border-color: #2563eb;
-        }
-        .thick-line {
-            height: 8px;
-            background-color: #000;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            width: 100%;
-            opacity: 0.9;
-        }
-
-        /* --- ESTILOS MODO OSCURO --- */
-        body.dark-mode {
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
-        body.dark-mode .bg-tech-pattern {
-            background-color: #0f172a; 
-            background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
-        }
-        body.dark-mode header {
-            background-color: rgba(15, 23, 42, 0.9);
-            border-color: #334155;
-        }
-        body.dark-mode nav {
-            background-color: #1e293b;
-            border-color: #475569;
-            color: #f8fafc;
-        }
-        body.dark-mode .bg-blue-100 {
-            background-color: #1e293b; 
-            border-color: #475569;
-        }
-        body.dark-mode .bg-white\/50 {
-            background-color: rgba(30, 41, 59, 0.5); 
-            border-color: #475569;
-        }
-        body.dark-mode .thick-line {
-            background-color: #94a3b8;
-        }
-        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode a {
-            color: #f1f5f9;
-        }
-        body.dark-mode p, body.dark-mode label {
-            color: #cbd5e1;
-        }
-        body.dark-mode .sketch-input {
-            background-color: #0f172a;
-            border-color: #475569;
-            color: white;
-            box-shadow: 4px 4px 0px rgba(255,255,255,0.1);
-        }
-        body.dark-mode .sketch-input:focus {
-            border-color: #60a5fa;
-            box-shadow: 6px 6px 0px rgba(96, 165, 250, 0.5);
-        }
-        body.dark-mode .text-blue-600 {
-            color: #60a5fa; 
-        }
-        body.dark-mode .hover\:text-blue-600:hover {
-            color: #93c5fd; 
-        }
-
-        /* --- FIX FOOTER MODO OSCURO --- */
-        body.dark-mode footer {
-            background-color: rgba(30, 41, 59, 0.95);
-            border-top-color: #475569;
-        }
-        body.dark-mode footer p {
-            color: #94a3b8 !important;
-        }
-
-        /* Animación para el Toast */
-        .toast-hidden { transform: translateX(120%); opacity: 0; }
-        .toast-visible { transform: translateX(0); opacity: 1; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
     <!-- SCRIPT ANTI-FLASH -->
     <script>
         (function() {
@@ -133,9 +32,9 @@
 <body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800 relative overflow-x-hidden">
 
     <!-- HEADER / NAV -->
-    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50">
+    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-5xl mx-auto">
-            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm">
+            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
                 <ul class="flex items-center space-x-6 mr-2">
                     <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
@@ -164,7 +63,7 @@
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">Get in Touch</h1>
 
         <!-- CONTACT CARD -->
-        <div class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl">
+        <div class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl transition-colors duration-300">
             
             <div class="flex flex-col md:flex-row gap-12">
                 
@@ -191,7 +90,7 @@
                 </div>
 
                 <!-- Right Column: Form -->
-                <div class="w-full md:w-2/3 bg-white/50 p-6 rounded-2xl border-2 border-blue-200">
+                <div class="w-full md:w-2/3 bg-white/50 p-6 rounded-2xl border-2 border-blue-200 transition-colors duration-300">
                     <form id="contactForm" class="space-y-4" novalidate>
                         
                         <!-- Name Field -->
@@ -217,6 +116,38 @@
                                     <option value="+44">🇬🇧 +44</option>
                                     <option value="+33">🇫🇷 +33</option>
                                     <option value="+49">🇩🇪 +49</option>
+                                    <option value="+39">🇮🇹 +39</option>
+                                    <option value="+351">🇵🇹 +351</option>
+                                    <option value="+353">🇮🇪 +353</option>
+                                    <option value="+31">🇳🇱 +31</option>
+                                    <option value="+32">🇧🇪 +32</option>
+                                    <option value="+41">🇨🇭 +41</option>
+                                    <option value="+43">🇦🇹 +43</option>
+                                    <option value="+46">🇸🇪 +46</option>
+                                    <option value="+47">🇳🇴 +47</option>
+                                    <option value="+45">🇩🇰 +45</option>
+                                    <option value="+358">🇫🇮 +358</option>
+                                    <option value="+48">🇵🇱 +48</option>
+                                    <option value="+420">🇨🇿 +420</option>
+                                    <option value="+30">🇬🇷 +30</option>
+                                    <option value="+90">🇹🇷 +90</option>
+                                    <option value="+7">🇷🇺 +7</option>
+                                    <option value="+86">🇨🇳 +86</option>
+                                    <option value="+81">🇯🇵 +81</option>
+                                    <option value="+82">🇰🇷 +82</option>
+                                    <option value="+91">🇮🇳 +91</option>
+                                    <option value="+61">🇦🇺 +61</option>
+                                    <option value="+64">🇳🇿 +64</option>
+                                    <option value="+55">🇧🇷 +55</option>
+                                    <option value="+54">🇦🇷 +54</option>
+                                    <option value="+52">🇲🇽 +52</option>
+                                    <option value="+56">🇨🇱 +56</option>
+                                    <option value="+57">🇨🇴 +57</option>
+                                    <option value="+51">🇵🇪 +51</option>
+                                    <option value="+20">🇪🇬 +20</option>
+                                    <option value="+27">🇿🇦 +27</option>
+                                    <option value="+971">🇦🇪 +971</option>
+                                    <option value="+966">🇸🇦 +966</option>
                                 </select>
                                 <!-- Phone Number Input -->
                                 <input type="tel" id="phone" class="sketch-input flex-1" placeholder="612 345 678">
@@ -243,7 +174,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm">
+    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
