@@ -1,0 +1,335 @@
+/* =========================================
+   1. FUENTES Y CONFIGURACIÓN BASE
+   ========================================= */
+body {
+    font-family: 'Inter', sans-serif;
+    /* La transición se activa mediante la clase .loaded para evitar flashazos */
+}
+
+body.loaded {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* =========================================
+   2. PATRONES Y LÍNEAS (ESTILO SKETCH)
+   ========================================= */
+.bg-tech-pattern {
+    background-color: #f8fafc;
+    background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+}
+
+.thick-line {
+    height: 8px;
+    background-color: #000;
+    border-radius: 4px;
+    margin-bottom: 8px; /* Ajustado para consistencia general */
+    width: 100%;
+    opacity: 0.9;
+}
+
+/* Specific override for project list spacing if needed */
+li .thick-line {
+    margin-bottom: 12px;
+}
+
+.thin-line {
+    height: 4px;
+    background-color: #000;
+    border-radius: 2px;
+    margin-bottom: 6px;
+    width: 100%;
+    opacity: 0.8;
+}
+
+.schema-bar {
+    background-color: #000;
+    border-radius: 9999px;
+    opacity: 0.9;
+}
+
+/* =========================================
+   3. INPUTS DE FORMULARIO
+   ========================================= */
+.sketch-input {
+    border: 2px solid #1f2937; /* Gray-800 */
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    width: 100%;
+    background-color: white;
+    transition: all 0.3s;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
+.sketch-input:focus {
+    outline: none;
+    box-shadow: 6px 6px 0px rgba(59, 130, 246, 0.5); /* Blue-500 shadow */
+    border-color: #2563eb; /* Blue-600 */
+}
+
+/* =========================================
+   4. TOAST NOTIFICATIONS
+   ========================================= */
+.toast-hidden {
+    transform: translateX(120%);
+    opacity: 0;
+}
+
+.toast-visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* =========================================
+   5. BOTÓN AVANZADO (CSS HOUDINI)
+   ========================================= */
+@property --angle-1 {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: -75deg;
+}
+
+@property --angle-2 {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: -45deg;
+}
+
+:root {
+    --btn-global-size: 1.2rem;
+    --anim--hover-time: 400ms;
+    --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.button-wrap {
+    position: relative;
+    z-index: 2;
+    border-radius: 999vw;
+    background: transparent;
+    pointer-events: none;
+    transition: all var(--anim--hover-time) var(--anim--hover-ease);
+    font-size: var(--btn-global-size);
+    display: inline-block;
+}
+
+.button-shadow {
+    --shadow-cuttoff-fix: 2em;
+    position: absolute;
+    width: calc(100% + var(--shadow-cuttoff-fix));
+    height: calc(100% + var(--shadow-cuttoff-fix));
+    top: calc(0% - var(--shadow-cuttoff-fix) / 2);
+    left: calc(0% - var(--shadow-cuttoff-fix) / 2);
+    filter: blur(clamp(2px, 0.125em, 12px));
+    overflow: visible;
+    pointer-events: none;
+}
+
+.button-shadow::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    border-radius: 999vw;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+    width: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
+    height: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
+    top: calc(var(--shadow-cuttoff-fix) - 0.5em);
+    left: calc(var(--shadow-cuttoff-fix) - 0.875em);
+    padding: 0.125em;
+    box-sizing: border-box;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    transition: all var(--anim--hover-time) var(--anim--hover-ease);
+    opacity: 1;
+}
+
+/* Estilos base del botón complejo */
+.complex-btn {
+    --border-width: clamp(1px, 0.0625em, 4px);
+    all: unset;
+    cursor: pointer;
+    position: relative;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    pointer-events: auto;
+    z-index: 3;
+    background: linear-gradient(-75deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    border-radius: 999vw;
+    box-shadow: inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05), inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5), 0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2), 0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2), 0 0 0 0 rgba(255, 255, 255, 1);
+    backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+    transition: all var(--anim--hover-time) var(--anim--hover-ease);
+    display: inline-block;
+}
+
+.complex-btn:hover { transform: scale(0.975); }
+
+.complex-btn span {
+    position: relative;
+    display: block;
+    user-select: none;
+    font-family: "Inter", sans-serif;
+    letter-spacing: -0.05em;
+    font-weight: 800;
+    font-size: 1em;
+    color: rgba(50, 50, 50, 1);
+    text-shadow: 0em 0.25em 0.05em rgba(0, 0, 0, 0.1);
+    transition: all var(--anim--hover-time) var(--anim--hover-ease);
+    padding-inline: 1.5em;
+    padding-block: 0.875em;
+}
+
+.complex-btn span::after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: calc(100% - var(--border-width));
+    height: calc(100% - var(--border-width));
+    top: calc(0% + var(--border-width) / 2);
+    left: calc(0% + var(--border-width) / 2);
+    box-sizing: border-box;
+    border-radius: 999vw;
+    overflow: clip;
+    background: linear-gradient(var(--angle-2), rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 40% 50%, rgba(255, 255, 255, 0) 55%);
+    z-index: 3;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    background-repeat: no-repeat;
+    transition: background-position calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease), --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
+}
+
+.complex-btn:hover span::after { background-position: 25% 50%; }
+.complex-btn:active span::after { background-position: 50% 15%; --angle-2: -15deg; }
+
+.complex-btn::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    border-radius: 999vw;
+    width: calc(100% + var(--border-width));
+    height: calc(100% + var(--border-width));
+    top: calc(0% - var(--border-width) / 2);
+    left: calc(0% - var(--border-width) / 2);
+    padding: var(--border-width);
+    box-sizing: border-box;
+    background: conic-gradient(from var(--angle-1) at 50% 50%, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0) 5% 40%, rgba(0, 0, 0, 0.5) 50%, rgba(255, 255, 255, 0) 60% 95%, rgba(0, 0, 0, 0.5)), linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    transition: all var(--anim--hover-time) var(--anim--hover-ease), --angle-1 500ms ease;
+    box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255, 255, 255, 0.5);
+}
+
+.complex-btn:hover::after { --angle-1: -125deg; }
+.complex-btn:active::after { --angle-1: -75deg; }
+
+.button-wrap:has(.complex-btn:hover) .button-shadow { filter: blur(clamp(2px, 0.0625em, 6px)); }
+.button-wrap:has(.complex-btn:hover) .button-shadow::after { top: calc(var(--shadow-cuttoff-fix) - 0.875em); opacity: 1; }
+.button-wrap:has(.complex-btn:active) { transform: rotate3d(1, 0, 0, 25deg); }
+
+/* Ajuste para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .complex-btn span::after, .complex-btn:active span::after { --angle-2: -45deg; }
+    .complex-btn::after, .complex-btn:hover::after, .complex-btn:active::after { --angle-1: -75deg; }
+}
+
+/* =========================================
+   6. MODO OSCURO (DARK MODE)
+   ========================================= */
+body.dark-mode {
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+
+body.dark-mode .bg-tech-pattern {
+    background-color: #0f172a; 
+    /* Patrón azul pizarra (#475569) */
+    background-image: radial-gradient(#475569 1.5px, transparent 1.5px);
+}
+
+body.dark-mode header {
+    background-color: rgba(15, 23, 42, 0.9);
+    border-color: #334155;
+}
+
+body.dark-mode nav {
+    background-color: #1e293b;
+    border-color: #475569;
+    color: #f8fafc;
+}
+
+body.dark-mode .bg-blue-100 {
+    background-color: #1e293b; 
+    border-color: #475569;
+}
+
+body.dark-mode .bg-white,
+body.dark-mode .bg-white\/50 {
+    background-color: #1e293b;
+    border-color: #475569;
+}
+
+/* Specific override for contact form background transparency if needed */
+body.dark-mode .bg-white\/50 {
+    background-color: rgba(30, 41, 59, 0.5);
+}
+
+body.dark-mode .thick-line, 
+body.dark-mode .thin-line,
+body.dark-mode .schema-bar {
+    background-color: #94a3b8;
+}
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode a {
+    color: #f1f5f9;
+}
+
+body.dark-mode p, body.dark-mode label {
+    color: #cbd5e1;
+}
+
+body.dark-mode .text-blue-600 {
+    color: #60a5fa; 
+}
+
+body.dark-mode .hover\:text-blue-600:hover {
+    color: #93c5fd; 
+}
+
+/* Inputs en Modo Oscuro */
+body.dark-mode .sketch-input {
+    background-color: #0f172a;
+    border-color: #475569;
+    color: white;
+    box-shadow: 4px 4px 0px rgba(255,255,255,0.1);
+}
+
+body.dark-mode .sketch-input:focus {
+    border-color: #60a5fa;
+    box-shadow: 6px 6px 0px rgba(96, 165, 250, 0.5);
+}
+
+/* Footer en Modo Oscuro */
+body.dark-mode footer {
+    background-color: rgba(30, 41, 59, 0.95);
+    border-top-color: #475569;
+}
+
+body.dark-mode footer p {
+    color: #94a3b8 !important;
+}
+
+/* Botón Complejo en Modo Oscuro */
+body.dark-mode .complex-btn span {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+body.dark-mode .complex-btn::after {
+    background: conic-gradient(from var(--angle-1) at 50% 50%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5% 40%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 60% 95%, rgba(255, 255, 255, 0.5));
+}
+
+body.dark-mode .button-shadow::after {
+     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+}
