@@ -7,218 +7,23 @@
     <link rel="icon" href="icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Eliminamos la transición en body inicialmente para evitar efecto "fade" al cargar */
-        body {
-            font-family: 'Inter', sans-serif;
-            /* transition: background-color 0.3s, color 0.3s;  <-- MOVIDO A UNA CLASE JAVASCRIPT */
-        }
-        /* Clase para activar transiciones SOLO después de cargar */
-        body.loaded {
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* --- ESTILOS MODO CLARO (Default) --- */
-        .thick-line {
-            height: 8px;
-            background-color: #000;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            width: 100%;
-        }
-        .bg-tech-pattern {
-            background-color: #f8fafc;
-            background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
-            background-size: 24px 24px;
-        }
-
-        /* --- ESTILOS MODO OSCURO --- */
-        body.dark-mode {
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
-        body.dark-mode .bg-tech-pattern {
-            background-color: #0f172a; 
-            background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
-        }
-        body.dark-mode header {
-            background-color: rgba(15, 23, 42, 0.9);
-            border-color: #334155;
-        }
-        body.dark-mode nav {
-            background-color: #1e293b;
-            border-color: #475569;
-            color: #f8fafc;
-        }
-        body.dark-mode .bg-blue-100 {
-            background-color: #1e293b; 
-            border-color: #475569;
-        }
-        body.dark-mode .bg-white {
-            background-color: #1e293b;
-            border-color: #475569;
-        }
-        body.dark-mode .thick-line, 
-        body.dark-mode .schema-bar {
-            background-color: #94a3b8;
-        }
-        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode a {
-            color: #f1f5f9;
-        }
-        body.dark-mode p {
-            color: #cbd5e1;
-        }
-        /* --- FIX FOOTER MODO OSCURO --- */
-        body.dark-mode footer {
-            background-color: rgba(30, 41, 59, 0.95); /* Slate 800 opaco */
-            border-top-color: #475569;
-        }
-        body.dark-mode footer p {
-            color: #94a3b8 !important; /* Forzar color claro */
-        }
-
-        /* Ajuste enlaces */
-        body.dark-mode .text-blue-600 {
-            color: #60a5fa; 
-        }
-        body.dark-mode .hover\:text-blue-600:hover {
-            color: #93c5fd; 
-        }
-
-        /* =========================================
-           BOTÓN AVANZADO (CSS Houdini)
-           ========================================= */
-        @property --angle-1 { syntax: "<angle>"; inherits: false; initial-value: -75deg; }
-        @property --angle-2 { syntax: "<angle>"; inherits: false; initial-value: -45deg; }
-
-        :root {
-          --btn-global-size: 1.2rem; 
-          --anim--hover-time: 400ms;
-          --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .button-wrap {
-          position: relative;
-          z-index: 2;
-          border-radius: 999vw;
-          background: transparent;
-          pointer-events: none;
-          transition: all var(--anim--hover-time) var(--anim--hover-ease);
-          font-size: var(--btn-global-size);
-          display: inline-block;
-        }
-
-        .button-shadow {
-          --shadow-cuttoff-fix: 2em;
-          position: absolute;
-          width: calc(100% + var(--shadow-cuttoff-fix));
-          height: calc(100% + var(--shadow-cuttoff-fix));
-          top: calc(0% - var(--shadow-cuttoff-fix) / 2);
-          left: calc(0% - var(--shadow-cuttoff-fix) / 2);
-          filter: blur(clamp(2px, 0.125em, 12px));
-          overflow: visible;
-          pointer-events: none;
-        }
-
-        .button-shadow::after {
-          content: "";
-          position: absolute;
-          z-index: 0;
-          inset: 0;
-          border-radius: 999vw;
-          background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
-          width: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
-          height: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
-          top: calc(var(--shadow-cuttoff-fix) - 0.5em);
-          left: calc(var(--shadow-cuttoff-fix) - 0.875em);
-          padding: 0.125em;
-          box-sizing: border-box;
-          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-          mask-composite: exclude;
-          transition: all var(--anim--hover-time) var(--anim--hover-ease);
-          opacity: 1;
-        }
-
-        /* --- BOTÓN BASE --- */
-        .complex-btn {
-          --border-width: clamp(1px, 0.0625em, 4px);
-          all: unset;
-          cursor: pointer;
-          position: relative;
-          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-          pointer-events: auto;
-          z-index: 3;
-          background: linear-gradient(-75deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
-          border-radius: 999vw;
-          box-shadow: inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05), inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5), 0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2), 0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2), 0 0 0 0 rgba(255, 255, 255, 1);
-          backdrop-filter: blur(clamp(1px, 0.125em, 4px));
-          transition: all var(--anim--hover-time) var(--anim--hover-ease);
-          display: inline-block;
-        }
-
-        /* --- FIX BOTÓN MODO OSCURO --- */
-        body.dark-mode .complex-btn span {
-            color: #ffffff; /* Texto Blanco */
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
-        }
-        body.dark-mode .complex-btn::after {
-            background: conic-gradient(from var(--angle-1) at 50% 50%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5% 40%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 60% 95%, rgba(255, 255, 255, 0.5));
-        }
-        body.dark-mode .button-shadow::after {
-             background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
-        }
-
-        .complex-btn:hover { transform: scale(0.975); }
-        .complex-btn span {
-          position: relative; display: block; user-select: none; font-family: "Inter", sans-serif; letter-spacing: -0.05em; font-weight: 800; font-size: 1em;
-          color: rgba(50, 50, 50, 1); /* Color por defecto (claro) */
-          text-shadow: 0em 0.25em 0.05em rgba(0, 0, 0, 0.1);
-          transition: all var(--anim--hover-time) var(--anim--hover-ease); padding-inline: 1.5em; padding-block: 0.875em;
-        }
-        .complex-btn span::after {
-          content: ""; display: block; position: absolute; z-index: 1; width: calc(100% - var(--border-width)); height: calc(100% - var(--border-width)); top: calc(0% + var(--border-width) / 2); left: calc(0% + var(--border-width) / 2);
-          box-sizing: border-box; border-radius: 999vw; overflow: clip;
-          background: linear-gradient(var(--angle-2), rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 40% 50%, rgba(255, 255, 255, 0) 55%);
-          z-index: 3; mix-blend-mode: screen; pointer-events: none; background-size: 200% 200%; background-position: 0% 50%; background-repeat: no-repeat;
-          transition: background-position calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease), --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
-        }
-        .complex-btn:hover span::after { background-position: 25% 50%; }
-        .complex-btn:active span::after { background-position: 50% 15%; --angle-2: -15deg; }
-        .complex-btn::after {
-          content: ""; position: absolute; z-index: 1; inset: 0; border-radius: 999vw; width: calc(100% + var(--border-width)); height: calc(100% + var(--border-width)); top: calc(0% - var(--border-width) / 2); left: calc(0% - var(--border-width) / 2); padding: var(--border-width); box-sizing: border-box;
-          background: conic-gradient(from var(--angle-1) at 50% 50%, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 5% 40%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 60% 95%, rgba(0, 0, 0, 0.5)), linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
-          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; transition: all var(--anim--hover-time) var(--anim--hover-ease), --angle-1 500ms ease; box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255, 255, 255, 0.5);
-        }
-        .complex-btn:hover::after { --angle-1: -125deg; }
-        .complex-btn:active::after { --angle-1: -75deg; }
-        .button-wrap:has(.complex-btn:hover) .button-shadow { filter: blur(clamp(2px, 0.0625em, 6px)); }
-        .button-wrap:has(.complex-btn:hover) .button-shadow::after { top: calc(var(--shadow-cuttoff-fix) - 0.875em); opacity: 1; }
-        .button-wrap:has(.complex-btn:active) { transform: rotate3d(1, 0, 0, 25deg); }
-        @media (hover: none) and (pointer: coarse) {
-          .complex-btn span::after, .complex-btn:active span::after { --angle-2: -45deg; }
-          .complex-btn::after, .complex-btn:hover::after, .complex-btn:active::after { --angle-1: -75deg; }
-        }
-    </style>
-    <!-- SCRIPT ANTI-FLASH: Debe ir en el HEAD para ejecutarse antes de renderizar -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- SCRIPT ANTI-FLASH -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark-mode'); // Aplicar a HTML primero por si acaso
-                // Creamos un estilo temporal para forzar el fondo oscuro inmediatamente
+                document.documentElement.classList.add('dark-mode');
                 const style = document.createElement('style');
                 style.innerHTML = 'body { background-color: #0f172a !important; color: #e2e8f0 !important; }';
                 document.head.appendChild(style);
-                
-                // Esperar a que el DOM esté listo para limpiar
                 document.addEventListener('DOMContentLoaded', () => {
                     document.body.classList.add('dark-mode');
-                    document.body.classList.add('loaded'); // Activar transiciones
-                    // setTimeout(() => style.remove(), 0); // Opcional: remover estilo forzado
+                    document.body.classList.add('loaded');
                 });
             } else {
                 document.addEventListener('DOMContentLoaded', () => {
-                    document.body.classList.add('loaded'); // Activar transiciones
+                    document.body.classList.add('loaded');
                 });
             }
         })();
@@ -227,9 +32,9 @@
 <body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800">
 
     <!-- HEADER / NAV -->
-    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50">
+    <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-5xl mx-auto">
-            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm">
+            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
                 <ul class="flex items-center space-x-6 mr-2">
                     <li><a href="index.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Home</a></li>
@@ -250,9 +55,9 @@
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">My Featured Projects</h1>
 
         <!-- PROJECT 1 -->
-        <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300 transition-colors duration-300">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md">
+                <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md transition-colors duration-300">
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Data Analysis Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300"></div>
                 </div>
@@ -274,7 +79,7 @@
         </article>
 
         <!-- PROJECT 2 -->
-        <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-6 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300 transition-colors duration-300">
             <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
                 <div class="w-full md:w-1/2 flex flex-col justify-center order-2 md:order-1">
                     <h2 class="text-2xl font-bold mb-4 text-gray-900">E-Commerce Mobile App</h2>
@@ -290,7 +95,7 @@
                         </button>
                     </a>
                 </div>
-                <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md order-1 md:order-2">
+                <div class="w-full md:w-1/2 aspect-square bg-white border-2 border-gray-800 rounded-xl flex items-center justify-center overflow-hidden relative group shadow-md order-1 md:order-2 transition-colors duration-300">
                     <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" alt="Mobile App Interface" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity duration-300"></div>
                 </div>
@@ -310,7 +115,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm">
+    <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
