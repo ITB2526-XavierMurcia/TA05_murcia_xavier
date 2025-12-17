@@ -12,7 +12,7 @@
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* --- ESTILOS MODO CLARO (Default) --- */
+        /* --- ESTILOS MODO CLARO --- */
         .bg-tech-pattern {
             background-color: #f8fafc;
             background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
@@ -59,12 +59,20 @@
         body.dark-mode p {
             color: #cbd5e1;
         }
-        /* Ajuste enlaces */
         body.dark-mode .text-blue-600 {
             color: #60a5fa; 
         }
         body.dark-mode .hover\:text-blue-600:hover {
             color: #93c5fd; 
+        }
+
+        /* --- FIX FOOTER MODO OSCURO --- */
+        body.dark-mode footer {
+            background-color: rgba(30, 41, 59, 0.95);
+            border-top-color: #475569;
+        }
+        body.dark-mode footer p {
+            color: #94a3b8 !important;
         }
     </style>
 </head>
@@ -77,10 +85,8 @@
                 <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
                 <ul class="flex items-center space-x-6 mr-2">
                     <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
-                    <!-- Highlighted Projects link since this is a project detail -->
                     <li><a href="lista-proyectos.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Projects</a></li>
                     <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition">Contact</a></li>
-                    <!-- Botón Modo Oscuro -->
                     <li>
                         <button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button>
                     </li>
@@ -92,56 +98,41 @@
     <!-- MAIN CONTENT -->
     <main class="flex-grow max-w-4xl mx-auto w-full p-4 md:p-8">
         
-        <!-- ARTICLE CONTAINER (Blue schema style) -->
+        <!-- ARTICLE CONTAINER -->
         <article class="bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl mt-4 flex flex-col items-center text-center transition-colors duration-300">
             
-            <!-- 1. TITLE -->
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">AI Management System</h1>
-
-            <!-- 2. SEPARATOR BAR (Long) -->
-            <!-- Represents the thick top line of the schema -->
             <div class="schema-bar h-3 w-3/4 md:w-2/3 mb-8"></div>
 
-            <!-- 3. TEXT PARAGRAPH -->
             <div class="text-left md:text-center max-w-2xl mb-8">
                 <p class="text-lg text-gray-800 leading-relaxed font-medium">
                     This revolutionary system integrates Machine Learning algorithms to automate document classification and inventory management. Designed for large logistics companies, it reduces human error by 95% and continuously learns from new data patterns entered by users.
                 </p>
             </div>
 
-            <!-- 4. THREE BARS (Technical Details / List) -->
-            <!-- Represents the 3 lines of the schema, used here as visual "Specs" -->
             <div class="w-full max-w-lg flex flex-col gap-4 mb-10 items-center opacity-80">
                 <div class="w-full flex items-center gap-4">
                     <span class="font-bold text-sm whitespace-nowrap w-24 text-right">Backend:</span>
-                    <div class="schema-bar h-2 w-full"></div> <!-- Decorative bar -->
+                    <div class="schema-bar h-2 w-full"></div> 
                     <span class="text-xs font-mono">Python/Django</span>
                 </div>
                 <div class="w-5/6 flex items-center gap-4">
                     <span class="font-bold text-sm whitespace-nowrap w-24 text-right">Frontend:</span>
-                    <div class="schema-bar h-2 w-full"></div> <!-- Decorative bar -->
+                    <div class="schema-bar h-2 w-full"></div> 
                     <span class="text-xs font-mono">React/Redux</span>
                 </div>
                 <div class="w-4/5 flex items-center gap-4">
                     <span class="font-bold text-sm whitespace-nowrap w-24 text-right">AI Model:</span>
-                    <div class="schema-bar h-2 w-full"></div> <!-- Decorative bar -->
+                    <div class="schema-bar h-2 w-full"></div> 
                     <span class="text-xs font-mono">TensorFlow</span>
                 </div>
             </div>
 
-            <!-- 5. LARGE IMAGE (Bottom) -->
-            <!-- Large white box with photo, as per schema -->
+            <!-- LARGE IMAGE -->
             <div class="w-full bg-white border-2 border-gray-800 rounded-xl p-2 shadow-md hover:shadow-lg transition-shadow duration-300 transition-colors duration-300">
                 <div class="relative w-full aspect-video overflow-hidden rounded-lg bg-gray-100 group">
-                    <img 
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" 
-                        alt="Dashboard Detail" 
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    >
-                    <!-- Subtle Overlay -->
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Dashboard Detail" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    
-                    <!-- Stickman Icon (symbolic, like in the schema) subtly overlaid -->
                     <div class="absolute bottom-4 right-4 bg-white/90 p-2 rounded-full shadow-sm backdrop-blur-sm">
                         <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -150,7 +141,6 @@
                 </div>
             </div>
 
-            <!-- Back Button -->
             <a href="index.html" class="mt-8 text-blue-700 hover:text-blue-900 font-bold hover:underline flex items-center gap-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 Back to Home
@@ -166,7 +156,6 @@
         </div>
     </footer>
 
-    <!-- Script Modo Oscuro -->
     <script src="theme.js"></script>
 
 </body>
