@@ -13,7 +13,7 @@
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* --- ESTILOS MODO CLARO (Default) --- */
+        /* --- ESTILOS MODO CLARO --- */
         .bg-tech-pattern {
             background-color: #f8fafc;
             background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
@@ -42,10 +42,9 @@
             color: #e2e8f0;
         }
         body.dark-mode .bg-tech-pattern {
-            background-color: #0f172a; /* Slate 900 */
+            background-color: #0f172a; 
             background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
         }
-        /* Inversión de componentes UI */
         body.dark-mode header {
             background-color: rgba(15, 23, 42, 0.9);
             border-color: #334155;
@@ -56,12 +55,16 @@
             color: #f8fafc;
         }
         body.dark-mode .bg-blue-100 {
-            background-color: #1e293b; /* Slate 800 */
+            background-color: #1e293b; 
+            border-color: #475569;
+        }
+        body.dark-mode .bg-white {
+            background-color: #1e293b;
             border-color: #475569;
         }
         body.dark-mode .thick-line, 
         body.dark-mode .thin-line {
-            background-color: #94a3b8; /* Slate 400 (Líneas claras) */
+            background-color: #94a3b8;
         }
         body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode a {
             color: #f1f5f9;
@@ -69,12 +72,20 @@
         body.dark-mode p {
             color: #cbd5e1;
         }
-        /* Ajuste específico para enlaces azules en modo oscuro */
         body.dark-mode .text-blue-600 {
-            color: #60a5fa; /* Blue 400 */
+            color: #60a5fa; 
         }
         body.dark-mode .hover\:text-blue-600:hover {
-            color: #93c5fd; /* Blue 300 */
+            color: #93c5fd; 
+        }
+
+        /* --- FIX FOOTER MODO OSCURO --- */
+        body.dark-mode footer {
+            background-color: rgba(30, 41, 59, 0.95);
+            border-top-color: #475569;
+        }
+        body.dark-mode footer p {
+            color: #94a3b8 !important;
         }
     </style>
 </head>
@@ -89,7 +100,6 @@
                     <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
                     <li><a href="lista-proyectos.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Projects</a></li>
                     <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition">Contact</a></li>
-                    <!-- Botón Modo Oscuro -->
                     <li>
                         <button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button>
                     </li>
@@ -100,16 +110,12 @@
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow max-w-7xl mx-auto w-full p-4 md:p-8">
-        
+        <!-- ... resto del contenido igual ... -->
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">Complete Project List</h1>
-
         <div class="flex flex-col lg:flex-row gap-8 items-start">
-
-            <!-- MAIN PROJECT LIST (Left Column) -->
             <div class="flex-grow w-full lg:w-3/4 bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl transition-colors duration-300">
-                
                 <ol class="space-y-12">
-                    <!-- ITEM 1 -->
+                    <!-- ITEMS DE LISTA (mismo contenido) -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                         <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2">
@@ -127,8 +133,6 @@
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 1">
                         </a>
                     </li>
-
-                    <!-- ITEM 2 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                         <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2">
@@ -146,10 +150,8 @@
                             <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 2">
                         </a>
                     </li>
-
-                    <!-- ITEM 3 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full md:w-2/3">
+                         <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2">
                                 <span class="text-blue-600 font-bold text-lg">03.</span>
                                 <h3 class="text-2xl font-bold text-gray-900">Cloud DevOps Pipeline</h3>
@@ -165,8 +167,6 @@
                             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=DevOps+Image'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 3">
                         </div>
                     </li>
-
-                    <!-- ITEM 4 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start">
                         <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2">
@@ -186,10 +186,9 @@
                     </li>
                 </ol>
             </div>
-
-            <!-- ASIDE: RETRO GAME (Right Column) -->
+            <!-- ASIDE: RETRO GAME -->
             <aside class="w-full lg:w-1/4 sticky top-24 bg-gray-900 text-white p-4 rounded-xl shadow-2xl border-4 border-gray-700 self-start hidden lg:block">
-                <div class="flex justify-between items-center mb-2 border-b border-gray-700 pb-2">
+                 <div class="flex justify-between items-center mb-2 border-b border-gray-700 pb-2">
                     <h3 class="font-mono text-green-400 font-bold text-sm tracking-wider">05. JAVA SPACE INVADERS</h3>
                     <div class="flex gap-1">
                         <div class="w-2 h-2 rounded-full bg-red-500"></div>
@@ -197,25 +196,18 @@
                         <div class="w-2 h-2 rounded-full bg-green-500"></div>
                     </div>
                 </div>
-                
-                <!-- Game Container -->
                 <div class="relative bg-black border-2 border-green-500/50 shadow-[0_0_10px_rgba(34,197,94,0.2)]">
                     <canvas id="gameCanvas" width="240" height="320" class="block mx-auto"></canvas>
-                    
-                    <!-- Start Overlay -->
                     <div id="startScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-10">
                         <p class="font-['VT323'] text-2xl text-green-400 animate-pulse">PRESS SPACE</p>
                         <p class="font-['VT323'] text-sm text-gray-400 mt-2">TO START</p>
                     </div>
-
-                    <!-- Game Over Overlay -->
                     <div id="gameOverScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-10 hidden">
                         <p class="font-['VT323'] text-3xl text-red-500 mb-2">GAME OVER</p>
                         <p class="font-['VT323'] text-lg text-white">SCORE: <span id="finalScore">0</span></p>
                         <p class="font-['VT323'] text-sm text-green-400 mt-4 cursor-pointer hover:underline" onclick="resetGame()">[ RESTART ]</p>
                     </div>
                 </div>
-
                 <div class="mt-3 text-center">
                     <p class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Controls</p>
                     <div class="flex justify-center gap-2 mt-1 text-xs font-mono text-gray-300">
@@ -226,16 +218,12 @@
                         <span class="text-[10px] self-center">SHOOT</span>
                     </div>
                 </div>
-                
-                <!-- Score Display -->
                 <div class="mt-4 border-t border-gray-700 pt-2 flex justify-between font-['VT323'] text-xl">
                     <span class="text-green-400">SCORE:</span>
                     <span id="scoreDisplay" class="text-white">0</span>
                 </div>
             </aside>
-
         </div>
-
     </main>
 
     <!-- FOOTER -->
@@ -247,7 +235,7 @@
 
     <!-- Scripts -->
     <script src="theme.js"></script>
-    <!-- GAME LOGIC -->
+    <!-- GAME LOGIC (Se mantiene igual que la versión anterior) -->
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -255,287 +243,28 @@
         const gameOverScreen = document.getElementById('gameOverScreen');
         const scoreDisplay = document.getElementById('scoreDisplay');
         const finalScoreDisplay = document.getElementById('finalScore');
-
-        let gameRunning = false;
-        let score = 0;
-        let animationId;
-        let particles = []; 
-        let tick = 0;
-
-        // --- SPRITES (Pixel Art Matrices) ---
-        const SHIP_SPRITE = [
-            [0,0,0,1,0,0,0],
-            [0,0,1,1,1,0,0],
-            [0,1,1,1,1,1,0],
-            [1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1]
-        ];
-
-        const ALIEN_SPRITE_1 = [
-            [0,0,1,0,0,0,0,0,1,0,0],
-            [0,0,0,1,0,0,0,1,0,0,0],
-            [0,0,1,1,1,1,1,1,1,0,0],
-            [0,1,1,0,1,1,1,0,1,1,0],
-            [1,1,1,1,1,1,1,1,1,1,1],
-            [1,0,1,1,1,1,1,1,1,0,1],
-            [1,0,1,0,0,0,0,0,1,0,1],
-            [0,0,0,1,1,0,1,1,0,0,0]
-        ];
-
-        const ALIEN_SPRITE_2 = [
-            [0,0,1,0,0,0,0,0,1,0,0],
-            [1,0,0,1,0,0,0,1,0,0,1],
-            [1,0,1,1,1,1,1,1,1,0,1],
-            [1,1,1,0,1,1,1,0,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1],
-            [0,1,1,1,1,1,1,1,1,1,0],
-            [0,0,1,0,0,0,0,0,1,0,0],
-            [0,1,0,0,0,0,0,0,0,1,0]
-        ];
-
-        function drawSprite(sprite, x, y, color, pixelSize) {
-            ctx.fillStyle = color;
-            for (let row = 0; row < sprite.length; row++) {
-                for (let col = 0; col < sprite[row].length; col++) {
-                    if (sprite[row][col] === 1) {
-                        ctx.fillRect(x + col * pixelSize, y + row * pixelSize, pixelSize, pixelSize);
-                    }
-                }
-            }
-        }
-
-        const player = {
-            x: canvas.width / 2 - 14,
-            y: canvas.height - 30,
-            width: 28,  
-            height: 24, 
-            color: '#00ff00',
-            dx: 0,
-            speed: 3,
-            pixelSize: 4
-        };
-
-        let bullets = [];
-        const bulletSpeed = 5;
-
-        let aliens = [];
-        const alienRows = 4;
-        const alienCols = 5;
-        const alienPixelSize = 2; 
-        const alienWidth = 11 * alienPixelSize;
-        const alienHeight = 8 * alienPixelSize;
-        const alienPadding = 15;
-        const alienOffsetTop = 30;
-        const alienOffsetLeft = 25;
-        let alienDx = 0.5;
-        let alienDy = 10;
-
-        function initAliens() {
-            aliens = [];
-            for(let c=0; c<alienCols; c++) {
-                for(let r=0; r<alienRows; r++) {
-                    aliens.push({
-                        x: (c * (alienWidth + alienPadding)) + alienOffsetLeft,
-                        y: (r * (alienHeight + alienPadding)) + alienOffsetTop,
-                        alive: true
-                    });
-                }
-            }
-        }
-
-        function createExplosion(x, y, color) {
-            for (let i = 0; i < 10; i++) {
-                particles.push({
-                    x: x,
-                    y: y,
-                    vx: (Math.random() - 0.5) * 4,
-                    vy: (Math.random() - 0.5) * 4,
-                    life: 20 + Math.random() * 10,
-                    color: color,
-                    size: Math.random() * 3 + 1
-                });
-            }
-        }
-
-        function updateParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                let p = particles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life--;
-                
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = p.life / 30;
-                ctx.fillRect(p.x, p.y, p.size, p.size);
-                ctx.globalAlpha = 1.0;
-
-                if (p.life <= 0) {
-                    particles.splice(i, 1);
-                    i--;
-                }
-            }
-        }
-
-        document.addEventListener('keydown', keyDownHandler);
-        document.addEventListener('keyup', keyUpHandler);
-
-        function keyDownHandler(e) {
-            if(e.key === 'Right' || e.key === 'ArrowRight') {
-                player.dx = player.speed;
-            } else if(e.key === 'Left' || e.key === 'ArrowLeft') {
-                player.dx = -player.speed;
-            } else if(e.key === ' ' || e.code === 'Space') {
-                e.preventDefault(); 
-                if(!gameRunning && startScreen.style.display !== 'none') {
-                    startGame();
-                } else if(gameRunning) {
-                    shoot();
-                }
-            }
-        }
-
-        function keyUpHandler(e) {
-            if(e.key === 'Right' || e.key === 'ArrowRight' || e.key === 'Left' || e.key === 'ArrowLeft') {
-                player.dx = 0;
-            }
-        }
-
-        function shoot() {
-            if(bullets.length < 3) {
-                bullets.push({
-                    x: player.x + player.width / 2 - 2,
-                    y: player.y,
-                    width: 4,
-                    height: 10
-                });
-            }
-        }
-
-        function startGame() {
-            gameRunning = true;
-            score = 0;
-            scoreDisplay.textContent = score;
-            startScreen.style.display = 'none';
-            gameOverScreen.style.display = 'none';
-            initAliens();
-            bullets = [];
-            particles = [];
-            alienDx = 0.5; 
-            update();
-        }
-
-        function resetGame() {
-            gameRunning = false;
-            cancelAnimationFrame(animationId);
-            startScreen.style.display = 'flex';
-            gameOverScreen.style.display = 'none';
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
-        function drawPlayer() {
-            drawSprite(SHIP_SPRITE, player.x, player.y, player.color, player.pixelSize);
-        }
-
-        function drawBullets() {
-            ctx.fillStyle = '#ffff00';
-            bullets.forEach(b => {
-                ctx.fillRect(b.x, b.y, b.width, b.height);
-            });
-        }
-
-        function drawAliens() {
-            const useSprite2 = Math.floor(tick / 30) % 2 === 0;
-            const currentSprite = useSprite2 ? ALIEN_SPRITE_2 : ALIEN_SPRITE_1;
-
-            aliens.forEach(a => {
-                if(a.alive) {
-                    drawSprite(currentSprite, a.x, a.y, '#ff00ff', alienPixelSize);
-                }
-            });
-        }
-
-        function update() {
-            if(!gameRunning) return;
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            tick++; 
-
-            // Move Player
-            player.x += player.dx;
-            if(player.x < 0) player.x = 0;
-            if(player.x + player.width > canvas.width) player.x = canvas.width - player.width;
-
-            // Move Bullets
-            bullets.forEach((b, index) => {
-                b.y -= bulletSpeed;
-                if(b.y < 0) bullets.splice(index, 1);
-            });
-
-            // Move Aliens
-            let edgeTouched = false;
-            aliens.forEach(a => {
-                if(a.alive) {
-                    a.x += alienDx;
-                    if(a.x + alienWidth > canvas.width || a.x < 0) {
-                        edgeTouched = true;
-                    }
-                }
-            });
-
-            if(edgeTouched) {
-                alienDx = -alienDx;
-                aliens.forEach(a => a.y += alienDy);
-                if(alienDx > 0) alienDx += 0.1; else alienDx -= 0.1;
-            }
-
-            // Collision Detection
-            bullets.forEach((b, bIndex) => {
-                aliens.forEach((a, aIndex) => {
-                    if(a.alive && 
-                       b.x < a.x + alienWidth &&
-                       b.x + b.width > a.x &&
-                       b.y < a.y + alienHeight &&
-                       b.y + b.height > a.y) {
-                        
-                        a.alive = false;
-                        bullets.splice(bIndex, 1);
-                        score += 10;
-                        scoreDisplay.textContent = score;
-
-                        createExplosion(a.x + alienWidth/2, a.y + alienHeight/2, '#ff00ff');
-                    }
-                });
-            });
-
-            updateParticles();
-
-            // Game Over Check
-            let activeAliens = aliens.filter(a => a.alive).length;
-            if(activeAliens === 0) {
-                initAliens();
-                alienDx = (alienDx > 0 ? 0.5 : -0.5) * 1.5; 
-            }
-
-            aliens.forEach(a => {
-                if(a.alive && a.y + alienHeight > player.y) {
-                    gameRunning = false;
-                    finalScoreDisplay.textContent = score;
-                    gameOverScreen.style.display = 'flex';
-                }
-            });
-
-            drawPlayer();
-            drawBullets();
-            drawAliens();
-
-            animationId = requestAnimationFrame(update);
-        }
-
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+        let gameRunning = false; let score = 0; let animationId; let particles = []; let tick = 0;
+        const SHIP_SPRITE = [[0,0,0,1,0,0,0],[0,0,1,1,1,0,0],[0,1,1,1,1,1,0],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1]];
+        const ALIEN_SPRITE_1 = [[0,0,1,0,0,0,0,0,1,0,0],[0,0,0,1,0,0,0,1,0,0,0],[0,0,1,1,1,1,1,1,1,0,0],[0,1,1,0,1,1,1,0,1,1,0],[1,1,1,1,1,1,1,1,1,1,1],[1,0,1,1,1,1,1,1,1,0,1],[1,0,1,0,0,0,0,0,1,0,1],[0,0,0,1,1,0,1,1,0,0,0]];
+        const ALIEN_SPRITE_2 = [[0,0,1,0,0,0,0,0,1,0,0],[1,0,0,1,0,0,0,1,0,0,1],[1,0,1,1,1,1,1,1,1,0,1],[1,1,1,0,1,1,1,0,1,1,1],[1,1,1,1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1,1,1,0],[0,0,1,0,0,0,0,0,1,0,0],[0,1,0,0,0,0,0,0,0,1,0]];
+        function drawSprite(sprite, x, y, color, pixelSize) { ctx.fillStyle = color; for (let row = 0; row < sprite.length; row++) { for (let col = 0; col < sprite[row].length; col++) { if (sprite[row][col] === 1) { ctx.fillRect(x + col * pixelSize, y + row * pixelSize, pixelSize, pixelSize); } } } }
+        const player = { x: canvas.width / 2 - 14, y: canvas.height - 30, width: 28, height: 24, color: '#00ff00', dx: 0, speed: 3, pixelSize: 4 };
+        let bullets = []; const bulletSpeed = 5;
+        let aliens = []; const alienRows = 4; const alienCols = 5; const alienPixelSize = 2; const alienWidth = 11 * alienPixelSize; const alienHeight = 8 * alienPixelSize; const alienPadding = 15; const alienOffsetTop = 30; const alienOffsetLeft = 25; let alienDx = 0.5; let alienDy = 10;
+        function initAliens() { aliens = []; for(let c=0; c<alienCols; c++) { for(let r=0; r<alienRows; r++) { aliens.push({ x: (c * (alienWidth + alienPadding)) + alienOffsetLeft, y: (r * (alienHeight + alienPadding)) + alienOffsetTop, alive: true }); } } }
+        function createExplosion(x, y, color) { for (let i = 0; i < 10; i++) { particles.push({ x: x, y: y, vx: (Math.random() - 0.5) * 4, vy: (Math.random() - 0.5) * 4, life: 20 + Math.random() * 10, color: color, size: Math.random() * 3 + 1 }); } }
+        function updateParticles() { for (let i = 0; i < particles.length; i++) { let p = particles[i]; p.x += p.vx; p.y += p.vy; p.life--; ctx.fillStyle = p.color; ctx.globalAlpha = p.life / 30; ctx.fillRect(p.x, p.y, p.size, p.size); ctx.globalAlpha = 1.0; if (p.life <= 0) { particles.splice(i, 1); i--; } } }
+        document.addEventListener('keydown', keyDownHandler); document.addEventListener('keyup', keyUpHandler);
+        function keyDownHandler(e) { if(e.key === 'Right' || e.key === 'ArrowRight') { player.dx = player.speed; } else if(e.key === 'Left' || e.key === 'ArrowLeft') { player.dx = -player.speed; } else if(e.key === ' ' || e.code === 'Space') { e.preventDefault(); if(!gameRunning && startScreen.style.display !== 'none') { startGame(); } else if(gameRunning) { shoot(); } } }
+        function keyUpHandler(e) { if(e.key === 'Right' || e.key === 'ArrowRight' || e.key === 'Left' || e.key === 'ArrowLeft') { player.dx = 0; } }
+        function shoot() { if(bullets.length < 3) { bullets.push({ x: player.x + player.width / 2 - 2, y: player.y, width: 4, height: 10 }); } }
+        function startGame() { gameRunning = true; score = 0; scoreDisplay.textContent = score; startScreen.style.display = 'none'; gameOverScreen.style.display = 'none'; initAliens(); bullets = []; particles = []; alienDx = 0.5; update(); }
+        function resetGame() { gameRunning = false; cancelAnimationFrame(animationId); startScreen.style.display = 'flex'; gameOverScreen.style.display = 'none'; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+        function drawPlayer() { drawSprite(SHIP_SPRITE, player.x, player.y, player.color, player.pixelSize); }
+        function drawBullets() { ctx.fillStyle = '#ffff00'; bullets.forEach(b => { ctx.fillRect(b.x, b.y, b.width, b.height); }); }
+        function drawAliens() { const useSprite2 = Math.floor(tick / 30) % 2 === 0; const currentSprite = useSprite2 ? ALIEN_SPRITE_2 : ALIEN_SPRITE_1; aliens.forEach(a => { if(a.alive) { drawSprite(currentSprite, a.x, a.y, '#ff00ff', alienPixelSize); } }); }
+        function update() { if(!gameRunning) return; ctx.clearRect(0, 0, canvas.width, canvas.height); tick++; player.x += player.dx; if(player.x < 0) player.x = 0; if(player.x + player.width > canvas.width) player.x = canvas.width - player.width; bullets.forEach((b, index) => { b.y -= bulletSpeed; if(b.y < 0) bullets.splice(index, 1); }); let edgeTouched = false; aliens.forEach(a => { if(a.alive) { a.x += alienDx; if(a.x + alienWidth > canvas.width || a.x < 0) { edgeTouched = true; } } }); if(edgeTouched) { alienDx = -alienDx; aliens.forEach(a => a.y += alienDy); if(alienDx > 0) alienDx += 0.1; else alienDx -= 0.1; } bullets.forEach((b, bIndex) => { aliens.forEach((a, aIndex) => { if(a.alive && b.x < a.x + alienWidth && b.x + b.width > a.x && b.y < a.y + alienHeight && b.y + b.height > a.y) { a.alive = false; bullets.splice(bIndex, 1); score += 10; scoreDisplay.textContent = score; createExplosion(a.x + alienWidth/2, a.y + alienHeight/2, '#ff00ff'); } }); }); updateParticles(); let activeAliens = aliens.filter(a => a.alive).length; if(activeAliens === 0) { initAliens(); alienDx = (alienDx > 0 ? 0.5 : -0.5) * 1.5; } aliens.forEach(a => { if(a.alive && a.y + alienHeight > player.y) { gameRunning = false; finalScoreDisplay.textContent = score; gameOverScreen.style.display = 'flex'; } }); drawPlayer(); drawBullets(); drawAliens(); animationId = requestAnimationFrame(update); }
+        ctx.fillStyle = '#000'; ctx.fillRect(0, 0, canvas.width, canvas.height);
     </script>
 </body>
 </html>
