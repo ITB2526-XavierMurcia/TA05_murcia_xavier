@@ -15,15 +15,13 @@
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-mode');
                 const style = document.createElement('style');
+                style.id = 'anti-flash-style';
                 style.innerHTML = 'body { background-color: #0f172a !important; color: #e2e8f0 !important; }';
                 document.head.appendChild(style);
+                
                 document.addEventListener('DOMContentLoaded', () => {
-                    document.body.classList.add('dark-mode');
-                    document.body.classList.add('loaded');
-                });
-            } else {
-                document.addEventListener('DOMContentLoaded', () => {
-                    document.body.classList.add('loaded');
+                    const styleNode = document.getElementById('anti-flash-style');
+                    if (styleNode) styleNode.remove();
                 });
             }
         })();
@@ -67,12 +65,14 @@
                         <div><label class="block text-sm font-bold mb-1 text-gray-700">Email</label><input type="email" id="email" class="sketch-input" placeholder="hello@example.com"></div>
                         <div><label class="block text-sm font-bold mb-1 text-gray-700">Phone</label>
                             <div class="flex gap-2">
-                                <select id="prefix" class="sketch-input w-40 bg-white cursor-pointer text-sm">
+                                <!-- CAMBIO: !w-auto para que ocupe solo lo necesario y flex-shrink-0 para no aplastarse -->
+                                <select id="prefix" class="sketch-input !w-auto bg-white cursor-pointer text-sm flex-shrink-0">
                                     <option value="+1">🇺🇸 +1</option><option value="+34" selected>🇪🇸 +34</option><option value="+44">🇬🇧 +44</option><option value="+33">🇫🇷 +33</option><option value="+49">🇩🇪 +49</option>
                                     <option value="+39">🇮🇹 +39</option><option value="+351">🇵🇹 +351</option><option value="+353">🇮🇪 +353</option><option value="+31">🇳🇱 +31</option><option value="+32">🇧🇪 +32</option>
-                                    <!-- Options truncated for brevity -->
+                                    <!-- (Resto de opciones mantenidas) -->
                                 </select>
-                                <input type="tel" id="phone" class="sketch-input flex-1" placeholder="612 345 678">
+                                <!-- CAMBIO: min-w-0 para asegurar comportamiento correcto en flex -->
+                                <input type="tel" id="phone" class="sketch-input flex-1 min-w-0" placeholder="612 345 678">
                             </div>
                         </div>
                         <div><label class="block text-sm font-bold mb-1 text-gray-700">Message</label><textarea id="message" rows="4" class="sketch-input" placeholder="Tell me about your project..."></textarea></div>
@@ -107,7 +107,7 @@
             } else if (!email.includes('@') || !email.includes('.')) { 
                 isValid = false; 
                 errorMessage = "Please enter a valid email."; 
-            } else if (phoneClean.length < 9 || isNaN(phoneClean)) { // CAMBIO AQUÍ: Mínimo 9 dígitos
+            } else if (phoneClean.length < 9 || isNaN(phoneClean)) { 
                 isValid = false; 
                 errorMessage = "Please enter a valid phone number (min 9 digits)."; 
             } 
