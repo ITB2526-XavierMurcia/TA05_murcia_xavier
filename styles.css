@@ -3,7 +3,8 @@
    ========================================= */
 body {
     font-family: 'Inter', sans-serif;
-    /* La transición se activa mediante la clase .loaded */
+    /* Prevenir desplazamiento horizontal en móviles */
+    overflow-x: hidden;
 }
 
 /* Evita transiciones mientras carga la página para no ver cambios de color */
