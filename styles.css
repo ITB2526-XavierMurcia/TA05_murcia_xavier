@@ -3,11 +3,8 @@
    ========================================= */
 body {
     font-family: 'Inter', sans-serif;
-    /* Prevenir desplazamiento horizontal en móviles */
-    overflow-x: hidden;
 }
 
-/* Evita transiciones mientras carga la página para no ver cambios de color */
 body:not(.loaded) * {
     transition: none !important;
 }
@@ -19,7 +16,6 @@ body.loaded {
 /* =========================================
    2. PATRONES Y LÍNEAS (ESTILO SKETCH)
    ========================================= */
-/* Modo Claro (Por defecto) */
 .bg-tech-pattern {
     background-color: #f8fafc;
     background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
@@ -55,10 +51,8 @@ li .thick-line {
 }
 
 /* =========================================
-   3. MODO OSCURO (DARK MODE)
+   3. MODO OSCURO
    ========================================= */
-/* Aplicamos estilos cuando <html> tiene la clase dark-mode */
-
 html.dark-mode body {
     background-color: #0f172a;
     color: #e2e8f0;
@@ -66,13 +60,11 @@ html.dark-mode body {
 
 html.dark-mode .bg-tech-pattern {
     background-color: #0f172a; 
-    /* Azul pizarra para los puntos */
-    background-image: radial-gradient(#475569 1.5px, transparent 1.5px);
+    background-image: radial-gradient(#334155 1.5px, transparent 1.5px);
 }
 
-/* UI Components Dark Mode */
 html.dark-mode header {
-    background-color: rgba(15, 23, 42, 0.9);
+    background-color: rgba(15, 23, 42, 0.95);
     border-color: #334155;
 }
 
@@ -91,7 +83,6 @@ html.dark-mode footer p {
     color: #94a3b8 !important;
 }
 
-/* Cards & Containers Dark Mode */
 html.dark-mode .bg-blue-100 {
     background-color: #1e293b; 
     border-color: #475569;
@@ -107,14 +98,12 @@ html.dark-mode .bg-white\/50 {
     background-color: rgba(30, 41, 59, 0.5);
 }
 
-/* Graphics Dark Mode */
 html.dark-mode .thick-line, 
 html.dark-mode .thin-line,
 html.dark-mode .schema-bar {
     background-color: #94a3b8;
 }
 
-/* Typography Dark Mode */
 html.dark-mode h1, html.dark-mode h2, html.dark-mode h3, html.dark-mode a {
     color: #f1f5f9;
 }
@@ -132,7 +121,7 @@ html.dark-mode .hover\:text-blue-600:hover {
 }
 
 /* =========================================
-   4. INPUTS & FORMULARIOS
+   4. INPUTS
    ========================================= */
 .sketch-input {
     border: 2px solid #1f2937;
@@ -176,7 +165,7 @@ html.dark-mode .sketch-input:focus {
 }
 
 /* =========================================
-   6. BOTÓN AVANZADO (CSS HOUDINI)
+   6. BOTÓN AVANZADO
    ========================================= */
 @property --angle-1 { syntax: "<angle>"; inherits: false; initial-value: -75deg; }
 @property --angle-2 { syntax: "<angle>"; inherits: false; initial-value: -45deg; }
@@ -258,7 +247,6 @@ html.dark-mode .button-shadow::after {
     transition: all var(--anim--hover-time) var(--anim--hover-ease); padding-inline: 1.5em; padding-block: 0.875em;
 }
 
-/* Texto botón en Dark Mode */
 html.dark-mode .complex-btn span {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255,255,255,0.3);
@@ -281,7 +269,6 @@ html.dark-mode .complex-btn span {
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; transition: all var(--anim--hover-time) var(--anim--hover-ease), --angle-1 500ms ease; box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255, 255, 255, 0.5);
 }
 
-/* Borde botón en Dark Mode */
 html.dark-mode .complex-btn::after {
     background: conic-gradient(from var(--angle-1) at 50% 50%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 5% 40%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 60% 95%, rgba(255, 255, 255, 0.5));
 }
