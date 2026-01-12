@@ -52,14 +52,15 @@
         <div class="flex flex-col lg:flex-row gap-8 items-start">
 
             <!-- CYBER MAP ASIDE -->
-            <aside class="w-full lg:w-1/4 lg:order-last sticky top-24 bg-gray-900 text-green-500 p-4 rounded-xl shadow-2xl border-4 border-gray-700 self-start z-10 font-['Share_Tech_Mono']">
+            <!-- CAMBIO: Eliminado 'sticky top-24' global. Ahora es 'lg:sticky lg:top-24'.
+                 En móvil se comportará como un bloque estático normal y scrolleará hacia arriba. -->
+            <aside class="w-full lg:w-1/4 lg:order-last lg:sticky lg:top-24 bg-gray-900 text-green-500 p-4 rounded-xl shadow-2xl border-4 border-gray-700 self-start z-10 font-['Share_Tech_Mono']">
                 <div class="flex justify-between items-center mb-2 border-b border-green-900/50 pb-2">
                     <h3 class="text-xs uppercase tracking-widest text-red-500 animate-pulse">● LIVE THREAT MAP</h3>
                     <div class="text-[10px] text-gray-400">SYS.MONITOR.V2</div>
                 </div>
                 
                 <!-- Map Container -->
-                <!-- AÑADIDO: aspect-[2/1] para forzar la proporción correcta y que no se deforme el mapa -->
                 <div class="relative bg-black border border-green-800/50 aspect-[2/1] w-full overflow-hidden rounded mb-3">
                     
                     <!-- Imagen Mapamundi de Fondo -->
@@ -93,7 +94,6 @@
             <div class="flex-grow w-full lg:w-3/4 bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl transition-colors duration-300">
                 
                 <ol class="space-y-12">
-                    <!-- ITEMS DE LISTA -->
                     <!-- 01 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                         <div class="flex-grow w-full md:w-2/3">
@@ -177,7 +177,7 @@
 
                     <!-- 08 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">08.</span><h3 class="text-2xl font-bold text-gray-900">Fintech Dashboard</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">High-performance financial data visualization tool built with D3.js and React, processing millions of transaction records in milliseconds.</p>
@@ -188,7 +188,7 @@
 
                     <!-- 09 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">09.</span><h3 class="text-2xl font-bold text-gray-900">Health & Fitness Tracker</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Wearable integration app that aggregates health data (heart rate, steps, sleep) into actionable insights using HealthKit and Google Fit APIs.</p>
@@ -199,7 +199,7 @@
 
                     <!-- 10 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">10.</span><h3 class="text-2xl font-bold text-gray-900">Social Media Analytics</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">SaaS platform analyzing sentiment on Twitter and Reddit using Natural Language Processing (NLP) to track brand reputation.</p>
@@ -210,7 +210,7 @@
 
                     <!-- 11 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">11.</span><h3 class="text-2xl font-bold text-gray-900">E-Learning Platform</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Full-featured LMS with video streaming, quizzes, and progress tracking, built on MERN stack for scalable education delivery.</p>
@@ -221,7 +221,7 @@
 
                     <!-- 12 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">12.</span><h3 class="text-2xl font-bold text-gray-900">Smart Agriculture</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">IoT solution using LoRaWAN sensors to monitor soil moisture and automate irrigation, increasing crop yield by 15%.</p>
@@ -232,7 +232,7 @@
 
                     <!-- 13 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">13.</span><h3 class="text-2xl font-bold text-gray-900">Real-time Chat App</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Scalable messaging app using WebSockets and Redis, supporting group chats, file sharing, and end-to-end encryption.</p>
@@ -243,7 +243,7 @@
 
                     <!-- 14 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">14.</span><h3 class="text-2xl font-bold text-gray-900">Autonomous Drone</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Computer vision project using OpenCV and Raspberry Pi to enable obstacle avoidance and pathfinding for quadcopters.</p>
@@ -254,7 +254,7 @@
 
                     <!-- 15 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">15.</span><h3 class="text-2xl font-bold text-gray-900">VR Museum Tour</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Immersive virtual reality experience built with Unity 3D, allowing users to explore historical artifacts in a photorealistic environment.</p>
@@ -265,7 +265,7 @@
 
                     <!-- 16 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">16.</span><h3 class="text-2xl font-bold text-gray-900">Supply Chain Tracker</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Blockchain-based logistics platform ensuring provenance tracking for luxury goods from manufacturer to consumer.</p>
@@ -276,7 +276,7 @@
 
                     <!-- 17 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">17.</span><h3 class="text-2xl font-bold text-gray-900">Automated Trading Bot</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Algorithmic trading bot connected to Binance API, utilizing moving average crossover strategies to execute profitable trades automatically.</p>
@@ -389,18 +389,18 @@
         // Coordenadas RECALIBRADAS para bg-size: 100% 100%
         // (0,0 es arriba-izq, 1,1 es abajo-der)
         const locations = [
-            { x: 0.21, y: 0.36, name: "USA" },
-            { x: 0.20, y: 0.22, name: "CANADA" },
-            { x: 0.32, y: 0.62, name: "BRAZIL" },
-            { x: 0.49, y: 0.27, name: "UK" },
-            { x: 0.52, y: 0.29, name: "GERMANY" },
-            { x: 0.49, y: 0.33, name: "SPAIN" },
-            { x: 0.70, y: 0.22, name: "RUSSIA" },
-            { x: 0.78, y: 0.38, name: "CHINA" },
-            { x: 0.70, y: 0.45, name: "INDIA" },
-            { x: 0.88, y: 0.36, name: "JAPAN" },
-            { x: 0.87, y: 0.72, name: "AUSTRALIA" },
-            { x: 0.53, y: 0.72, name: "SOUTH AFRICA" }
+            { x: 0.25, y: 0.35, name: "USA" },
+            { x: 0.20, y: 0.20, name: "CANADA" },
+            { x: 0.32, y: 0.65, name: "BRAZIL" },
+            { x: 0.46, y: 0.26, name: "UK" },
+            { x: 0.50, y: 0.28, name: "GERMANY" },
+            { x: 0.46, y: 0.33, name: "SPAIN" },
+            { x: 0.70, y: 0.20, name: "RUSSIA" },
+            { x: 0.75, y: 0.40, name: "CHINA" },
+            { x: 0.68, y: 0.48, name: "INDIA" },
+            { x: 0.88, y: 0.38, name: "JAPAN" },
+            { x: 0.88, y: 0.75, name: "AUSTRALIA" },
+            { x: 0.53, y: 0.75, name: "SOUTH AFRICA" }
         ];
 
         // Resize Canvas
