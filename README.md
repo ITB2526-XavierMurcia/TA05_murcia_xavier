@@ -93,14 +93,16 @@
 <hr>
 
 <h2>▶️ Cómo Ejecutarlo</h2>
-
 <ol>
-<li>Descarga o clona este repositorio.</li>
-<li>Asegúrate de que todos los archivos estén en la misma carpeta raíz.</li>
-<li>Abre el archivo <code>index.html</code> en cualquier navegador moderno (Chrome, Firefox, Edge, Safari).</li>
-<li>¡Listo! No requiere instalación de dependencias ni servidor backend.</li>
+  <li><a href="https://itb2526-xaviermurcia.github.io/TA05_murcia_xavier/">Ábrelo en este enlace</a></li>
+  <li>O bien descárgalo:</li>
+  <ul>
+    <li>Descarga o clona este repositorio.</li>
+    <li>Asegúrate de que todos los archivos estén en la misma carpeta raíz.</li>
+    <li>Abre el archivo <code>index.html</code> en cualquier navegador moderno (Chrome, Firefox, Edge, Safari).</li>
+    <li>¡Listo! No requiere instalación de dependencias ni servidor backend.</li>
+  </ul>
 </ol>
-
 <p>
 <strong>👨‍💻 Desarrollado por:</strong> Xavier
 
