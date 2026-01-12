@@ -117,9 +117,9 @@
             } else if (!email.includes('@') || !email.includes('.')) { 
                 isValid = false; 
                 errorMessage = "Please enter a valid email."; 
-            } else if (phoneClean.length = 9 || isNaN(phoneClean)) { 
+            } else if (phoneClean.length !== 9 || isNaN(phoneClean)) { // CORREGIDO: !== 9 para validar longitud exacta
                 isValid = false; 
-                errorMessage = "Please enter a valid phone number (min 9 digits)."; 
+                errorMessage = "Please enter a valid phone number (exactly 9 digits)."; 
             } 
 
             if (!isValid) { 
