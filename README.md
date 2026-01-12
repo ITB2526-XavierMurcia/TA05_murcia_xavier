@@ -94,7 +94,7 @@
 
 <h2>▶️ Cómo Ejecutarlo</h2>
 <ol>
-  <li><a href="https://itb2526-xaviermurcia.github.io/TA05_murcia_xavier/">Ábrelo en este enlace</a></li>
+  <li><a href="https://itb2526-xaviermurcia.github.io/TA05_murcia_xavier/" target="_blank">Ábrelo en este enlace</a></li>
   <li>O bien descárgalo:</li>
   <ul>
     <li>Descarga o clona este repositorio.</li>
