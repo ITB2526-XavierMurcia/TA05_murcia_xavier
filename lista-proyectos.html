@@ -7,9 +7,9 @@
     <link rel="icon" href="icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <!-- Fuente Monoespaciada para el Mapa Cyber -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <!-- SCRIPT ANTI-FLASH -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme');
@@ -22,45 +22,86 @@
         })();
     </script>
 </head>
-<body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800">
+<body class="bg-tech-pattern flex flex-col min-h-screen text-slate-800 overflow-x-hidden">
 
-    <!-- HEADER / NAV -->
+    <!-- HEADER REDISEÑADO -->
     <header class="bg-white/90 backdrop-blur-sm border-b-2 border-gray-800 p-4 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-5xl mx-auto">
-            <nav class="border-2 border-gray-800 rounded-lg p-3 bg-gray-50 flex justify-between items-center shadow-sm transition-colors duration-300">
-                <div class="font-bold text-xl ml-2 tracking-tight">PORTFOLIO XAVIER</div>
-                <ul class="flex items-center space-x-6 mr-2">
-                    <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
-                    <li><a href="lista-proyectos.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Projects</a></li>
-                    <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition">Contact</a></li>
-                    <li>
-                        <button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button>
-                    </li>
-                </ul>
+            <nav class="relative border-2 border-gray-800 rounded-lg p-3 bg-gray-50 shadow-sm transition-colors duration-300">
+                <div class="flex flex-col items-center justify-center w-full">
+                    <div class="font-bold text-xl tracking-tight text-center w-full mb-2 md:mb-0 md:w-auto md:absolute md:left-4 md:top-3">
+                        PORTFOLIO XAVIER
+                    </div>
+                    <ul class="flex items-center space-x-4 md:space-x-6 text-sm md:text-base md:ml-auto md:mr-12">
+                        <li><a href="index.html" class="hover:text-blue-600 font-medium transition">Home</a></li>
+                        <li><a href="lista-proyectos.html" class="text-blue-600 hover:text-blue-600 font-medium transition">Projects</a></li>
+                        <li><a href="contacto.html" class="hover:text-blue-600 font-medium transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="absolute right-3 top-3 md:top-3.5">
+                    <button id="theme-toggle" class="text-xl hover:scale-110 transition-transform focus:outline-none" aria-label="Toggle Dark Mode">🌙</button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main class="flex-grow max-w-7xl mx-auto w-full p-4 md:p-8">
         
         <h1 class="text-3xl font-bold text-center mb-8 mt-4 tracking-tight">Complete Project List</h1>
 
         <div class="flex flex-col lg:flex-row gap-8 items-start">
 
+            <!-- CYBER MAP ASIDE -->
+            <aside class="w-full lg:w-1/4 lg:order-last sticky top-24 bg-gray-900 text-green-500 p-4 rounded-xl shadow-2xl border-4 border-gray-700 self-start z-10 font-['Share_Tech_Mono']">
+                <div class="flex justify-between items-center mb-2 border-b border-green-900/50 pb-2">
+                    <h3 class="text-xs uppercase tracking-widest text-red-500 animate-pulse">● LIVE THREAT MAP</h3>
+                    <div class="text-[10px] text-gray-400">SYS.MONITOR.V2</div>
+                </div>
+                
+                <!-- Map Container -->
+                <!-- AÑADIDO: aspect-[2/1] para forzar la proporción correcta y que no se deforme el mapa -->
+                <div class="relative bg-black border border-green-800/50 aspect-[2/1] w-full overflow-hidden rounded mb-3">
+                    
+                    <!-- Imagen Mapamundi de Fondo -->
+                    <div class="absolute inset-0 bg-no-repeat bg-center opacity-40" 
+                         style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/2000px-World_map_blank_without_borders.svg.png'); background-size: 100% 100%; filter: invert(1) sepia(1) saturate(5) hue-rotate(80deg);">
+                    </div>
+
+                    <!-- Canvas para el renderizado -->
+                    <canvas id="cyberMap" class="absolute inset-0 w-full h-full block z-10"></canvas>
+                    
+                    <!-- Overlay Grid -->
+                    <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-20 pointer-events-none bg-[length:100%_4px,6px_100%]"></div>
+                    
+                    <!-- Status Text Overlay -->
+                    <div class="absolute bottom-2 left-2 text-[10px] text-green-400 bg-black/70 px-1 z-30">
+                        > MONITORING GLOBAL TRAFFIC...
+                    </div>
+                </div>
+
+                <!-- Log Console -->
+                <div class="bg-gray-950 border border-gray-800 p-2 h-32 overflow-y-auto text-[10px] font-mono leading-tight scrollbar-thin" id="cyberLog">
+                    <div class="text-gray-500">> System initialized...</div>
+                </div>
+                
+                <div class="mt-2 text-center border-t border-gray-800 pt-2">
+                    <p class="text-[9px] text-gray-500">REAL-TIME GLOBAL HACKING VISUALIZATION</p>
+                </div>
+            </aside>
+
             <!-- MAIN PROJECT LIST (Left Column) -->
             <div class="flex-grow w-full lg:w-3/4 bg-blue-100 border-2 border-blue-300 rounded-[2.5rem] p-8 md:p-12 shadow-xl transition-colors duration-300">
                 
                 <ol class="space-y-12">
+                    <!-- ITEMS DE LISTA -->
                     <!-- 01 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">01.</span><a href="proyecto1.html" class="text-2xl font-bold text-gray-900 hover:text-blue-700 hover:underline">AI Management System</a></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">A full-stack web application designed to optimize workflows using machine learning algorithms. Developed with Python (Django) and React, achieving 95% accuracy in real-time data classification.</p>
                             <div class="thin-line"></div><div class="thin-line w-11/12"></div>
                         </div>
-                        <!-- IMAGEN REDUCIDA: md:w-48 (antes md:w-1/3) -->
                         <a href="proyecto1.html" class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0">
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 1">
                         </a>
@@ -68,7 +109,7 @@
 
                     <!-- 02 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">02.</span><a href="proyecto2.html" class="text-2xl font-bold text-gray-900 hover:text-blue-700 hover:underline">E-Commerce Mobile App</a></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Cross-platform solution with Flutter & Firebase. Features biometric login, Stripe payments, and cloud sync. Focused on UX research, reducing checkout time by 40%.</p>
@@ -81,7 +122,7 @@
 
                     <!-- 03 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">03.</span><h3 class="text-2xl font-bold text-gray-900">Cloud DevOps Pipeline</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Automated CI/CD infrastructure using Docker, Kubernetes, and AWS. Implemented auto-scaling policies that reduced server costs by 30% while maintaining 99.99% uptime for high-traffic microservices.</p>
@@ -92,7 +133,7 @@
 
                     <!-- 04 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">04.</span><h3 class="text-2xl font-bold text-gray-900">IoT Home Automation</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Smart home control panel built with Vue.js and Node.js (MQTT). Allows users to monitor energy consumption, control lights, and manage security cameras from a centralized, responsive dashboard.</p>
@@ -103,7 +144,7 @@
 
                     <!-- 05 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">05.</span><h3 class="text-2xl font-bold text-gray-900">Blockchain Voting System</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Secure, decentralized voting platform using Ethereum smart contracts to ensure transparency and immutability in local elections.</p>
@@ -114,7 +155,7 @@
 
                     <!-- 06 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">06.</span><h3 class="text-2xl font-bold text-gray-900">AR Interior Design App</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Mobile application using ARKit to visualize furniture in real-time within user environments, increasing conversion rates for furniture retailers.</p>
@@ -123,9 +164,9 @@
                         <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1633511090164-b43840ea1607?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=AR+App'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 6"></div>
                     </li>
 
-                    <!-- 07 (FIXED IMAGE) -->
+                    <!-- 07 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
-                        <div class="flex-grow w-full flex-1">
+                        <div class="flex-grow w-full md:w-2/3">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">07.</span><h3 class="text-2xl font-bold text-gray-900">Cyber Security Audit Tool</h3></div>
                             <div class="thick-line"></div>
                             <p class="text-gray-700 leading-relaxed mb-4">Python-based automated vulnerability scanner for web applications, generating detailed reports on SQL injection and XSS risks.</p>
@@ -145,7 +186,7 @@
                         <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Fintech'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 8"></div>
                     </li>
 
-                    <!-- 09 (FIXED IMAGE) -->
+                    <!-- 09 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                         <div class="flex-grow w-full flex-1">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">09.</span><h3 class="text-2xl font-bold text-gray-900">Health & Fitness Tracker</h3></div>
@@ -200,7 +241,7 @@
                         <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Chat+App'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 13"></div>
                     </li>
 
-                    <!-- 14 (FIXED IMAGE) -->
+                    <!-- 14 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                         <div class="flex-grow w-full flex-1">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">14.</span><h3 class="text-2xl font-bold text-gray-900">Autonomous Drone</h3></div>
@@ -211,7 +252,7 @@
                         <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Drone'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 14"></div>
                     </li>
 
-                    <!-- 15 (FIXED IMAGE) -->
+                    <!-- 15 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                         <div class="flex-grow w-full flex-1">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">15.</span><h3 class="text-2xl font-bold text-gray-900">VR Museum Tour</h3></div>
@@ -233,7 +274,7 @@
                         <div class="w-full md:w-48 aspect-square bg-white border-2 border-gray-800 rounded-xl overflow-hidden shadow-md group flex-shrink-0"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600?text=Logistics'" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Project 16"></div>
                     </li>
 
-                    <!-- 17 (FIXED IMAGE) -->
+                    <!-- 17 -->
                     <li class="flex flex-col md:flex-row gap-6 md:gap-10 items-start border-b-2 border-blue-200 pb-8 last:border-0 last:pb-0">
                         <div class="flex-grow w-full flex-1">
                             <div class="flex items-baseline gap-2 mb-2"><span class="text-blue-600 font-bold text-lg">17.</span><h3 class="text-2xl font-bold text-gray-900">Automated Trading Bot</h3></div>
@@ -324,369 +365,147 @@
                 </ol>
             </div>
 
-            <!-- ASIDE: RETRO GAME (Right Column) -->
-            <aside class="w-full lg:w-1/4 sticky top-24 bg-gray-900 text-white p-4 rounded-xl shadow-2xl border-4 border-gray-700 self-start hidden lg:block">
-                <div class="flex justify-between items-center mb-2 border-b border-gray-700 pb-2">
-                    <h3 class="font-mono text-green-400 font-bold text-sm tracking-wider">25. JAVA SPACE INVADERS</h3>
-                    <div class="flex gap-1">
-                        <div class="w-2 h-2 rounded-full bg-red-500"></div>
-                        <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                    </div>
-                </div>
-                
-                <!-- Game Container -->
-                <div class="relative bg-black border-2 border-green-500/50 shadow-[0_0_10px_rgba(34,197,94,0.2)]">
-                    <canvas id="gameCanvas" width="240" height="320" class="block mx-auto"></canvas>
-                    
-                    <!-- Start Overlay -->
-                    <div id="startScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 z-10">
-                        <p class="font-['VT323'] text-2xl text-green-400 animate-pulse">PRESS SPACE</p>
-                        <p class="font-['VT323'] text-sm text-gray-400 mt-2">TO START</p>
-                    </div>
-
-                    <!-- Game Over Overlay -->
-                    <div id="gameOverScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 z-10 hidden">
-                        <p class="font-['VT323'] text-3xl text-red-500 mb-2">GAME OVER</p>
-                        <p class="font-['VT323'] text-lg text-white">SCORE: <span id="finalScore">0</span></p>
-                        <p class="font-['VT323'] text-sm text-green-400 mt-4 cursor-pointer hover:underline" onclick="resetGame()">[ RESTART ]</p>
-                    </div>
-                </div>
-
-                <div class="mt-3 text-center">
-                    <p class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Controls</p>
-                    <div class="flex justify-center gap-2 mt-1 text-xs font-mono text-gray-300">
-                        <span class="border border-gray-600 px-1 rounded">←</span>
-                        <span class="border border-gray-600 px-1 rounded">→</span>
-                        <span class="text-[10px] self-center">MOVE</span>
-                        <span class="border border-gray-600 px-3 rounded">SPACE</span>
-                        <span class="text-[10px] self-center">SHOOT</span>
-                    </div>
-                </div>
-                
-                <!-- Score Display -->
-                <div class="mt-4 border-t border-gray-700 pt-2 flex justify-between font-['VT323'] text-xl">
-                    <span class="text-green-400">SCORE:</span>
-                    <span id="scoreDisplay" class="text-white">0</span>
-                </div>
-            </aside>
-
         </div>
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="bg-white/80 border-t-2 border-gray-800 mt-8 py-6 backdrop-blur-sm transition-colors duration-300">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <p class="text-gray-600 font-medium">© 2025 Development Portfolio. TA05 MDS.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="theme.js"></script>
-    <!-- GAME LOGIC -->
+    
+    <!-- CYBER MAP LOGIC (JAVASCRIPT) -->
     <script>
-        const canvas = document.getElementById('gameCanvas');
+        const canvas = document.getElementById('cyberMap');
         const ctx = canvas.getContext('2d');
-        const startScreen = document.getElementById('startScreen');
-        const gameOverScreen = document.getElementById('gameOverScreen');
-        const scoreDisplay = document.getElementById('scoreDisplay');
-        const finalScoreDisplay = document.getElementById('finalScore');
-
-        let gameRunning = false;
-        let score = 0;
-        let animationId;
-        let particles = []; // Array for explosion particles
-        let tick = 0; // For animation timing
-
-        // --- SPRITES (Pixel Art Matrices) ---
-        // 1 = Pixel color, 0 = Transparent
-        const SHIP_SPRITE = [
-            [0,0,0,1,0,0,0],
-            [0,0,1,1,1,0,0],
-            [0,1,1,1,1,1,0],
-            [1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1],
-            [1,1,1,1,1,1,1]
+        const logContainer = document.getElementById('cyberLog');
+        
+        let width, height;
+        const connections = [];
+        
+        // Coordenadas RECALIBRADAS para bg-size: 100% 100%
+        // (0,0 es arriba-izq, 1,1 es abajo-der)
+        const locations = [
+            { x: 0.21, y: 0.36, name: "USA" },
+            { x: 0.20, y: 0.22, name: "CANADA" },
+            { x: 0.32, y: 0.62, name: "BRAZIL" },
+            { x: 0.49, y: 0.27, name: "UK" },
+            { x: 0.52, y: 0.29, name: "GERMANY" },
+            { x: 0.49, y: 0.33, name: "SPAIN" },
+            { x: 0.70, y: 0.22, name: "RUSSIA" },
+            { x: 0.78, y: 0.38, name: "CHINA" },
+            { x: 0.70, y: 0.45, name: "INDIA" },
+            { x: 0.88, y: 0.36, name: "JAPAN" },
+            { x: 0.87, y: 0.72, name: "AUSTRALIA" },
+            { x: 0.53, y: 0.72, name: "SOUTH AFRICA" }
         ];
 
-        const ALIEN_SPRITE_1 = [
-            [0,0,1,0,0,0,0,0,1,0,0],
-            [0,0,0,1,0,0,0,1,0,0,0],
-            [0,0,1,1,1,1,1,1,1,0,0],
-            [0,1,1,0,1,1,1,0,1,1,0],
-            [1,1,1,1,1,1,1,1,1,1,1],
-            [1,0,1,1,1,1,1,1,1,0,1],
-            [1,0,1,0,0,0,0,0,1,0,1],
-            [0,0,0,1,1,0,1,1,0,0,0]
-        ];
-
-        const ALIEN_SPRITE_2 = [
-            [0,0,1,0,0,0,0,0,1,0,0],
-            [1,0,0,1,0,0,0,1,0,0,1],
-            [1,0,1,1,1,1,1,1,1,0,1],
-            [1,1,1,0,1,1,1,0,1,1,1],
-            [1,1,1,1,1,1,1,1,1,1,1],
-            [0,1,1,1,1,1,1,1,1,1,0],
-            [0,0,1,0,0,0,0,0,1,0,0],
-            [0,1,0,0,0,0,0,0,0,1,0]
-        ];
-
-        // Helper to draw sprites
-        // sprite: Matrix array
-        // x, y: Position
-        // color: Color string
-        // pixelSize: size of each "block"
-        function drawSprite(sprite, x, y, color, pixelSize) {
-            ctx.fillStyle = color;
-            for (let row = 0; row < sprite.length; row++) {
-                for (let col = 0; col < sprite[row].length; col++) {
-                    if (sprite[row][col] === 1) {
-                        ctx.fillRect(x + col * pixelSize, y + row * pixelSize, pixelSize, pixelSize);
-                    }
-                }
-            }
+        // Resize Canvas
+        function resize() {
+            width = canvas.parentElement.offsetWidth;
+            height = canvas.parentElement.offsetHeight;
+            canvas.width = width;
+            canvas.height = height;
         }
+        window.addEventListener('resize', resize);
 
-        // Player
-        const player = {
-            x: canvas.width / 2 - 14, // Adjusted for sprite width
-            y: canvas.height - 30,
-            width: 28,  // 7 cols * 4px
-            height: 24, // 6 rows * 4px
-            color: '#00ff00',
-            dx: 0,
-            speed: 3,
-            pixelSize: 4
-        };
-
-        // Bullets
-        let bullets = [];
-        const bulletSpeed = 5;
-
-        // Aliens
-        let aliens = [];
-        const alienRows = 4;
-        const alienCols = 5; // Reduced cols slightly for fit
-        const alienPixelSize = 2; 
-        const alienWidth = 11 * alienPixelSize; // 22px
-        const alienHeight = 8 * alienPixelSize; // 16px
-        const alienPadding = 15;
-        const alienOffsetTop = 30;
-        const alienOffsetLeft = 25;
-        let alienDx = 0.5;
-        let alienDy = 10;
-
-        function initAliens() {
-            aliens = [];
-            for(let c=0; c<alienCols; c++) {
-                for(let r=0; r<alienRows; r++) {
-                    aliens.push({
-                        x: (c * (alienWidth + alienPadding)) + alienOffsetLeft,
-                        y: (r * (alienHeight + alienPadding)) + alienOffsetTop,
-                        alive: true
-                    });
-                }
-            }
-        }
-
-        // EXPLOSIONS / PARTICLES SYSTEM
-        function createExplosion(x, y, color) {
-            for (let i = 0; i < 10; i++) {
-                particles.push({
-                    x: x,
-                    y: y,
-                    vx: (Math.random() - 0.5) * 4,
-                    vy: (Math.random() - 0.5) * 4,
-                    life: 20 + Math.random() * 10,
-                    color: color,
-                    size: Math.random() * 3 + 1
-                });
-            }
-        }
-
-        function updateParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                let p = particles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life--;
-                
-                ctx.fillStyle = p.color;
-                ctx.globalAlpha = p.life / 30; // Fade out
-                ctx.fillRect(p.x, p.y, p.size, p.size);
-                ctx.globalAlpha = 1.0;
-
-                if (p.life <= 0) {
-                    particles.splice(i, 1);
-                    i--;
-                }
-            }
-        }
-
-        // Controls
-        document.addEventListener('keydown', keyDownHandler);
-        document.addEventListener('keyup', keyUpHandler);
-
-        function keyDownHandler(e) {
-            if(e.key === 'Right' || e.key === 'ArrowRight') {
-                player.dx = player.speed;
-            } else if(e.key === 'Left' || e.key === 'ArrowLeft') {
-                player.dx = -player.speed;
-            } else if(e.key === ' ' || e.code === 'Space') {
-                e.preventDefault(); 
-                if(!gameRunning && startScreen.style.display !== 'none') {
-                    startGame();
-                } else if(gameRunning) {
-                    shoot();
-                }
-            }
-        }
-
-        function keyUpHandler(e) {
-            if(e.key === 'Right' || e.key === 'ArrowRight' || e.key === 'Left' || e.key === 'ArrowLeft') {
-                player.dx = 0;
-            }
-        }
-
-        function shoot() {
-            if(bullets.length < 3) {
-                bullets.push({
-                    x: player.x + player.width / 2 - 2,
-                    y: player.y,
-                    width: 4,
-                    height: 10
-                });
-            }
-        }
-
-        function startGame() {
-            gameRunning = true;
-            score = 0;
-            scoreDisplay.textContent = score;
-            startScreen.style.display = 'none';
-            gameOverScreen.style.display = 'none';
-            initAliens();
-            bullets = [];
-            particles = [];
-            alienDx = 0.5; 
-            update();
-        }
-
-        function resetGame() {
-            gameRunning = false;
-            cancelAnimationFrame(animationId);
-            startScreen.style.display = 'flex';
-            gameOverScreen.style.display = 'none';
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
-        function drawPlayer() {
-            drawSprite(SHIP_SPRITE, player.x, player.y, player.color, player.pixelSize);
-        }
-
-        function drawBullets() {
-            ctx.fillStyle = '#ffff00';
-            bullets.forEach(b => {
-                ctx.fillRect(b.x, b.y, b.width, b.height);
-            });
-        }
-
-        function drawAliens() {
-            // Animation toggle every 30 frames approx
-            const useSprite2 = Math.floor(tick / 30) % 2 === 0;
-            const currentSprite = useSprite2 ? ALIEN_SPRITE_2 : ALIEN_SPRITE_1;
-
-            aliens.forEach(a => {
-                if(a.alive) {
-                    drawSprite(currentSprite, a.x, a.y, '#ff00ff', alienPixelSize);
-                }
-            });
-        }
-
-        function update() {
-            if(!gameRunning) return;
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Create random attack (connection)
+        function triggerAttack() {
+            if(connections.length > 6) connections.shift(); 
             
-            tick++; // Increment tick for animation
-
-            // Move Player
-            player.x += player.dx;
-            if(player.x < 0) player.x = 0;
-            if(player.x + player.width > canvas.width) player.x = canvas.width - player.width;
-
-            // Move Bullets
-            bullets.forEach((b, index) => {
-                b.y -= bulletSpeed;
-                if(b.y < 0) bullets.splice(index, 1);
-            });
-
-            // Move Aliens
-            let edgeTouched = false;
-            aliens.forEach(a => {
-                if(a.alive) {
-                    a.x += alienDx;
-                    if(a.x + alienWidth > canvas.width || a.x < 0) {
-                        edgeTouched = true;
-                    }
-                }
-            });
-
-            if(edgeTouched) {
-                alienDx = -alienDx;
-                aliens.forEach(a => a.y += alienDy);
-                if(alienDx > 0) alienDx += 0.1; else alienDx -= 0.1;
+            const srcLoc = locations[Math.floor(Math.random() * locations.length)];
+            let destLoc = locations[Math.floor(Math.random() * locations.length)];
+            
+            while (srcLoc === destLoc) {
+                destLoc = locations[Math.floor(Math.random() * locations.length)];
             }
 
-            // Collision Detection
-            bullets.forEach((b, bIndex) => {
-                aliens.forEach((a, aIndex) => {
-                    if(a.alive && 
-                       b.x < a.x + alienWidth &&
-                       b.x + b.width > a.x &&
-                       b.y < a.y + alienHeight &&
-                       b.y + b.height > a.y) {
-                        
-                        a.alive = false;
-                        bullets.splice(bIndex, 1);
-                        score += 10;
-                        scoreDisplay.textContent = score;
+            const startNode = { x: srcLoc.x * width, y: srcLoc.y * height };
+            const endNode = { x: destLoc.x * width, y: destLoc.y * height };
 
-                        // Create Explosion Effect!
-                        createExplosion(a.x + alienWidth/2, a.y + alienHeight/2, '#ff00ff');
-                    }
-                });
+            connections.push({
+                start: startNode,
+                end: endNode,
+                progress: 0,
+                speed: 0.01 + Math.random() * 0.02, 
+                color: Math.random() > 0.3 ? '#ef4444' : '#fbbf24' 
             });
 
-            // Update & Draw Particles
-            updateParticles();
-
-            // Game Over Check
-            let activeAliens = aliens.filter(a => a.alive).length;
-            if(activeAliens === 0) {
-                initAliens();
-                alienDx = (alienDx > 0 ? 0.5 : -0.5) * 1.5; 
-            }
-
-            aliens.forEach(a => {
-                if(a.alive && a.y + alienHeight > player.y) {
-                    gameRunning = false;
-                    finalScoreDisplay.textContent = score;
-                    gameOverScreen.style.display = 'flex';
-                }
-            });
-
-            drawPlayer();
-            drawBullets();
-            drawAliens();
-
-            animationId = requestAnimationFrame(update);
+            const types = ['DDOS', 'SQL_INJECTION', 'BRUTE_FORCE', 'MALWARE_C2', 'PHISHING', 'RANSOMWARE'];
+            const type = types[Math.floor(Math.random()*types.length)];
+            
+            const logEntry = document.createElement('div');
+            logEntry.className = 'mb-1 text-xs ' + (Math.random() > 0.5 ? 'text-red-400' : 'text-yellow-400');
+            logEntry.innerText = `> ${srcLoc.name} -> ${destLoc.name} [${type}]`;
+            
+            logContainer.prepend(logEntry);
+            if(logContainer.children.length > 20) logContainer.lastChild.remove();
         }
 
-        // Draw initial state background
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Animation Loop
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw Fixed Nodes (Cities)
+            locations.forEach(loc => {
+                const x = loc.x * width;
+                const y = loc.y * height;
+                
+                // Pulsing effect
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = '#22c55e'; // Green dots
+                ctx.fill();
+                
+                // Faint ripple
+                ctx.beginPath();
+                ctx.arc(x, y, 4 + Math.sin(Date.now() / 200) * 2, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(34, 197, 94, 0.3)';
+                ctx.stroke();
+            });
+
+            // Draw & Update Connections (Attacks)
+            connections.forEach((conn, index) => {
+                conn.progress += conn.speed;
+                
+                if(conn.progress >= 1) {
+                    // Impact explosion visual
+                    ctx.beginPath();
+                    ctx.arc(conn.end.x, conn.end.y, 10 * (conn.progress - 1 + 0.1), 0, Math.PI*2);
+                    ctx.strokeStyle = conn.color;
+                    ctx.stroke();
+                    
+                    if(conn.progress > 1.3) connections.splice(index, 1);
+                } else {
+                    const currentX = conn.start.x + (conn.end.x - conn.start.x) * conn.progress;
+                    const currentY = conn.start.y + (conn.end.y - conn.start.y) * conn.progress;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(conn.start.x, conn.start.y);
+                    ctx.lineTo(currentX, currentY);
+                    
+                    ctx.strokeStyle = conn.color;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                    
+                    // Head particle
+                    ctx.beginPath();
+                    ctx.arc(currentX, currentY, 3, 0, Math.PI*2);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fill();
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Start
+        resize();
+        animate();
+        setInterval(triggerAttack, 1200); 
 
     </script>
 </body>
